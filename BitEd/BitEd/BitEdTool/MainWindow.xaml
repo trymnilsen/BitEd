@@ -1,0 +1,206 @@
+﻿<Window x:Class="BitEdTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:dockTheme="clr-namespace:BitEdToolTheme;assembly=BitEdToolTheme"
+        xmlns:ToolView="clr-namespace:BitEdTool.Views"
+        xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="800" Width="950"  Background="{StaticResource AvalonDock_Expression_BaseColor1}" Closing="Window_Closing">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome
+            ResizeBorderThickness="6"
+            GlassFrameThickness="0" CornerRadius="0" />
+    </shell:WindowChrome.WindowChrome>
+
+    <Window.Resources>
+       
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/> <!-- Window Bar-->
+            <RowDefinition Height="50"/> <!-- Tool Bar-->
+            <RowDefinition Height="1*"/> <!-- Dock Area-->
+            <RowDefinition Height="20px"/> <!-- StatusBar Area-->
+        </Grid.RowDefinitions>
+        <!-- Window Bar-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--Icon-->
+            <Image Source="gfx/icons/cubeicon.png"/>
+            <!--ProjectName-->
+            <!--Menu Strip-->
+            <Menu Grid.Column="2" Background="{DynamicResource AvalonDock_Expression_BaseColor1}">
+                <Menu.Style>
+                    <Style>
+                        <Style.Setters>
+                            <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                        </Style.Setters>
+                    </Style>
+                </Menu.Style>
+                <MenuItem Header="File">
+                        <MenuItem Header="New"/>
+                        <MenuItem Header="Open"/>
+                        <MenuItem Header="Recent Projects"/>
+                        <MenuItem Header="Close"/>
+                        <MenuItem Header="Save"/>
+                        <MenuItem Header="Save As.."/>
+                        <MenuItem Header="Exit"/>
+                    </MenuItem>
+                    <MenuItem Header="Edit">
+                        <MenuItem Header="Undo"/>
+                        <MenuItem Header="Redo"/>
+                        <MenuItem Header="Delete"/>
+                        <MenuItem Header="Clone"/>
+                        <MenuItem Header="Move"/>
+                        <MenuItem Header="Rotate"/>
+                        <MenuItem Header="Scale"/>
+                        <MenuItem Header="Transform.."/>
+                        <MenuItem Header="Editor Preferences.."/>
+                    </MenuItem>
+                    <MenuItem Header="Tools">
+                        <MenuItem Header="Tool1"/>
+                    </MenuItem>
+                    <MenuItem Header="Asset">
+                        <MenuItem Header="Create Sprite"/>
+                        <MenuItem Header="Create Tile"/>
+                        <MenuItem Header="Create Object"/>
+                        <MenuItem Header="Find Asset"/>
+                        <MenuItem Header="Collapse Asset Tree"/>
+                        <MenuItem Header="Expand Asset Tree"/>
+                    </MenuItem>
+                    <MenuItem Header="Entity">
+                        <MenuItem Header="Freeze Entity"/>
+                        <MenuItem Header="Hide Entity"/>
+                        <MenuItem Header="Remove Entity"/>
+                    </MenuItem>
+                    <MenuItem Header="Select">
+                        <MenuItem Header="Select All"/>
+                        <MenuItem Header="Select None"/>
+                        <MenuItem Header="Select Inverse"/>
+                        <MenuItem Header="Select Frozen"/>
+                        <MenuItem Header="Select Hidden"/>
+                        <MenuItem Header="Select All Instances"/>
+                        <MenuItem Header="Set Selection Set.."/>
+                        <MenuItem Header="Get Selection Set.."/>
+                    </MenuItem>
+                    <MenuItem Header="View">
+                        <MenuItem Header="Item1"/>
+                    </MenuItem>
+                    <MenuItem Header="Game">
+                        <MenuItem Header="Game Config.."/>
+                        <MenuItem Header="Project Info.."/>
+                        <MenuItem Header="Run"/>
+                        <MenuItem Header="Run in Debug"/>
+                        <MenuItem Header="Set Device.."/>
+                    </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Header="About"/>
+                    <MenuItem Header="Website"/>
+                    <MenuItem Header="Knowledge Base"/>
+                </MenuItem>
+            </Menu>
+        </Grid>
+        <!-- ~Window Bar-->
+        <!-- Tool Bar-->
+        <Grid Grid.Row="1" Background="{StaticResource AvalonDock_Expression_BaseColor8}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--Toolbar-->
+                <ToolView:ToolBar/>
+                <!--Asset tabs-->
+                <TabControl Grid.Column="1">
+                    <TabItem Header="Shapes">
+                        <ToolView:ShapesBar/>
+                    </TabItem>
+                    <TabItem Header="Lights">
+
+                    </TabItem>
+                    <TabItem Header="Other">
+                        
+                    </TabItem>
+                </TabControl>
+                <!--~Asset tabs-->
+            </Grid>
+        </Grid>
+        <!-- ~Tool Bar-->
+        <!-- DockArea-->
+        <avalonDock:DockingManager Grid.Row="2">
+            <avalonDock:DockingManager.Theme>
+                <dockTheme:DarkTheme/>
+            </avalonDock:DockingManager.Theme>
+            <avalonDock:LayoutRoot>
+                <avalonDock:LayoutPanel Orientation="Vertical">
+                    <!--Footer and ContentArea-->
+                        <!--ContentArea-->
+                    <avalonDock:LayoutPanel Orientation="Horizontal">
+                        <!--Sceneview, Preview and inspector-->
+                            <!--Sceneview-->
+                            <avalonDock:LayoutAnchorablePaneGroup Orientation="Vertical" DockMinWidth="200">
+                                <!--Scene-->
+                                <avalonDock:LayoutAnchorablePane>
+                                    <avalonDock:LayoutAnchorable Title="Scene" CanClose="False">
+                                        
+                                    </avalonDock:LayoutAnchorable>
+                                </avalonDock:LayoutAnchorablePane>
+                                <!--~Scene-->
+                                <!--Assets-->
+                                <avalonDock:LayoutAnchorablePane>
+                                    <avalonDock:LayoutAnchorable Title="Assets" CanClose="False">
+
+                                    </avalonDock:LayoutAnchorable>
+                                </avalonDock:LayoutAnchorablePane>
+                                <!--Assets-->
+                            </avalonDock:LayoutAnchorablePaneGroup>
+                            <!--~Sceneview-->
+                            <!--Preview-->
+                            <avalonDock:LayoutDocumentPaneGroup Orientation="Horizontal">
+                                <avalonDock:LayoutDocumentPane>
+                                    <avalonDock:LayoutDocument Title="Preview">
+                                        <!--<ToolView:PreviewView/>-->
+                                        <ToolView:ScreenEditArea/>
+                                    </avalonDock:LayoutDocument>
+                                    <avalonDock:LayoutDocument Title="Preview">
+                                        <ToolView:ScreenEditArea/>                                        <!--<ToolView:PreviewView/>-->
+                                    </avalonDock:LayoutDocument>
+                                </avalonDock:LayoutDocumentPane>
+                            </avalonDock:LayoutDocumentPaneGroup>
+                            <!--~Preview-->
+                            <!--Inspector-->
+                            <avalonDock:LayoutAnchorablePane DockWidth="200">
+                                 <avalonDock:LayoutAnchorable Title="Inspector" CanClose="False">
+                                    <Label Content="Inspector"/>
+                                </avalonDock:LayoutAnchorable>
+                            </avalonDock:LayoutAnchorablePane>
+                            <!--~Inspector-->
+                            <!-- ~Sceneview, Preview and inspector-->
+                        </avalonDock:LayoutPanel>
+                        <!--~ContentArea-->
+                        <!--Footer-->
+                        <avalonDock:LayoutAnchorablePaneGroup DockMinHeight="50">
+                            <avalonDock:LayoutAnchorablePane>
+                                <avalonDock:LayoutAnchorable Title="FooterStuff">
+                                    <Label Content="Footer"/>
+                                </avalonDock:LayoutAnchorable>
+                                <avalonDock:LayoutAnchorable Title="Output">
+                                    <Label Content="Output"/>
+                                </avalonDock:LayoutAnchorable>
+                            </avalonDock:LayoutAnchorablePane>
+                        </avalonDock:LayoutAnchorablePaneGroup>
+                        <!--~Footer-->
+                    <!-- ~Footer and ContentArea-->
+                </avalonDock:LayoutPanel>
+            </avalonDock:LayoutRoot>
+        </avalonDock:DockingManager>
+        <!-- ~DockArea-->
+        <StatusBar Grid.Row="3" Background="#DE6500">
+
+        </StatusBar>
+    </Grid>
+</Window>

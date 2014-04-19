@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="BitEdTool.Views.ShapesBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Orientation="Horizontal">
+        <!--Rectangle-->
+        <Button Content="Button" 
+                        Template="{StaticResource ResourceKey=ImageButtonHover}" 
+                        Height="18" Width="18">
+            <Button.Resources>
+                <ImageSource x:Key="Img">../gfx/icons/primitive_rectangle.png</ImageSource>
+            </Button.Resources>
+        </Button>
+        <!--Triangle-->
+        <Button Content="Button" 
+                        Template="{StaticResource ResourceKey=ImageButtonHover}" 
+                        Height="18" Width="18">
+            <Button.Resources>
+                <ImageSource x:Key="Img">../gfx/icons/primitive_triangle.png</ImageSource>
+            </Button.Resources>
+        </Button>
+        <!--Circle-->
+        <Button Content="Button" 
+                        Template="{StaticResource ResourceKey=ImageButtonHover}" 
+                        Height="18" Width="18">
+            <Button.Resources>
+                <ImageSource x:Key="Img">../gfx/icons/primitive_circle.png</ImageSource>
+            </Button.Resources>
+        </Button>
+    </StackPanel>
+</UserControl>

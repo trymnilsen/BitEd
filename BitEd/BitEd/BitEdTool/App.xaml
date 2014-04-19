@@ -1,0 +1,21 @@
+﻿<Application x:Class="BitEdTool.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+             xmlns:converters="clr-namespace:BitEdTool.Converters"
+             xmlns:vm="clr-namespace:BitEdTool.ViewModel"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/BitEdToolTheme;component/DarkTheme.xaml"/>
+                <ResourceDictionary>
+                    <!--Converters-->
+                    <converters:IsEqualToBoolConverter x:Key="IsEqualToConverter"/>
+                    <!--Locator-->
+                    <vm:ViewModelLocator x:Key="Locator"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

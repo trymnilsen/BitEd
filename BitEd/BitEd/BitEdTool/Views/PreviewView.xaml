@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="BitEdTool.Views.PreviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ToolRender="clr-namespace:BitEdToolRender;assembly=BitEdToolRender"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20px"/>
+            <RowDefinition/>
+            <RowDefinition Height="20px"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Displaymode" Margin="2"/>
+            <TextBlock Text="Light" Margin="2"/>
+            <TextBlock Text="Sound" Margin="2"/>
+            <TextBlock Text="Effects" Margin="2"/>
+            <TextBlock Text="Gizmos" Margin="2"/>
+        </StackPanel>
+        <ToolRender:GLElement Name="renderTarget" Grid.Row="1" SizeChanged="GLElement_SizeChanged" GLInitialized="GLElement_GLInitialized" GLRenderStarted="GLElement_GLRenderStarted"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Text="Projection" Margin="2"/>
+            <TextBlock Text="Top" Margin="2"/>
+            <TextBlock Text="Maximize" Margin="2"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

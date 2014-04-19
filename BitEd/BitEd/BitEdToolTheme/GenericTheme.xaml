@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--TabControl-->
+    <Style TargetType="{x:Type TabControl}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="18"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Background="#313131">
+                            <WrapPanel IsItemsHost="True" DockPanel.Dock="Left"/>
+                            <Border BorderThickness="0,1,0,0" BorderBrush="#3f3f3f">
+                                <Label Background="{DynamicResource AvalonDock_Expression_BaseColor1}"/>
+                            </Border>
+                        </DockPanel>
+                        <ContentPresenter ContentSource="SelectedContent" Margin="0" Grid.Row="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--~TabControl-->
+    <!--TabItem-->
+    <Style TargetType="{x:Type TabItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <!-- The Grid helps defining the general height of TabItems. -->
+                    <Grid Height="18" Name="TabItemContainer">
+                        <ContentPresenter x:Name="ContentSite"
+                                                HorizontalAlignment="Center"
+                                                ContentSource="Header"
+                                                Margin="5,0,8,0"
+                                                RecognizesAccessKey="True"
+                                                 />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="TabItemContainer" Property="Background" Value="#404040"/>
+                            <!--We fix the problem with the orange border being cut of in the last pixel in the corner but literally swapping the border order on selection-->
+                            <!--<Setter TargetName="TabItemBottomBorder" Property="BorderBrush" Value="Red"/>-->
+                            <!--<Setter TargetName="TabItemBottomBorder" Property="BorderThickness" Value="1,1,1,0"/>-->
+
+                            <!--<Setter TargetName="TabItemOutlineBorder" Property="BorderThickness" Value="0,0,0,1"/>-->
+                            <!--Set color of Seperator to color of tab / Making it look like its removed-->
+                            <!--
+                            <Setter TargetName="TabItemSeperatorBorder" Property="BorderBrush" Value="#404040"/>-->
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="true"/>
+                                <Condition Property="IsSelected" Value="false"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="TabItemContainer" Property="Background" Value="#262626"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--~TabItem-->
+</ResourceDictionary>

@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Image Button Hover-->
+    <ControlTemplate x:Key="ImageButtonHover" TargetType="Button">
+        <Grid Name="backgroundGrid">
+            <Image Source="{DynamicResource ResourceKey=Img}" 
+                   Width="{TemplateBinding Width}" 
+                   Height="{TemplateBinding Height}"></Image>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="backgroundGrid" Property="Background" Value="#FF3C3C3C" />
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter TargetName="backgroundGrid" Property="Background" Value="#007ACC" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!-- ~Image Button Hover-->
+    <!--ToolbarButton-->
+    <ControlTemplate x:Key="ToolBoxButton" TargetType="RadioButton">
+        <Grid Name="backgroundGrid">
+            <Image Source="{DynamicResource ResourceKey=Img}" 
+                   Width="{TemplateBinding Width}" 
+                   Height="{TemplateBinding Height}"></Image>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="backgroundGrid" Property="Background" Value="#FF3C3C3C" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="backgroundGrid" Property="Background" Value="#007ACC" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="backgroundGrid" Property="Background" Value="#007ACC" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--~ToolbarButton-->
+</ResourceDictionary>
