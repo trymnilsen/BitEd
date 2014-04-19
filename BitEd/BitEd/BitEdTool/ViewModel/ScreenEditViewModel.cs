@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace BitEdTool.ViewModel
         private Point lastPoint; 
         public RelayCommand<MouseEventArgs> MouseMoveCommand { get; set; }
         public RelayCommand<MouseButtonEventArgs> MousePressCommand { get; set; }
+        public ObservableCollection<ScreenViewModel> ActiveScreens { get; set; }
 
         public Rect BackgroundScrollViewPort
         {
@@ -25,9 +27,11 @@ namespace BitEdTool.ViewModel
 
         public ScreenEditViewModel()
         {
+            ActiveScreens = new ObservableCollection<ScreenViewModel>();
             MouseMoveCommand = new RelayCommand<MouseEventArgs>(ScrollScreen);
             lastPoint = new Point();
             position = new Point();
+            ActiveScreens.Add(new ScreenViewModel());
         }
         void ScrollScreen(MouseEventArgs e)
         {

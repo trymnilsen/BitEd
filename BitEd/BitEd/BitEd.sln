@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitEdConsole", "BitEdConsol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitEdToolTheme", "BitEdToolTheme\BitEdToolTheme.csproj", "{8F9F9609-6D50-4494-88AE-50E1225349E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitEdToolRender", "BitEdToolRender\BitEdToolRender.csproj", "{47BB4579-F9BF-4020-8B33-342CB5B19E9B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{8F9F9609-6D50-4494-88AE-50E1225349E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F9F9609-6D50-4494-88AE-50E1225349E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F9F9609-6D50-4494-88AE-50E1225349E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47BB4579-F9BF-4020-8B33-342CB5B19E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47BB4579-F9BF-4020-8B33-342CB5B19E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47BB4579-F9BF-4020-8B33-342CB5B19E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47BB4579-F9BF-4020-8B33-342CB5B19E9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

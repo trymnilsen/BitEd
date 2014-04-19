@@ -5,17 +5,13 @@
         xmlns:ToolView="clr-namespace:BitEdTool.Views"
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="800" Width="950"  Background="{StaticResource AvalonDock_Expression_BaseColor1}" Closing="Window_Closing">
+        Title="MainWindow" Height="800" Width="950" DataContext="{Binding ScreenVM, Source={StaticResource Locator}}" Background="{StaticResource AvalonDock_Expression_BaseColor1}" Closing="Window_Closing">
     <shell:WindowChrome.WindowChrome>
         <shell:WindowChrome
             ResizeBorderThickness="6"
             GlassFrameThickness="0" CornerRadius="0" />
     </shell:WindowChrome.WindowChrome>
-
-    <Window.Resources>
-       
-    </Window.Resources>
-    <Grid>
+    <Grid Margin="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/> <!-- Window Bar-->
             <RowDefinition Height="50"/> <!-- Tool Bar-->
@@ -33,15 +29,16 @@
             <Image Source="gfx/icons/cubeicon.png"/>
             <!--ProjectName-->
             <!--Menu Strip-->
-            <Menu Grid.Column="2" Background="{DynamicResource AvalonDock_Expression_BaseColor1}">
+            <StackPanel Grid.Column="2">
+            <Menu Background="{DynamicResource AvalonDock_Expression_BaseColor1}">
                 <Menu.Style>
-                    <Style>
+                    <Style TargetType="Menu">
                         <Style.Setters>
                             <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
                         </Style.Setters>
                     </Style>
                 </Menu.Style>
-                <MenuItem Header="File">
+                <MenuItem Header="FILE" Foreground="White">
                         <MenuItem Header="New"/>
                         <MenuItem Header="Open"/>
                         <MenuItem Header="Recent Projects"/>
@@ -50,7 +47,7 @@
                         <MenuItem Header="Save As.."/>
                         <MenuItem Header="Exit"/>
                     </MenuItem>
-                    <MenuItem Header="Edit">
+                    <MenuItem Header="EDIT" Foreground="White">
                         <MenuItem Header="Undo"/>
                         <MenuItem Header="Redo"/>
                         <MenuItem Header="Delete"/>
@@ -61,10 +58,10 @@
                         <MenuItem Header="Transform.."/>
                         <MenuItem Header="Editor Preferences.."/>
                     </MenuItem>
-                    <MenuItem Header="Tools">
+                    <MenuItem Header="TOOLS" Foreground="White">
                         <MenuItem Header="Tool1"/>
                     </MenuItem>
-                    <MenuItem Header="Asset">
+                    <MenuItem Header="ASSET" Foreground="White">
                         <MenuItem Header="Create Sprite"/>
                         <MenuItem Header="Create Tile"/>
                         <MenuItem Header="Create Object"/>
@@ -72,12 +69,12 @@
                         <MenuItem Header="Collapse Asset Tree"/>
                         <MenuItem Header="Expand Asset Tree"/>
                     </MenuItem>
-                    <MenuItem Header="Entity">
+                    <MenuItem Header="ENTITY" Foreground="White">
                         <MenuItem Header="Freeze Entity"/>
                         <MenuItem Header="Hide Entity"/>
                         <MenuItem Header="Remove Entity"/>
                     </MenuItem>
-                    <MenuItem Header="Select">
+                    <MenuItem Header="SELECT" Foreground="White">
                         <MenuItem Header="Select All"/>
                         <MenuItem Header="Select None"/>
                         <MenuItem Header="Select Inverse"/>
@@ -87,22 +84,23 @@
                         <MenuItem Header="Set Selection Set.."/>
                         <MenuItem Header="Get Selection Set.."/>
                     </MenuItem>
-                    <MenuItem Header="View">
+                    <MenuItem Header="VIEW" Foreground="White">
                         <MenuItem Header="Item1"/>
                     </MenuItem>
-                    <MenuItem Header="Game">
+                    <MenuItem Header="GAME" Foreground="White">
                         <MenuItem Header="Game Config.."/>
                         <MenuItem Header="Project Info.."/>
                         <MenuItem Header="Run"/>
                         <MenuItem Header="Run in Debug"/>
                         <MenuItem Header="Set Device.."/>
                     </MenuItem>
-                <MenuItem Header="Help">
+                <MenuItem Header="HELP" Foreground="White">
                     <MenuItem Header="About"/>
                     <MenuItem Header="Website"/>
                     <MenuItem Header="Knowledge Base"/>
                 </MenuItem>
             </Menu>
+            </StackPanel>
         </Grid>
         <!-- ~Window Bar-->
         <!-- Tool Bar-->
@@ -131,7 +129,7 @@
         </Grid>
         <!-- ~Tool Bar-->
         <!-- DockArea-->
-        <avalonDock:DockingManager Grid.Row="2">
+        <avalonDock:DockingManager Grid.Row="2" DocumentsSource="{Binding ActiveScreens}">
             <avalonDock:DockingManager.Theme>
                 <dockTheme:DarkTheme/>
             </avalonDock:DockingManager.Theme>
@@ -161,14 +159,8 @@
                             <!--~Sceneview-->
                             <!--Preview-->
                             <avalonDock:LayoutDocumentPaneGroup Orientation="Horizontal">
-                                <avalonDock:LayoutDocumentPane>
-                                    <avalonDock:LayoutDocument Title="Preview">
-                                        <!--<ToolView:PreviewView/>-->
-                                        <ToolView:ScreenEditArea/>
-                                    </avalonDock:LayoutDocument>
-                                    <avalonDock:LayoutDocument Title="Preview">
-                                        <ToolView:ScreenEditArea/>                                        <!--<ToolView:PreviewView/>-->
-                                    </avalonDock:LayoutDocument>
+                                <avalonDock:LayoutDocumentPane >
+
                                 </avalonDock:LayoutDocumentPane>
                             </avalonDock:LayoutDocumentPaneGroup>
                             <!--~Preview-->

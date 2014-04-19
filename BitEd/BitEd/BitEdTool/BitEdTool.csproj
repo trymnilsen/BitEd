@@ -86,13 +86,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\IsEqualToBoolConverter.cs" />
+    <Compile Include="Converters\MarginConverter.cs" />
     <Compile Include="ViewModel\ScreenEditViewModel.cs" />
+    <Compile Include="ViewModel\ScreenViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\Assetbar.xaml.cs">
       <DependentUpon>Assetbar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PreviewView.xaml.cs">
-      <DependentUpon>PreviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ScreenEditArea.xaml.cs">
       <DependentUpon>ScreenEditArea.xaml</DependentUpon>
@@ -116,10 +115,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Assetbar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PreviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,9 +160,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BitEdToolRender\BitEdToolRender.csproj">
-      <Project>{47bb4579-f9bf-4020-8b33-342cb5b19e9b}</Project>
-      <Name>BitEdToolRender</Name>
+    <ProjectReference Include="..\BitEdLib\BitEdLib.csproj">
+      <Project>{1554e75d-7ede-4527-8b46-1a3b61be47c7}</Project>
+      <Name>BitEdLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\BitEdToolTheme\BitEdToolTheme.csproj">
       <Project>{8f9f9609-6d50-4494-88ae-50e1225349e0}</Project>
