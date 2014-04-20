@@ -85,6 +85,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\PaneViewModel.cs" />
+    <Compile Include="ViewStyle\PaneStyleSelector.cs" />
+    <Compile Include="Windows\BorderlessWindow.cs" />
     <Compile Include="Converters\IsEqualToBoolConverter.cs" />
     <Compile Include="Converters\MarginConverter.cs" />
     <Compile Include="ViewModel\ScreenEditViewModel.cs" />
@@ -191,6 +194,7 @@
   <ItemGroup>
     <Resource Include="gfx\icons\cubeicon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

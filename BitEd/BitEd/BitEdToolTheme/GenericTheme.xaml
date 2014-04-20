@@ -16,9 +16,7 @@
                         </Grid.ColumnDefinitions>
                         <DockPanel Background="#313131">
                             <WrapPanel IsItemsHost="True" DockPanel.Dock="Left"/>
-                            <Border BorderThickness="0,1,0,0" BorderBrush="#3f3f3f">
-                                <Label Background="{DynamicResource AvalonDock_Expression_BaseColor1}"/>
-                            </Border>
+                            <Label Background="{DynamicResource AvalonDock_Expression_BaseColor1}"/>
                         </DockPanel>
                         <ContentPresenter ContentSource="SelectedContent" Margin="0" Grid.Row="1"/>
                     </Grid>

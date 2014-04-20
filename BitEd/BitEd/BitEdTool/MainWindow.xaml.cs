@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BitEdTool.Windows;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace BitEdTool
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : BorderlessWindow
     {
         private bool draggingWithGrip;
         private Point previousDragPos;

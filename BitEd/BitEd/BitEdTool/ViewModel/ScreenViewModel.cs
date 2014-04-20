@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace BitEdTool.ViewModel
 { 
-    public class ScreenViewModel:ViewModelBase
+    public class ScreenViewModel:PaneViewModel
     {
         public GameScreen model;
         public ScreenViewModel()
         {
             model = new GameScreen();
             model.Name = "Screen";
+            this.Title = "Yadda";
         }
     }
 }
