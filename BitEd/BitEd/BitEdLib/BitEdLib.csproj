@@ -39,12 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Build\BitEdBuilder.cs" />
+    <Compile Include="Build\GamePackage.cs" />
+    <Compile Include="Build\IAssetProcessor.cs" />
+    <Compile Include="Deploy\IDeployableDevice.cs" />
     <Compile Include="Log\FileOutput.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\LogOutput.cs" />
     <Compile Include="Log\LogStream.cs" />
     <Compile Include="Model\Entity\GameScreen.cs" />
+    <Compile Include="Network\OuyaNetClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
