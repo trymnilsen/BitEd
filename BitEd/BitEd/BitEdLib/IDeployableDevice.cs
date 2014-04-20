@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitBuild
 {
-    public class Class1
+    public interface IDeployableDevice
     {
     }
 }

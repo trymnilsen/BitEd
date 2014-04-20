@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitEdToolRender.Scene
+namespace BitEdLib.Deploy
 {
-    class Light
+    public interface IDeployableDevice
     {
     }
 }
