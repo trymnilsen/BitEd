@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace BitEdLib.Model.Entity
 {
-    public class GameScreen
+    class EntityInstance
     {
-        public string Name { get; set; }
+        public EntityInstance()
+        {
+
+        }
     }
 }

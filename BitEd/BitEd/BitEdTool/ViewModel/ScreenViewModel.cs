@@ -10,10 +10,10 @@ namespace BitEdTool.ViewModel
 { 
     public class ScreenViewModel:PaneViewModel
     {
-        public GameScreen model;
+        public EntityGameScreen model;
         public ScreenViewModel()
         {
-            model = new GameScreen();
+            model = new EntityGameScreen();
             model.Name = "Screen";
             this.Title = "Yadda";
         }
