@@ -14,18 +14,18 @@ namespace BitEdTool.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<ScreenEditViewModel>();
+            SimpleIoc.Default.Register<WorkspaceViewModel>();
         }
 
         /// <summary>
         /// Gets the Directory view's viewmodel
         /// </summary>
 
-        public ScreenEditViewModel ScreenVM
+        public WorkspaceViewModel ScreenVM
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<ScreenEditViewModel>();
+                return ServiceLocator.Current.GetInstance<WorkspaceViewModel>();
             }
         }
 

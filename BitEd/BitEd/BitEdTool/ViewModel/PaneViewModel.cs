@@ -77,5 +77,9 @@ namespace BitEdTool.ViewModel
                 }
             }
         }
+        public override string ToString()
+        {
+            return Title + " - " + GetType().ToString();
+        }
     }
 }

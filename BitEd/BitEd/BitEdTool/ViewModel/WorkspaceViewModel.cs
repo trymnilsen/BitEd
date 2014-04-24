@@ -12,26 +12,43 @@ using System.Windows.Input;
 
 namespace BitEdTool.ViewModel
 {
-    public class ScreenEditViewModel : ViewModelBase
+    public class WorkspaceViewModel : ViewModelBase
     {
         private Point position;
-        private Point lastPoint; 
+        private Point lastPoint;
+        private bool showScene;
+        public RelayCommand ShowSceneCommand { get; set; }
         public RelayCommand<MouseEventArgs> MouseMoveCommand { get; set; }
         public RelayCommand<MouseButtonEventArgs> MousePressCommand { get; set; }
         public ObservableCollection<ScreenViewModel> ActiveScreens { get; set; }
+        public ObservableCollection<ToolViewModel> OpenTools { get; set; }
 
         public Rect BackgroundScrollViewPort
         {
             get { return new Rect(position.X % 16, position.Y % 16, 16, 16); } 
         }
 
-        public ScreenEditViewModel()
+        public WorkspaceViewModel()
         {
             ActiveScreens = new ObservableCollection<ScreenViewModel>();
+            OpenTools = new ObservableCollection<ToolViewModel>();
             MouseMoveCommand = new RelayCommand<MouseEventArgs>(ScrollScreen);
+            ShowSceneCommand = new RelayCommand(MakeSceneVisisble);
             lastPoint = new Point();
             position = new Point();
             ActiveScreens.Add(new ScreenViewModel());
+            OpenTools.Add(new ToolViewModel("Scene","SceneView"));
+            OpenTools.Add(new ToolViewModel("Assets","SceneView"));
+            OpenTools.Add(new ToolViewModel("Footer", "Footer"));
+            OpenTools.Add(new ToolViewModel("Timeline", "Footer"));
+            OpenTools.Add(new ToolViewModel("Output", "Footer"));
+            OpenTools.Add(new ToolViewModel("Inspector","Inspector"));
+        }
+        void MakeSceneVisisble()
+        {
+            //Debug.WriteLine("Changing show scene" + ShowScene);
+            //ShowScene = !ShowScene;
+            //Debug.WriteLine("ShowScene changed to" + ShowScene);
         }
         void ScrollScreen(MouseEventArgs e)
         {

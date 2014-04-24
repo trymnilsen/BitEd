@@ -90,11 +90,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\PaneViewModel.cs" />
+    <Compile Include="ViewModel\ToolViewModel.cs" />
+    <Compile Include="ViewStyle\LayoutInitializer.cs" />
     <Compile Include="ViewStyle\PaneStyleSelector.cs" />
     <Compile Include="Windows\BorderlessWindow.cs" />
     <Compile Include="Converters\IsEqualToBoolConverter.cs" />
     <Compile Include="Converters\MarginConverter.cs" />
-    <Compile Include="ViewModel\ScreenEditViewModel.cs" />
+    <Compile Include="ViewModel\WorkspaceViewModel.cs" />
     <Compile Include="ViewModel\ScreenViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\Assetbar.xaml.cs">

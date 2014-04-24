@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitEdLib.Model.Entity
 {
-    class Entity
+    public class Entity
     {
 
     }

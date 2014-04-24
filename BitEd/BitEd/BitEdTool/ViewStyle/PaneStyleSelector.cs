@@ -31,6 +31,10 @@ namespace BitEdTool.ViewStyle
                 Debug.WriteLine("Screen name: " + (item as ScreenViewModel).model.Name);
                 return FileStyle;
             }
+            if(item is ToolViewModel)
+            {
+                return ToolStyle;
+            }
             else if(item!=null)
             {
                 Debug.WriteLine("Type was:" + item.GetType().ToString());

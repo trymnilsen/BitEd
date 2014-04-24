@@ -137,25 +137,25 @@
             </Grid>
             <!-- ~Tool Bar-->
             <!-- DockArea-->
-            <avalonDock:DockingManager Grid.Row="2" DocumentsSource="{Binding ActiveScreens}">
+            <avalonDock:DockingManager Grid.Row="2" DocumentsSource="{Binding ActiveScreens}" AnchorablesSource="{Binding OpenTools}">
                 <avalonDock:DockingManager.Theme>
                     <dockTheme:DarkTheme/>
                 </avalonDock:DockingManager.Theme>
                 <avalonDock:DockingManager.LayoutItemContainerStyleSelector>
                     <ToolStyle:PanesStyleSelector>
-                        <!--<local:PanesStyleSelector.ToolStyle>
+                       <ToolStyle:PanesStyleSelector.ToolStyle>
                             <Style TargetType="{x:Type avalonDock:LayoutAnchorableItem}">
                                 <Setter Property="Title" Value="{Binding Model.Title}"/>
-                                <Setter Property="IconSource" Value="{Binding Model.IconSource}"/>
+                                <!--<Setter Property="IconSource" Value="{Binding Model.IconSource}"/>
                                 <Setter Property="Visibility" Value="{Binding Model.IsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}"/>
                                 <Setter Property="ContentId" Value="{Binding Model.ContentId}"/>
                                 <Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}"/>
-                                <Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}"/>
+                                <Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}"/>-->
                             </Style>
-                        </local:PanesStyleSelector.ToolStyle>-->
+                        </ToolStyle:PanesStyleSelector.ToolStyle>
                         <ToolStyle:PanesStyleSelector.FileStyle>
                             <Style TargetType="{x:Type avalonDock:LayoutItem}">
-                                <Setter Property="Title" Value="{Binding Model.Title}"/>
+                                <Setter Property="Title" Value="{Binding Model}"/>
                                 <!--<Setter Property="ToolTip" Value="{Binding Model.FilePath}"/>
                                 <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}"/>
                                 <Setter Property="IconSource" Value="{Binding Model.IconSource}"/>
@@ -164,6 +164,9 @@
                         </ToolStyle:PanesStyleSelector.FileStyle>
                     </ToolStyle:PanesStyleSelector>
                 </avalonDock:DockingManager.LayoutItemContainerStyleSelector>
+                <avalonDock:DockingManager.LayoutUpdateStrategy>
+                    <ToolStyle:LayoutInitializer/>
+                </avalonDock:DockingManager.LayoutUpdateStrategy>
                 <avalonDock:LayoutRoot>
                     <avalonDock:LayoutPanel Orientation="Vertical">
                         <!--Footer and ContentArea-->
@@ -173,18 +176,18 @@
                                 <!--Sceneview-->
                                 <avalonDock:LayoutAnchorablePaneGroup Orientation="Vertical" DockMinWidth="200">
                                     <!--Scene-->
-                                    <avalonDock:LayoutAnchorablePane>
-                                        <avalonDock:LayoutAnchorable Title="Scene" CanClose="False">
+                                    <avalonDock:LayoutAnchorablePane Name="SceneView">
+                                        <!--<avalonDock:LayoutAnchorable Title="Scene" CanClose="False">
                                         
-                                        </avalonDock:LayoutAnchorable>
+                                        </avalonDock:LayoutAnchorable>-->
                                     </avalonDock:LayoutAnchorablePane>
                                     <!--~Scene-->
-                                    <!--Assets-->
+                                    <!--Assets--><!--
                                     <avalonDock:LayoutAnchorablePane>
-                                        <avalonDock:LayoutAnchorable Title="Assets" CanClose="False">
+                                        --><!--<avalonDock:LayoutAnchorable Title="Assets" CanClose="False">
 
-                                        </avalonDock:LayoutAnchorable>
-                                    </avalonDock:LayoutAnchorablePane>
+                                        </avalonDock:LayoutAnchorable>--><!--
+                                    </avalonDock:LayoutAnchorablePane>-->
                                     <!--Assets-->
                                 </avalonDock:LayoutAnchorablePaneGroup>
                                 <!--~Sceneview-->
@@ -194,10 +197,13 @@
                             </avalonDock:LayoutDocumentPane>
                             <!--~Preview-->
                                 <!--Inspector-->
-                                <avalonDock:LayoutAnchorablePane DockWidth="200">
-                                     <avalonDock:LayoutAnchorable Title="Inspector" CanClose="False">
+                                <avalonDock:LayoutAnchorablePane DockWidth="200" Name="Inspector">
+                                     <!--<avalonDock:LayoutAnchorable Title="Inspector" CanClose="False">
+                                    <StackPanel>
                                         <Label Content="Inspector"/>
-                                    </avalonDock:LayoutAnchorable>
+                                        <Button Command="{Binding ShowSceneCommand}"></Button>
+                                    </StackPanel>
+                                </avalonDock:LayoutAnchorable>-->
                                 </avalonDock:LayoutAnchorablePane>
                                 <!--~Inspector-->
                                 <!-- ~Sceneview, Preview and inspector-->
@@ -205,19 +211,20 @@
                             <!--~ContentArea-->
                             <!--Footer-->
                             <avalonDock:LayoutAnchorablePaneGroup DockMinHeight="50">
-                                <avalonDock:LayoutAnchorablePane>
-                                    <avalonDock:LayoutAnchorable Title="FooterStuff">
+                                <avalonDock:LayoutAnchorablePane Name="Footer">
+                                    <!--<avalonDock:LayoutAnchorable Title="FooterStuff">
                                         <Label Content="Footer"/>
                                     </avalonDock:LayoutAnchorable>
                                     <avalonDock:LayoutAnchorable Title="Output">
                                         <Label Content="Output"/>
-                                    </avalonDock:LayoutAnchorable>
+                                    </avalonDock:LayoutAnchorable>-->
                                 </avalonDock:LayoutAnchorablePane>
                             </avalonDock:LayoutAnchorablePaneGroup>
                             <!--~Footer-->
                         <!-- ~Footer and ContentArea-->
                     </avalonDock:LayoutPanel>
                 </avalonDock:LayoutRoot>
+
             </avalonDock:DockingManager>
             <!-- ~DockArea-->
             <StatusBar Grid.Row="3" Background="#DE6500">
