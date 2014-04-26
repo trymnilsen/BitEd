@@ -93,6 +93,9 @@
     <Compile Include="ViewModel\ToolViewModel.cs" />
     <Compile Include="ViewStyle\LayoutInitializer.cs" />
     <Compile Include="ViewStyle\PaneStyleSelector.cs" />
+    <Compile Include="Views\Timeline.xaml.cs">
+      <DependentUpon>Timeline.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\BorderlessWindow.cs" />
     <Compile Include="Converters\IsEqualToBoolConverter.cs" />
     <Compile Include="Converters\MarginConverter.cs" />
@@ -110,6 +113,9 @@
     </Compile>
     <Compile Include="Views\ToolBar.xaml.cs">
       <DependentUpon>ToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TempTestWindow.xaml.cs">
+      <DependentUpon>TempTestWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -135,7 +141,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Timeline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TempTestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

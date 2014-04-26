@@ -1,0 +1,9 @@
+﻿<Window x:Class="BitEdTool.Windows.TempTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tool="clr-namespace:BitEdTool.Views"
+        Title="TempTestWindow" Height="300" Width="300">
+    <Grid>
+        <tool:Timeline/>
+    </Grid>
+</Window>
