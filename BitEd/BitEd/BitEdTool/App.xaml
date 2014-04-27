@@ -4,7 +4,7 @@
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
              xmlns:converters="clr-namespace:BitEdTool.Converters"
              xmlns:vm="clr-namespace:BitEdTool.ViewModel"
-             StartupUri="Windows/TempTestWindow.xaml">
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

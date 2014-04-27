@@ -126,7 +126,7 @@
                             <ToolView:ShapesBar/>
                         </TabItem>
                         <TabItem Header="Lights">
-
+                            <Slider Grid.Column="2" Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1" Height="16"/>
                         </TabItem>
                         <TabItem Header="Other">
                         

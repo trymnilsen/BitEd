@@ -12,11 +12,17 @@
             <ColumnDefinition MinWidth="50px"/>
         </Grid.ColumnDefinitions> 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20px"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Grid.Row="1" Content="fooo"/>
-        <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="Blue"/>
-        <Label Grid.Row="1" Grid.Column="2" Content="bar"/>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="Blue"/>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25px"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Slider Grid.Column="2" Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
+        </Grid>
+       
     </Grid>
 </UserControl>
