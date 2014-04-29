@@ -8,6 +8,7 @@
         xmlns:LibModel="clr-namespace:BitEdLib.Model.Entity;assembly=BitEdLib"
         xmlns:ToolWindow="clr-namespace:BitEdTool.Windows"
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
+        xmlns:ToolViewModel="clr-namespace:BitEdTool.ViewModel"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="800" Width="950" 
                              
@@ -141,6 +142,7 @@
                 <avalonDock:DockingManager.Theme>
                     <dockTheme:DarkTheme/>
                 </avalonDock:DockingManager.Theme>
+                <!--Header templates-->
                 <avalonDock:DockingManager.LayoutItemContainerStyleSelector>
                     <ToolStyle:PanesStyleSelector>
                        <ToolStyle:PanesStyleSelector.ToolStyle>
@@ -164,9 +166,35 @@
                         </ToolStyle:PanesStyleSelector.FileStyle>
                     </ToolStyle:PanesStyleSelector>
                 </avalonDock:DockingManager.LayoutItemContainerStyleSelector>
+                <!--~Header template-->
+                <!--ContentTemplates-->
+                <avalonDock:DockingManager.LayoutItemTemplateSelector>
+                    <ToolStyle:PaneTemplateSelector>
+                        <ToolStyle:PaneTemplateSelector.PaneTemplates>
+                            <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:ToolViewModel}">
+                                <ToolStyle:PaneTemplate.Template>
+                                    <DataTemplate>
+                                        <Label Content="Hellos"/>
+                                    </DataTemplate>
+                                </ToolStyle:PaneTemplate.Template>
+                            </ToolStyle:PaneTemplate>
+                            <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:TimelineViewModel}">
+                                <ToolStyle:PaneTemplate.Template>
+                                    <DataTemplate>
+                                        <ToolView:Timeline/>
+                                    </DataTemplate>
+                                </ToolStyle:PaneTemplate.Template>
+                            </ToolStyle:PaneTemplate>
+                            
+                        </ToolStyle:PaneTemplateSelector.PaneTemplates>
+                    </ToolStyle:PaneTemplateSelector>
+                </avalonDock:DockingManager.LayoutItemTemplateSelector>
+                <!--~ContentTempales-->
+                <!--Layout Strategy-->
                 <avalonDock:DockingManager.LayoutUpdateStrategy>
                     <ToolStyle:LayoutInitializer/>
                 </avalonDock:DockingManager.LayoutUpdateStrategy>
+                <!--~Layout Strategy-->
                 <avalonDock:LayoutRoot>
                     <avalonDock:LayoutPanel Orientation="Vertical">
                         <!--Footer and ContentArea-->
@@ -176,22 +204,12 @@
                                 <!--Sceneview-->
                                 <avalonDock:LayoutAnchorablePaneGroup Orientation="Vertical" DockMinWidth="200">
                                     <!--Scene-->
-                                    <avalonDock:LayoutAnchorablePane Name="SceneView">
-                                        <!--<avalonDock:LayoutAnchorable Title="Scene" CanClose="False">
-                                        
-                                        </avalonDock:LayoutAnchorable>-->
-                                    </avalonDock:LayoutAnchorablePane>
-                                    <!--~Scene-->
-                                    <!--Assets--><!--
-                                    <avalonDock:LayoutAnchorablePane>
-                                        --><!--<avalonDock:LayoutAnchorable Title="Assets" CanClose="False">
-
-                                        </avalonDock:LayoutAnchorable>--><!--
-                                    </avalonDock:LayoutAnchorablePane>-->
-                                    <!--Assets-->
-                                </avalonDock:LayoutAnchorablePaneGroup>
-                                <!--~Sceneview-->
-                                <!--Preview-->
+                                <avalonDock:LayoutAnchorablePane Name="SceneViewTop"/>
+                                <!--Assets-->
+                                <avalonDock:LayoutAnchorablePane Name="SceneViewBottom"/>
+                            </avalonDock:LayoutAnchorablePaneGroup>
+                            <!--~Sceneview-->
+                            <!--Preview-->
                             <avalonDock:LayoutDocumentPane >
 
                             </avalonDock:LayoutDocumentPane>
@@ -210,15 +228,9 @@
                             </avalonDock:LayoutPanel>
                             <!--~ContentArea-->
                             <!--Footer-->
-                            <avalonDock:LayoutAnchorablePaneGroup DockMinHeight="50">
-                                <avalonDock:LayoutAnchorablePane Name="Footer">
-                                    <!--<avalonDock:LayoutAnchorable Title="FooterStuff">
-                                        <Label Content="Footer"/>
-                                    </avalonDock:LayoutAnchorable>
-                                    <avalonDock:LayoutAnchorable Title="Output">
-                                        <Label Content="Output"/>
-                                    </avalonDock:LayoutAnchorable>-->
-                                </avalonDock:LayoutAnchorablePane>
+                            <avalonDock:LayoutAnchorablePaneGroup DockMinHeight="200">
+                                <avalonDock:LayoutAnchorablePane Name="FooterLeft"/>
+                                <avalonDock:LayoutAnchorablePane Name="FooterRight"/>
                             </avalonDock:LayoutAnchorablePaneGroup>
                             <!--~Footer-->
                         <!-- ~Footer and ContentArea-->

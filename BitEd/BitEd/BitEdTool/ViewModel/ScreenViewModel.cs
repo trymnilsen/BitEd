@@ -1,4 +1,5 @@
-﻿using BitEdLib.Model.Entity;
+﻿using BitEdLib.Model.Assets;
+using BitEdLib.Model.Entity;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace BitEdTool.ViewModel
 { 
     public class ScreenViewModel:PaneViewModel
     {
-        public EntityGameScreen model;
+        public AssetScreen model;
         public ScreenViewModel()
         {
-            model = new EntityGameScreen();
+            model = new AssetScreen();
             model.Name = "Screen";
             this.Title = "Yadda";
         }

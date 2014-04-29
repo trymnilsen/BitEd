@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitEdLib.Model.Entity
+namespace BitEdLib.Model.Assets
 {
-    public class EntityGameScreen:Entity
+    public class Asset
     {
-        public string Name { get; set; }
+        public Asset()
+        {
+
+        }
     }
 }

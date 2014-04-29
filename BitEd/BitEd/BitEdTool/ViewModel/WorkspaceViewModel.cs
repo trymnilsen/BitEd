@@ -37,11 +37,11 @@ namespace BitEdTool.ViewModel
             lastPoint = new Point();
             position = new Point();
             ActiveScreens.Add(new ScreenViewModel());
-            OpenTools.Add(new ToolViewModel("Scene","SceneView"));
-            OpenTools.Add(new ToolViewModel("Assets","SceneView"));
-            OpenTools.Add(new ToolViewModel("Footer", "Footer"));
-            OpenTools.Add(new ToolViewModel("Timeline", "Footer"));
-            OpenTools.Add(new ToolViewModel("Output", "Footer"));
+            OpenTools.Add(new ToolViewModel("Scene","SceneViewTop"));
+            OpenTools.Add(new AssetViewModel("SceneViewBottom"));
+            OpenTools.Add(new ToolViewModel("Footer", "FooterLeft"));
+            OpenTools.Add(new TimelineViewModel("Timeline", "FooterRight"));
+            OpenTools.Add(new ToolViewModel("Output", "FooterLeft"));
             OpenTools.Add(new ToolViewModel("Inspector","Inspector"));
         }
         void MakeSceneVisisble()

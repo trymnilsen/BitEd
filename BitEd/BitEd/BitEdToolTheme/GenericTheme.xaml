@@ -130,20 +130,26 @@
     <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
         <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Top">
             <Polygon Fill="{DynamicResource AvalonDock_Expression_BaseColor13}" Points="0 0 5 12 7 12 12 0" x:Name="grip" Stretch="None" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalAlignment="Top"/>
-            <Polygon Fill="{DynamicResource AvalonDock_Expression_BaseColor13}" Points="5 12 7 12 7 16 5 16"/>
+            <Polygon Fill="{DynamicResource AvalonDock_Expression_BaseColor13}" Points="5 12 7 12 7 16 5 16" x:Name="gripLine"/>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Background}"/>
                 <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.MouseOver.Border}"/>
+                <Setter Property="Fill" TargetName="gripLine" Value="{StaticResource SliderThumb.MouseOver.Background}"/>
+                <Setter Property="Stroke" TargetName="gripLine" Value="{StaticResource SliderThumb.MouseOver.Border}"/>
             </Trigger>
             <Trigger Property="IsDragging" Value="true">
                 <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Background}"/>
                 <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Pressed.Border}"/>
+                <Setter Property="Fill" TargetName="gripLine" Value="{StaticResource SliderThumb.Pressed.Background}"/>
+                <Setter Property="Stroke" TargetName="gripLine" Value="{StaticResource SliderThumb.Pressed.Border}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Fill" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Background}"/>
                 <Setter Property="Stroke" TargetName="grip" Value="{StaticResource SliderThumb.Disabled.Border}"/>
+                <Setter Property="Fill" TargetName="gripLine" Value="{StaticResource SliderThumb.Disabled.Background}"/>
+                <Setter Property="Stroke" TargetName="gripLine" Value="{StaticResource SliderThumb.Disabled.Border}"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

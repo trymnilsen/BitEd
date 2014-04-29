@@ -89,10 +89,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AssetViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
+    <Compile Include="ViewModel\TimelineViewModel.cs" />
     <Compile Include="ViewModel\ToolViewModel.cs" />
     <Compile Include="ViewStyle\LayoutInitializer.cs" />
     <Compile Include="ViewStyle\PaneStyleSelector.cs" />
+    <Compile Include="ViewStyle\PaneTemplateSelector.cs" />
     <Compile Include="Views\Timeline.xaml.cs">
       <DependentUpon>Timeline.xaml</DependentUpon>
     </Compile>

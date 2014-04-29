@@ -47,10 +47,12 @@
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\LogOutput.cs" />
     <Compile Include="Log\LogStream.cs" />
+    <Compile Include="Model\Assets\Asset.cs" />
+    <Compile Include="Model\Assets\AssetFolder.cs" />
+    <Compile Include="Model\Assets\AssetObject.cs" />
+    <Compile Include="Model\Assets\AssetScreen.cs" />
+    <Compile Include="Model\Assets\AssetSprite.cs" />
     <Compile Include="Model\Entity\Entity.cs" />
-    <Compile Include="Model\Entity\EntityGameScreen.cs" />
-    <Compile Include="Model\Entity\EntityInstance.cs" />
-    <Compile Include="Model\Entity\EntityObject.cs" />
     <Compile Include="Network\OuyaNetClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

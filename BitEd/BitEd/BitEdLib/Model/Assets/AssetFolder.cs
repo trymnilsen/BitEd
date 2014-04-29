@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitEdLib.Model.Entity
+namespace BitEdLib.Model.Assets
 {
-    class EntityInstance
+    public class AssetFolder:Asset
     {
-        public EntityInstance()
-        {
-
-        }
     }
 }
