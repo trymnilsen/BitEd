@@ -21,7 +21,7 @@ namespace BitEdTool.ViewModel
         /// Gets the Directory view's viewmodel
         /// </summary>
 
-        public WorkspaceViewModel ScreenVM
+        public WorkspaceViewModel WorkspaceVM
         {
             get
             {

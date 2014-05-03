@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Application.cs" />
     <Compile Include="Build\BitEdBuilder.cs" />
     <Compile Include="Build\GamePackage.cs" />
     <Compile Include="Build\IAssetProcessor.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\LogOutput.cs" />
     <Compile Include="Log\LogStream.cs" />
+    <Compile Include="Model\Application\Game.cs" />
     <Compile Include="Model\Assets\Asset.cs" />
     <Compile Include="Model\Assets\AssetFolder.cs" />
     <Compile Include="Model\Assets\AssetObject.cs" />

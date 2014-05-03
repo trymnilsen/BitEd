@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using BitEdLibApp = BitEdLib.Application;
 
 namespace BitEdTool.ViewModel
 {
@@ -16,6 +17,8 @@ namespace BitEdTool.ViewModel
     {
         private Point position;
         private Point lastPoint;
+        private BitEdLibApp.Application app;
+
         private bool showScene;
         public RelayCommand ShowSceneCommand { get; set; }
         public RelayCommand<MouseEventArgs> MouseMoveCommand { get; set; }
@@ -30,6 +33,8 @@ namespace BitEdTool.ViewModel
 
         public WorkspaceViewModel()
         {
+            app = new BitEdLibApp.Application();
+            //
             ActiveScreens = new ObservableCollection<ScreenViewModel>();
             OpenTools = new ObservableCollection<ToolViewModel>();
             MouseMoveCommand = new RelayCommand<MouseEventArgs>(ScrollScreen);
@@ -37,12 +42,12 @@ namespace BitEdTool.ViewModel
             lastPoint = new Point();
             position = new Point();
             ActiveScreens.Add(new ScreenViewModel());
-            OpenTools.Add(new ToolViewModel("Scene","SceneViewTop"));
-            OpenTools.Add(new AssetViewModel("SceneViewBottom"));
-            OpenTools.Add(new ToolViewModel("Footer", "FooterLeft"));
-            OpenTools.Add(new TimelineViewModel("Timeline", "FooterRight"));
-            OpenTools.Add(new ToolViewModel("Output", "FooterLeft"));
-            OpenTools.Add(new ToolViewModel("Inspector","Inspector"));
+            OpenTools.Add(new ToolViewModel(app,"Scene","SceneViewTop"));
+            OpenTools.Add(new AssetViewModel(app,"SceneViewBottom"));
+            OpenTools.Add(new ToolViewModel(app,"Footer", "FooterLeft"));
+            OpenTools.Add(new TimelineViewModel(app,"Timeline", "FooterRight"));
+            OpenTools.Add(new ToolViewModel(app,"Output", "FooterLeft"));
+            OpenTools.Add(new ToolViewModel(app,"Inspector","Inspector"));
         }
         void MakeSceneVisisble()
         {

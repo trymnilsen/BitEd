@@ -19,7 +19,7 @@
             GlassFrameThickness="0" CornerRadius="0" />
     </shell:WindowChrome.WindowChrome>
     <ContentControl Margin="{Binding WindowStateMargin}">
-        <Grid DataContext="{Binding ScreenVM, Source={StaticResource Locator}}">
+        <Grid DataContext="{Binding WorkspaceVM, Source={StaticResource Locator}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/> <!-- Window Bar-->
                 <RowDefinition Height="50"/> <!-- Tool Bar-->
@@ -170,22 +170,31 @@
                 <!--ContentTemplates-->
                 <avalonDock:DockingManager.LayoutItemTemplateSelector>
                     <ToolStyle:PaneTemplateSelector>
+                        <!--Default-->
                         <ToolStyle:PaneTemplateSelector.PaneTemplates>
                             <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:ToolViewModel}">
                                 <ToolStyle:PaneTemplate.Template>
-                                    <DataTemplate>
+                                    <DataTemplate DataType="{x:Type ToolViewModel:AssetViewModel}">
                                         <Label Content="Hellos"/>
                                     </DataTemplate>
                                 </ToolStyle:PaneTemplate.Template>
                             </ToolStyle:PaneTemplate>
+                            <!--Timeline-->
                             <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:TimelineViewModel}">
                                 <ToolStyle:PaneTemplate.Template>
-                                    <DataTemplate>
+                                    <DataTemplate DataType="{x:Type ToolViewModel:AssetViewModel}">
                                         <ToolView:Timeline/>
                                     </DataTemplate>
                                 </ToolStyle:PaneTemplate.Template>
                             </ToolStyle:PaneTemplate>
-                            
+                            <!--AssetList-->
+                            <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:AssetViewModel}">
+                                <ToolStyle:PaneTemplate.Template>
+                                    <DataTemplate DataType="{x:Type ToolViewModel:AssetViewModel}">
+                                        <ToolView:AssetList/>
+                                    </DataTemplate>
+                                </ToolStyle:PaneTemplate.Template>
+                            </ToolStyle:PaneTemplate>
                         </ToolStyle:PaneTemplateSelector.PaneTemplates>
                     </ToolStyle:PaneTemplateSelector>
                 </avalonDock:DockingManager.LayoutItemTemplateSelector>

@@ -8,6 +8,6 @@ namespace BitEdLib.Model.Assets
 {
     public class AssetScreen:Asset
     {
-        public string Name { get; set; }
+        
     }
 }
