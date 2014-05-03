@@ -1,5 +1,6 @@
 ﻿using BitEdLib.Application;
 using BitEdLib.Model.Assets;
+using BitEdTool.Messages.Assets;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -9,30 +10,34 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BitEdLib.Model.Assets;
+using BitEdTool.ViewModel.Asset;
 
 namespace BitEdTool.ViewModel
 {
-    public class AssetViewModel:ToolViewModel
+    public class AssetListViewModel:ToolViewModel
     {
+        private ObservableCollection<AssetListEntryViewModel> screenViewModels;
+        private ObservableCollection<AssetListEntryViewModel> spriteViewModels;
+        private ObservableCollection<AssetListEntryViewModel> objectViewModels;
         //Commands
         public RelayCommand AddScreenCommand { get; set; }
         public RelayCommand AddSpriteCommand { get; set; }
         public RelayCommand AddObjectCommand { get; set; }
-        public RelayCommand<object> ClickAsset { get; set; }
         //Collection
-        public ObservableCollection<AssetScreen> Screens
+        public ObservableCollection<AssetListEntryViewModel> Screens
         {
-            get { return App.ApplicationContainer.ProjectScreens; }
+            get { return screenViewModels; }
         }
-        public ObservableCollection<AssetSprite> Sprites
+        public ObservableCollection<AssetListEntryViewModel> Sprites
         {
-            get { return App.ApplicationContainer.ProjectSprites; }
+            get { return spriteViewModels; }
         }
-        public ObservableCollection<AssetObject> Objects
+        public ObservableCollection<AssetListEntryViewModel> Objects
         {
-            get { return App.ApplicationContainer.ProjectObjects; }
+            get { return objectViewModels; }
         }
-        public AssetViewModel(Application app, string paneTarget)
+        public AssetListViewModel(Application app, string paneTarget)
             :base(app, "Assets",paneTarget)
         {
             AddScreenCommand = new RelayCommand(AddScreen);
@@ -42,11 +47,14 @@ namespace BitEdTool.ViewModel
         //Command Methods
         void AddScreen()
         {
-            App.AddScreen();
+            BaseAsset screen = App.AddScreen();
+            AssetListEntryViewModel screenVM = new AssetListEntryViewModel(screen);
+
         }
         void AddSprite()
         {
             App.AddSprite();
         }
+
 }
 }

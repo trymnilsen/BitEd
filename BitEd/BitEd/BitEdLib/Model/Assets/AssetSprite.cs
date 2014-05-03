@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitEdLib.Model.Assets
 {
-    public class AssetSprite:Asset
+    public class AssetSprite:BaseAsset
     {
         
     }

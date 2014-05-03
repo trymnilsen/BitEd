@@ -89,8 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Messages\Assets\RequestOpenAssetMessage.cs" />
     <Compile Include="Util\BindingProxy.cs" />
-    <Compile Include="ViewModel\AssetViewModel.cs" />
+    <Compile Include="ViewModel\AssetListViewModel.cs" />
+    <Compile Include="ViewModel\Asset\AssetListEntryViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />
     <Compile Include="ViewModel\ToolViewModel.cs" />
@@ -225,9 +227,7 @@
   <ItemGroup>
     <Resource Include="gfx\icons\cubeicon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Messages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

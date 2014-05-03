@@ -174,7 +174,7 @@
                         <ToolStyle:PaneTemplateSelector.PaneTemplates>
                             <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:ToolViewModel}">
                                 <ToolStyle:PaneTemplate.Template>
-                                    <DataTemplate DataType="{x:Type ToolViewModel:AssetViewModel}">
+                                    <DataTemplate DataType="{x:Type ToolViewModel:ToolViewModel}">
                                         <Label Content="Hellos"/>
                                     </DataTemplate>
                                 </ToolStyle:PaneTemplate.Template>
@@ -182,15 +182,15 @@
                             <!--Timeline-->
                             <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:TimelineViewModel}">
                                 <ToolStyle:PaneTemplate.Template>
-                                    <DataTemplate DataType="{x:Type ToolViewModel:AssetViewModel}">
+                                    <DataTemplate DataType="{x:Type ToolViewModel:TimelineViewModel}">
                                         <ToolView:Timeline/>
                                     </DataTemplate>
                                 </ToolStyle:PaneTemplate.Template>
                             </ToolStyle:PaneTemplate>
                             <!--AssetList-->
-                            <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:AssetViewModel}">
+                            <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:AssetListViewModel}">
                                 <ToolStyle:PaneTemplate.Template>
-                                    <DataTemplate DataType="{x:Type ToolViewModel:AssetViewModel}">
+                                    <DataTemplate DataType="{x:Type ToolViewModel:AssetListViewModel}">
                                         <ToolView:AssetList/>
                                     </DataTemplate>
                                 </ToolStyle:PaneTemplate.Template>

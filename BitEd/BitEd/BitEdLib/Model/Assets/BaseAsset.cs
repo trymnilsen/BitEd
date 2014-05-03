@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BitEdLib.Model.Assets
 {
-    public class Asset
+    public class BaseAsset
     {
         public string Name { get; set; }
-        public Asset()
+        public BaseAsset()
         {
 
         }
