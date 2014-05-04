@@ -12,6 +12,7 @@
                 <ResourceDictionary>
                     <!--Converters-->
                     <converters:IsEqualToBoolConverter x:Key="IsEqualToConverter"/>
+                    <converters:ActiveDocumentConverter x:Key="ActiveDocumentConverter"/>
                     <!--Locator-->
                     <vm:ViewModelLocator x:Key="Locator"/>
                 </ResourceDictionary>

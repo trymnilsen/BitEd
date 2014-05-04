@@ -9,7 +9,7 @@ using BitEdTool.ViewModel.Asset;
 
 namespace BitEdTool.Messages.Assets
 {
-    public class RequestOpenAssetMessage
+    internal class RequestOpenAssetMessage
     {
         public AssetListEntryViewModel Item { get; set; }
 

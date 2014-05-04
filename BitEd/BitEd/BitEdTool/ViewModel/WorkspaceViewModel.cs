@@ -20,13 +20,30 @@ namespace BitEdTool.ViewModel
         private Point position;
         private Point lastPoint;
         private BitEdLibApp.Application app;
+        private DocumentViewModel activeDocument = null;
 
         private bool showScene;
+        public int SelectedDocumentIndex { get; set; }
         public RelayCommand ShowSceneCommand { get; set; }
         public RelayCommand<MouseEventArgs> MouseMoveCommand { get; set; }
         public RelayCommand<MouseButtonEventArgs> MousePressCommand { get; set; }
         public ObservableCollection<DocumentViewModel> ActiveScreens { get; set; }
         public ObservableCollection<ToolViewModel> OpenTools { get; set; }
+
+        
+        public DocumentViewModel ActiveDocument
+        {
+            get { return activeDocument; }
+            set
+            {
+                if (activeDocument != value)
+                {
+                    activeDocument = value;
+                    RaisePropertyChanged("ActiveDocument");
+                    ActiveDocumentChangedMessage.Send(value);
+                }
+            }
+        }
 
         public Rect BackgroundScrollViewPort
         {

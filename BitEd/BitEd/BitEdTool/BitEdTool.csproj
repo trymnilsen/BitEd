@@ -89,6 +89,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\ActiveDocumentConverter.cs" />
+    <Compile Include="Messages\Assets\ActiveDocumentChangedMessage.cs" />
     <Compile Include="Messages\Assets\RequestOpenAssetMessage.cs" />
     <Compile Include="Util\BindingProxy.cs" />
     <Compile Include="ViewModel\AssetListViewModel.cs" />

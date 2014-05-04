@@ -6,7 +6,6 @@
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF45"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             DataContext="{Binding ScreenVM, Source={StaticResource Locator}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <i:Interaction.Triggers>
@@ -17,7 +16,7 @@
         </i:Interaction.Triggers>
         <Grid.Background>
             <VisualBrush TileMode="Tile" 
-                                                     Viewport="0,0,16,16" 
+                                                     Viewport="{Binding BackgroundScrollViewport}" 
                                                      ViewportUnits="Absolute">
                 <VisualBrush.Visual>
                     <Canvas Name="ScreenGridCanvas">
