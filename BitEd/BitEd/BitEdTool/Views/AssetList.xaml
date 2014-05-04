@@ -14,7 +14,7 @@
                 <Grid.InputBindings>
                     <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenCommand}"/>
                 </Grid.InputBindings>
-                <TextBlock Text="{Binding model.Name}"/>
+                <TextBlock Text="{Binding Model.Name}"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>

@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:LibModel="clr-namespace:BitEdLib.Model.Assets;assembly=BitEdLib"
+                    xmlns:ToolView="clr-namespace:BitEdTool.Views">
+    <DataTemplate x:Key="SpriteDocumentTemplate" DataType="{x:Type LibModel:AssetSprite}">
+        <ToolView:ScreenEditArea/>
+    </DataTemplate>
+</ResourceDictionary>

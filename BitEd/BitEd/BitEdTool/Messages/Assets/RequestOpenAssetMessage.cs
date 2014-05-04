@@ -5,18 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using BitEdLib.Model.Assets;
 using GalaSoft.MvvmLight.Messaging;
+using BitEdTool.ViewModel.Asset;
 
 namespace BitEdTool.Messages.Assets
 {
     public class RequestOpenAssetMessage
     {
-        public BaseAsset Item { get; set; }
+        public AssetListEntryViewModel Item { get; set; }
 
-        private RequestOpenAssetMessage(BaseAsset item)
+        private RequestOpenAssetMessage(AssetListEntryViewModel item)
         {
             this.Item = item;
         }
-        public static void Send(BaseAsset newSelectedItem)
+        public static void Send(AssetListEntryViewModel newSelectedItem)
         {
             Messenger.Default.Send<RequestOpenAssetMessage>(new RequestOpenAssetMessage(newSelectedItem));
         }

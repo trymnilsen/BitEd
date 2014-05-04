@@ -26,9 +26,8 @@ namespace BitEdTool.ViewStyle
 
         public override System.Windows.Style SelectStyle(object item, System.Windows.DependencyObject container)
         {
-            if (item is ScreenViewModel)
+            if (item is DocumentViewModel)
             {
-                Debug.WriteLine("Screen name: " + (item as ScreenViewModel).model.Name);
                 return FileStyle;
             }
             if(item is ToolViewModel)

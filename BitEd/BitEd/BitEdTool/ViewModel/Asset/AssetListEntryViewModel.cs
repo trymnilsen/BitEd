@@ -6,24 +6,27 @@ using System.Text;
 using System.Threading.Tasks;
 using BitEdTool.Messages.Assets;
 using BitEdLib.Model.Assets;
+using System.Diagnostics;
 
 namespace BitEdTool.ViewModel.Asset
 {
-    public class AssetListEntryViewModel
+    public class AssetListEntryViewModel:DocumentViewModel
     {
-        public BaseAsset model { get; set; }
 
         public RelayCommand RemoveCommand { get; private set; }
         public RelayCommand OpenCommand { get; private set; }
 
         public AssetListEntryViewModel(BaseAsset model)
+            :base(model)
         {
-            this.model = model;
+            this.Model = model;
+            OpenCommand = new RelayCommand(OpenAsset);
         }
         //Commands
         void OpenAsset()
         {
-            RequestOpenAssetMessage.Send(model);
+            Debug.WriteLine("Opening " + Model.Name);
+            RequestOpenAssetMessage.Send(this);
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ToolViewModel="clr-namespace:BitEdTool.ViewModel"
+                    xmlns:ToolView="clr-namespace:BitEdTool.Views">
+    <!--Default-->
+    <DataTemplate x:Key="DefaultToolTemplate" DataType="{x:Type ToolViewModel:ToolViewModel}">
+        <Label Content="{Binding}"/>
+    </DataTemplate>
+    <!--Timeline-->
+    <DataTemplate x:Key="TimelineToolTemplate" DataType="{x:Type ToolViewModel:TimelineViewModel}">
+        <ToolView:Timeline/>
+    </DataTemplate>
+    <!--AssetList-->
+    <DataTemplate x:Key="AssetListTemplate" DataType="{x:Type ToolViewModel:AssetListViewModel}">
+        <ToolView:AssetList/>
+    </DataTemplate>
+</ResourceDictionary>

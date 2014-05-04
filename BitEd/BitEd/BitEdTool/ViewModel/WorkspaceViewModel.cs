@@ -1,5 +1,7 @@
-﻿using GalaSoft.MvvmLight;
+﻿using BitEdTool.Messages.Assets;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +25,7 @@ namespace BitEdTool.ViewModel
         public RelayCommand ShowSceneCommand { get; set; }
         public RelayCommand<MouseEventArgs> MouseMoveCommand { get; set; }
         public RelayCommand<MouseButtonEventArgs> MousePressCommand { get; set; }
-        public ObservableCollection<ScreenViewModel> ActiveScreens { get; set; }
+        public ObservableCollection<DocumentViewModel> ActiveScreens { get; set; }
         public ObservableCollection<ToolViewModel> OpenTools { get; set; }
 
         public Rect BackgroundScrollViewPort
@@ -35,20 +37,23 @@ namespace BitEdTool.ViewModel
         {
             app = new BitEdLibApp.Application();
             //
-            ActiveScreens = new ObservableCollection<ScreenViewModel>();
+            ActiveScreens = new ObservableCollection<DocumentViewModel>();
             OpenTools = new ObservableCollection<ToolViewModel>();
             MouseMoveCommand = new RelayCommand<MouseEventArgs>(ScrollScreen);
             ShowSceneCommand = new RelayCommand(MakeSceneVisisble);
             lastPoint = new Point();
             position = new Point();
-            ActiveScreens.Add(new ScreenViewModel());
+            //Add Tools
             OpenTools.Add(new ToolViewModel(app,"Scene","SceneViewTop"));
             OpenTools.Add(new AssetListViewModel(app,"SceneViewBottom"));
             OpenTools.Add(new ToolViewModel(app,"Footer", "FooterLeft"));
             OpenTools.Add(new TimelineViewModel(app,"Timeline", "FooterRight"));
             OpenTools.Add(new ToolViewModel(app,"Output", "FooterLeft"));
             OpenTools.Add(new ToolViewModel(app,"Inspector","Inspector"));
+            //Listen for open messages
+            Messenger.Default.Register<RequestOpenAssetMessage>(this, OpenAsset);
         }
+        //Commands
         void MakeSceneVisisble()
         {
             //Debug.WriteLine("Changing show scene" + ShowScene);
@@ -72,5 +77,12 @@ namespace BitEdTool.ViewModel
                 RaisePropertyChanged("BackgroundScrollViewPort");
             }
         }
+        //Messages callback
+        void OpenAsset(RequestOpenAssetMessage message)
+        {
+            if(!ActiveScreens.Contains(message.Item))
+                ActiveScreens.Add(message.Item);
+        }
+
     }
 }

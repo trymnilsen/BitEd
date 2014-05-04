@@ -48,35 +48,35 @@
                         </Style>
                     </Menu.Style>
                     <MenuItem Header="FILE" Foreground="White">
-                            <MenuItem Header="New"/>
-                            <MenuItem Header="Open"/>
-                            <MenuItem Header="Recent Projects"/>
-                            <MenuItem Header="Close"/>
-                            <MenuItem Header="Save"/>
-                            <MenuItem Header="Save As.."/>
-                            <MenuItem Header="Exit"/>
+                            <MenuItem Header="New" Foreground="Black"/>
+                            <MenuItem Header="Open" Foreground="Black"/>
+                            <MenuItem Header="Recent Projects" Foreground="Black"/>
+                            <MenuItem Header="Close" Foreground="Black"/>
+                            <MenuItem Header="Save" Foreground="Black"/>
+                            <MenuItem Header="Save As.." Foreground="Black"/>
+                            <MenuItem Header="Exit" Foreground="Black"/>
                         </MenuItem>
                         <MenuItem Header="EDIT" Foreground="White">
-                            <MenuItem Header="Undo"/>
-                            <MenuItem Header="Redo"/>
-                            <MenuItem Header="Delete"/>
-                            <MenuItem Header="Clone"/>
-                            <MenuItem Header="Move"/>
-                            <MenuItem Header="Rotate"/>
-                            <MenuItem Header="Scale"/>
-                            <MenuItem Header="Transform.."/>
-                            <MenuItem Header="Editor Preferences.."/>
+                            <MenuItem Header="Undo" Foreground="Black"/>
+                            <MenuItem Header="Redo" Foreground="Black"/>
+                            <MenuItem Header="Delete" Foreground="Black"/>
+                            <MenuItem Header="Clone" Foreground="Black"/>
+                            <MenuItem Header="Move" Foreground="Black"/>
+                            <MenuItem Header="Rotate" Foreground="Black"/>
+                            <MenuItem Header="Scale" Foreground="Black"/>
+                            <MenuItem Header="Transform.." Foreground="Black"/>
+                            <MenuItem Header="Editor Preferences.." Foreground="Black"/>
                         </MenuItem>
                         <MenuItem Header="TOOLS" Foreground="White">
                             <MenuItem Header="Tool1"/>
                         </MenuItem>
                         <MenuItem Header="ASSET" Foreground="White">
-                            <MenuItem Header="Create Sprite"/>
-                            <MenuItem Header="Create Tile"/>
-                            <MenuItem Header="Create Object"/>
-                            <MenuItem Header="Find Asset"/>
-                            <MenuItem Header="Collapse Asset Tree"/>
-                            <MenuItem Header="Expand Asset Tree"/>
+                            <MenuItem Header="Create Sprite" Foreground="Black"/>
+                            <MenuItem Header="Create Tile" Foreground="Black"/>
+                            <MenuItem Header="Create Object" Foreground="Black"/>
+                            <MenuItem Header="Find Asset" Foreground="Black"/>
+                            <MenuItem Header="Collapse Asset Tree" Foreground="Black"/>
+                            <MenuItem Header="Expand Asset Tree" Foreground="Black"/>
                         </MenuItem>
                         <MenuItem Header="ENTITY" Foreground="White">
                             <MenuItem Header="Freeze Entity"/>
@@ -142,6 +142,9 @@
                 <avalonDock:DockingManager.Theme>
                     <dockTheme:DarkTheme/>
                 </avalonDock:DockingManager.Theme>
+                <avalonDock:DockingManager.Resources>
+                    <ResourceDictionary Source="Views/PaneTemplates/PaneTemplatesList.xaml"/>
+                </avalonDock:DockingManager.Resources>
                 <!--Header templates-->
                 <avalonDock:DockingManager.LayoutItemContainerStyleSelector>
                     <ToolStyle:PanesStyleSelector>
@@ -169,34 +172,9 @@
                 <!--~Header template-->
                 <!--ContentTemplates-->
                 <avalonDock:DockingManager.LayoutItemTemplateSelector>
-                    <ToolStyle:PaneTemplateSelector>
-                        <!--Default-->
-                        <ToolStyle:PaneTemplateSelector.PaneTemplates>
-                            <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:ToolViewModel}">
-                                <ToolStyle:PaneTemplate.Template>
-                                    <DataTemplate DataType="{x:Type ToolViewModel:ToolViewModel}">
-                                        <Label Content="Hellos"/>
-                                    </DataTemplate>
-                                </ToolStyle:PaneTemplate.Template>
-                            </ToolStyle:PaneTemplate>
-                            <!--Timeline-->
-                            <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:TimelineViewModel}">
-                                <ToolStyle:PaneTemplate.Template>
-                                    <DataTemplate DataType="{x:Type ToolViewModel:TimelineViewModel}">
-                                        <ToolView:Timeline/>
-                                    </DataTemplate>
-                                </ToolStyle:PaneTemplate.Template>
-                            </ToolStyle:PaneTemplate>
-                            <!--AssetList-->
-                            <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:AssetListViewModel}">
-                                <ToolStyle:PaneTemplate.Template>
-                                    <DataTemplate DataType="{x:Type ToolViewModel:AssetListViewModel}">
-                                        <ToolView:AssetList/>
-                                    </DataTemplate>
-                                </ToolStyle:PaneTemplate.Template>
-                            </ToolStyle:PaneTemplate>
-                        </ToolStyle:PaneTemplateSelector.PaneTemplates>
-                    </ToolStyle:PaneTemplateSelector>
+                    <ToolStyle:PaneTemplateSelector 
+                        PaneToolTemplates="{StaticResource PaneToolTemplates}"
+                        PaneDocumentTemplates="{StaticResource PaneDocumentTemplates}"/>
                 </avalonDock:DockingManager.LayoutItemTemplateSelector>
                 <!--~ContentTempales-->
                 <!--Layout Strategy-->

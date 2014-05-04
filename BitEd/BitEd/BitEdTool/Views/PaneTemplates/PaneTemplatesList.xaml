@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ToolStyle="clr-namespace:BitEdTool.ViewStyle"
+                    xmlns:ToolViewModel="clr-namespace:BitEdTool.ViewModel"
+                    xmlns:LibModel="clr-namespace:BitEdLib.Model.Assets;assembly=BitEdLib">
+    <ResourceDictionary.MergedDictionaries>
+        <!--Documents-->
+        <ResourceDictionary Source="Documents/SpriteDocumentTemplate.xaml"/>
+        <ResourceDictionary>
+            <ToolStyle:PaneTemplateCollection x:Key="PaneDocumentTemplates">
+                <ToolStyle:PaneTemplate Type="{x:Type LibModel:AssetSprite}" Template="{StaticResource SpriteDocumentTemplate}"/>
+            </ToolStyle:PaneTemplateCollection>
+        </ResourceDictionary>
+        <!--Tools-->
+        <ResourceDictionary Source="ToolTemplates.xaml"/>
+        <ResourceDictionary>
+            <ToolStyle:PaneTemplateCollection x:Key="PaneToolTemplates">        
+                <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:ToolViewModel}" Template="{StaticResource DefaultToolTemplate}"/>
+                <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:TimelineViewModel}" Template="{StaticResource TimelineToolTemplate}"/>
+                <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:AssetListViewModel}" Template="{StaticResource AssetListTemplate}"/>
+            </ToolStyle:PaneTemplateCollection>
+        </ResourceDictionary>
+        
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

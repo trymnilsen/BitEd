@@ -93,6 +93,7 @@
     <Compile Include="Util\BindingProxy.cs" />
     <Compile Include="ViewModel\AssetListViewModel.cs" />
     <Compile Include="ViewModel\Asset\AssetListEntryViewModel.cs" />
+    <Compile Include="ViewModel\DocumentViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />
     <Compile Include="ViewModel\ToolViewModel.cs" />
@@ -109,7 +110,6 @@
     <Compile Include="Converters\IsEqualToBoolConverter.cs" />
     <Compile Include="Converters\MarginConverter.cs" />
     <Compile Include="ViewModel\WorkspaceViewModel.cs" />
-    <Compile Include="ViewModel\ScreenViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\Assetbar.xaml.cs">
       <DependentUpon>Assetbar.xaml</DependentUpon>
@@ -143,6 +143,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AssetList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaneTemplates\Documents\SpriteDocumentTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaneTemplates\ToolTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaneTemplates\PaneTemplatesList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,7 +205,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitEdLib\BitEdLib.csproj">

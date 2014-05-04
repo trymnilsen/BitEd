@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BitEdLib.Model.Assets;
 using BitEdTool.ViewModel.Asset;
+using System.Diagnostics;
+using System.Collections;
 
 namespace BitEdTool.ViewModel
 {
@@ -40,10 +42,18 @@ namespace BitEdTool.ViewModel
         public AssetListViewModel(Application app, string paneTarget)
             :base(app, "Assets",paneTarget)
         {
+            //Commands
             AddScreenCommand = new RelayCommand(AddScreen);
             AddSpriteCommand = new RelayCommand(AddSprite);
+            //assetViewModels
+            screenViewModels = new ObservableCollection<AssetListEntryViewModel>();
+            spriteViewModels = new ObservableCollection<AssetListEntryViewModel>();
+            objectViewModels = new ObservableCollection<AssetListEntryViewModel>();
+            //Collection events
+            App.ApplicationContainer.ProjectObjects.CollectionChanged += AssetCollectionChanged;
+            App.ApplicationContainer.ProjectScreens.CollectionChanged += AssetCollectionChanged;
+            App.ApplicationContainer.ProjectSprites.CollectionChanged += AssetCollectionChanged;
         }
-        
         //Command Methods
         void AddScreen()
         {
@@ -55,6 +65,56 @@ namespace BitEdTool.ViewModel
         {
             App.AddSprite();
         }
+        //event handlers for model collections
+        private void AssetCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Type assetType = e.NewItems[0].GetType();
+            BaseAsset addedAsset = e.NewItems[0] as BaseAsset;
+            if(addedAsset == null)
+            {
+                Debug.WriteLine("Added Asset was Null");
+                throw new ArgumentNullException("Added Asset was null");
+            }
+            Debug.WriteLine("Adding " + addedAsset.Name);
+            if(assetType == typeof(AssetScreen))
+            {
+                //Does the model exists in our viewmodels?
+               if(!ModelExistInViewModels(screenViewModels,addedAsset))
+               {
+                   AssetListEntryViewModel assetVM = new AssetListEntryViewModel(addedAsset);
+                   screenViewModels.Add(assetVM);
+               }
+            }
+            else if(assetType == typeof(AssetSprite))
+            {
+                //Does the model exists in our viewmodels?
+                if (!ModelExistInViewModels(spriteViewModels, addedAsset))
+                {
+                    AssetListEntryViewModel assetVM = new AssetListEntryViewModel(addedAsset);
+                    spriteViewModels.Add(assetVM);
+                }
+            }
+            else if(assetType == typeof(AssetObject))
+            {
+
+            }
+        }
+        private bool ModelExistInViewModels(IEnumerable collection, BaseAsset model)
+        {
+            if (model == null)
+                return false;
+
+            foreach(AssetListEntryViewModel assetVM in collection)
+            {
+                if(assetVM.Model==model)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+
 
 }
 }
