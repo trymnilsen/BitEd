@@ -98,6 +98,7 @@
     <Compile Include="ViewModel\DocumentViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />
+    <Compile Include="ViewModel\Timeline\TimelineSpriteViewModel.cs" />
     <Compile Include="ViewModel\ToolViewModel.cs" />
     <Compile Include="ViewStyle\LayoutInitializer.cs" />
     <Compile Include="ViewStyle\PaneStyleSelector.cs" />

@@ -51,6 +51,7 @@
     <Compile Include="Model\Assets\AssetScreen.cs" />
     <Compile Include="Model\Assets\AssetSprite.cs" />
     <Compile Include="Model\Assets\BaseAsset.cs" />
+    <Compile Include="Model\Assets\Sprite\SpriteFrame.cs" />
     <Compile Include="Model\Entity\Entity.cs" />
     <Compile Include="Network\OuyaNetClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
