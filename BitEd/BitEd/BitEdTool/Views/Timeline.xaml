@@ -12,17 +12,27 @@
             <ColumnDefinition MinWidth="50px"/>
         </Grid.ColumnDefinitions> 
         <Grid.RowDefinitions>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="20"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="1" Content="fooo"/>
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="Blue"/>
-        <Grid Grid.Column="2">
+        <!--GridSplitter-->
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="Blue"/>
+        <!-- Timeline controls-->
+
+        <!--Timeline Slider-->
+        <Slider Grid.Column="2" Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
+        <!--Descriptions-->
+        <!--Sliderbackround-->
+        <!--SpriteControls-->
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="25px"/>
                 <RowDefinition/>
+                <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <Slider Grid.Column="2" Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
+            <ListBox Grid.Column="0" Background="Transparent" ItemsSource="{Binding SpriteElements}" BorderThickness="0"/>
+            <Button Grid.Row="1" Content="Add Frame" Command="{Binding AddFrameCommand}"/>
         </Grid>
-       
+        <!--Sprite timeline representation-->
     </Grid>
 </UserControl>
