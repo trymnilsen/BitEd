@@ -39,11 +39,10 @@
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="20"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <!--Visiblity-->
-                            <ToggleButton Grid.Column="0" Template="{StaticResource ImageCheckbox}" Width="16" Height="16">
+                            <ToggleButton Grid.Column="0" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
                                 <ToggleButton.Resources>
                                     <ImageSource x:Key="Img">
                                         ../gfx/icons/visibility.png
@@ -51,7 +50,7 @@
                                 </ToggleButton.Resources>
                             </ToggleButton>
                             <!--Single View-->
-                            <ToggleButton Grid.Column="1" Template="{StaticResource ImageCheckbox}" Width="16" Height="16">
+                            <ToggleButton Grid.Column="1" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
                                 <ToggleButton.Resources>
                                     <ImageSource x:Key="Img">
                                         ../gfx/icons/primitive_circle.png
@@ -59,7 +58,7 @@
                                 </ToggleButton.Resources>
                             </ToggleButton>
                             <!--Lock Element-->
-                            <ToggleButton Grid.Column="2" Template="{StaticResource ImageCheckbox}" Width="16" Height="16">
+                            <ToggleButton Grid.Column="2" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
                                 <ToggleButton.Resources>
                                     <ImageSource x:Key="Img">
                                         ../gfx/icons/padlock.png
@@ -67,8 +66,17 @@
                                 </ToggleButton.Resources>
                             </ToggleButton>
                             <!--Expand Element-->
-                            <ToggleButton Grid.Column="3" Content=">" Template="{StaticResource ExpandToggleButton}" Background="{DynamicResource AvalonDock_Expression_BaseColor2}" Foreground="{DynamicResource AvalonDock_Expression_BaseColor3}"/>
-                            <TextBlock Grid.Column="4" Text="{Binding Model}"/>
+                            <TreeView Grid.Column="3" BorderThickness="0" Background="Transparent">
+                                <TreeViewItem Header="HEU">
+                                    <TreeViewItem Header="Transform">
+                                        <TreeViewItem Header="Position"/>
+                                        <TreeViewItem Header="Scale"/>
+                                        <TreeViewItem Header="Rotation"/>
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="Bones">
+                                    </TreeViewItem>
+                                </TreeViewItem>
+                            </TreeView>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
