@@ -7,10 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
-        <Grid.ColumnDefinitions> 
+        <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="250"/>
-            <ColumnDefinition Width="5px"/>            <ColumnDefinition MinWidth="50px"/>
-        </Grid.ColumnDefinitions> 
+            <ColumnDefinition Width="5px"/>
+            <ColumnDefinition MinWidth="50px" Width="403*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30px"/>
             <RowDefinition Height="20"/>
@@ -20,6 +21,7 @@
         <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="Blue"/>
         <!-- Timeline controls-->
         <TextBlock Grid.Column="0" Text="TimelineControlls" Name="TimeLineControls"/>
+
         <!--Timeline Slider-->
         <Slider Grid.Column="2" Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
         <!--Sliderbackround-->
