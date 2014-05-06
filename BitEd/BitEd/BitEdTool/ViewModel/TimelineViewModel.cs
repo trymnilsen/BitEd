@@ -56,11 +56,14 @@ namespace BitEdTool.ViewModel
        //Commands
        private void AddFrame()
        {
-           SpriteFrame newFrame = new SpriteFrame();
-           //Add to model
-           Sprite.Frames.Add(newFrame);
-           TimelineSpriteViewModel frameViewModel = new TimelineSpriteViewModel(newFrame);
-           SpriteElements.Add(frameViewModel);
+           if (Sprite != null)
+           {
+               SpriteFrame newFrame = new SpriteFrame();
+               //Add to model
+               Sprite.Frames.Add(newFrame);
+               TimelineSpriteViewModel frameViewModel = new TimelineSpriteViewModel(newFrame);
+               SpriteElements.Add(frameViewModel);
+           }
        }
        //Helper Methods
        private void RefillTimelineFromSprite(AssetSprite sprite)

@@ -21,7 +21,6 @@
         <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="Blue"/>
         <!-- Timeline controls-->
         <TextBlock Grid.Column="0" Text="TimelineControlls" Name="TimeLineControls"/>
-
         <!--Timeline Slider-->
         <Slider Grid.Column="2" Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
         <!--Sliderbackround-->
@@ -31,24 +30,49 @@
                 <RowDefinition/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Column="0" Background="Transparent" ItemsSource="{Binding SpriteElements}" BorderThickness="0">
-                <ListBox.ItemTemplate>
+
+            <ItemsControl Grid.Column="0" Background="Transparent" ItemsSource="{Binding SpriteElements}" BorderThickness="0">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type ToolView:TimelineSpriteViewModel}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="20"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <CheckBox Grid.Column="0"/>
-                            <CheckBox Grid.Column="1"/>
-                            <ToggleButton Grid.Column="2" Content=">"/>
-                            <TextBlock Grid.Column="3" Text="{Binding Model}"/>
+                            <!--Visiblity-->
+                            <ToggleButton Grid.Column="0" Template="{StaticResource ImageCheckbox}" Width="16" Height="16">
+                                <ToggleButton.Resources>
+                                    <ImageSource x:Key="Img">
+                                        ../gfx/icons/visibility.png
+                                    </ImageSource>
+                                </ToggleButton.Resources>
+                            </ToggleButton>
+                            <!--Single View-->
+                            <ToggleButton Grid.Column="1" Template="{StaticResource ImageCheckbox}" Width="16" Height="16">
+                                <ToggleButton.Resources>
+                                    <ImageSource x:Key="Img">
+                                        ../gfx/icons/primitive_circle.png
+                                    </ImageSource>
+                                </ToggleButton.Resources>
+                            </ToggleButton>
+                            <!--Lock Element-->
+                            <ToggleButton Grid.Column="2" Template="{StaticResource ImageCheckbox}" Width="16" Height="16">
+                                <ToggleButton.Resources>
+                                    <ImageSource x:Key="Img">
+                                        ../gfx/icons/padlock.png
+                                    </ImageSource>
+                                </ToggleButton.Resources>
+                            </ToggleButton>
+                            <!--Expand Element-->
+                            <ToggleButton Grid.Column="3" Content=">" Template="{StaticResource ExpandToggleButton}" Background="{DynamicResource AvalonDock_Expression_BaseColor2}" Foreground="{DynamicResource AvalonDock_Expression_BaseColor3}"/>
+                            <TextBlock Grid.Column="4" Text="{Binding Model}"/>
                         </Grid>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             <Button Grid.Row="1" Content="Add Frame" Command="{Binding AddFrameCommand}"/>
         </Grid>
         <!--Sprite timeline representation-->
