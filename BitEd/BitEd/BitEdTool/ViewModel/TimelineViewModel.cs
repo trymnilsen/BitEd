@@ -68,6 +68,7 @@ namespace BitEdTool.ViewModel
        //Helper Methods
        private void RefillTimelineFromSprite(AssetSprite sprite)
        {
+           SpriteElements.Clear();
            foreach(SpriteFrame frame in sprite.Frames)
            {
                TimelineSpriteViewModel frameEntry = new TimelineSpriteViewModel(frame);

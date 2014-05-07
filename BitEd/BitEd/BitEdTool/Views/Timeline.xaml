@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ToolView="clr-namespace:BitEdTool.ViewModel.Timeline"
+             xmlns:ToolCustomControl="clr-namespace:BitEdTool.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
@@ -18,11 +19,26 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!--GridSplitter-->
-        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="Blue"/>
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="{DynamicResource AvalonDock_Expression_BaseColor1}"/>
         <!-- Timeline controls-->
-        <TextBlock Grid.Column="0" Text="TimelineControlls" Name="TimeLineControls"/>
+        <TextBlock Grid.Column="0" Text="TimelineControlls" Name="TimeLineControls" VerticalAlignment="Bottom"/>
         <!--Timeline Slider-->
         <Slider Grid.Column="2" Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
+        <!--Description-->
+        <Border Grid.Column="0" Grid.Row="1" BorderThickness="0 2 0 2" BorderBrush="{DynamicResource AvalonDock_Expression_BaseColor1}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="../gfx/icons/timeline/visibility_light.png" Margin="2 0 2 0">
+                    <Image.ToolTip>Visibility - Hide the layers from sprite</Image.ToolTip>
+                </Image>
+                <Image Source="../gfx/icons/timeline/single_light.png" Margin="2 0 2 0">
+                    <Image.ToolTip>Single - Show only layers with single check</Image.ToolTip>
+                </Image>
+                <Image Source="../gfx/icons/timeline/padlock_light.png" Margin="2 0 2 0">
+                    <Image.ToolTip>Lock - Prevent editing of locked layers</Image.ToolTip>
+                </Image>
+                <TextBlock Margin="20 0 0 0" Foreground="{DynamicResource AvalonDock_Expression_BaseColor2}"  Text="Layer Name"/>
+            </StackPanel>
+        </Border>
         <!--Sliderbackround-->
         <!--SpriteControls-->
         <Grid Grid.Row="2">
@@ -30,57 +46,85 @@
                 <RowDefinition/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-
-            <ItemsControl Grid.Column="0" Background="Transparent" ItemsSource="{Binding SpriteElements}" BorderThickness="0">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type ToolView:TimelineSpriteViewModel}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <!--Visiblity-->
-                            <ToggleButton Grid.Column="0" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
-                                <ToggleButton.Resources>
-                                    <ImageSource x:Key="Img">
-                                        ../gfx/icons/visibility.png
-                                    </ImageSource>
-                                </ToggleButton.Resources>
-                            </ToggleButton>
-                            <!--Single View-->
-                            <ToggleButton Grid.Column="1" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
-                                <ToggleButton.Resources>
-                                    <ImageSource x:Key="Img">
-                                        ../gfx/icons/primitive_circle.png
-                                    </ImageSource>
-                                </ToggleButton.Resources>
-                            </ToggleButton>
-                            <!--Lock Element-->
-                            <ToggleButton Grid.Column="2" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
-                                <ToggleButton.Resources>
-                                    <ImageSource x:Key="Img">
-                                        ../gfx/icons/padlock.png
-                                    </ImageSource>
-                                </ToggleButton.Resources>
-                            </ToggleButton>
-                            <!--Expand Element-->
-                            <TreeView Grid.Column="3" BorderThickness="0" Background="Transparent">
-                                <TreeViewItem Header="HEU">
-                                    <TreeViewItem Header="Transform">
-                                        <TreeViewItem Header="Position"/>
-                                        <TreeViewItem Header="Scale"/>
-                                        <TreeViewItem Header="Rotation"/>
+            <ScrollViewer Template="{StaticResource ScrollViewerDarkControlTemplate}">
+                <ItemsControl Background="{DynamicResource BitEd_Timeline_EntryBackground}" ItemsSource="{Binding SpriteElements}" BorderThickness="0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type ToolView:TimelineSpriteViewModel}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <!--Visiblity-->
+                                <ToggleButton Grid.Column="0" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
+                                    <ToggleButton.Resources>
+                                        <ImageSource x:Key="Img_inactive">
+                                            ../gfx/icons/timeline/visibility_inactive.png
+                                        </ImageSource>
+                                        <ImageSource x:Key="Img_selected">
+                                            ../gfx/icons/timeline/visibility_selected.png
+                                        </ImageSource>
+                                    </ToggleButton.Resources>
+                                </ToggleButton>
+                                <!--Single View-->
+                                <ToggleButton Grid.Column="1" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
+                                    <ToggleButton.Resources>
+                                        <ImageSource x:Key="Img_inactive">
+                                            ../gfx/icons/timeline/single_inactive.png
+                                        </ImageSource>
+                                        <ImageSource x:Key="Img_selected">
+                                            ../gfx/icons/timeline/single_selected.png
+                                        </ImageSource>
+                                    </ToggleButton.Resources>
+                                </ToggleButton>
+                                <!--Lock Element-->
+                                <ToggleButton Grid.Column="2" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
+                                    <ToggleButton.Resources>
+                                        <ImageSource x:Key="Img_inactive">
+                                            ../gfx/icons/timeline/padlock_inactive.png
+                                        </ImageSource>
+                                        <ImageSource x:Key="Img_selected">
+                                            ../gfx/icons/timeline/padlock_selected.png
+                                        </ImageSource>
+                                    </ToggleButton.Resources>
+                                </ToggleButton>
+                                <!--Expand Element-->
+                                <TreeView Grid.Column="3" BorderThickness="0" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <TreeView.Style>
+                                        <Style TargetType="TreeView">
+                                        <Style.Resources>
+                                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Green"/>
+                                        </Style.Resources>
+                                        </Style>
+                                    </TreeView.Style>
+                                    <TreeView.Resources>
+                                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeviewNoHighlight}">
+                                        </Style>
+                                    </TreeView.Resources>
+                                    <TreeViewItem Header="{Binding Model.Name}" >
+                                        <TreeViewItem Header="Path">
+                                            <ToolCustomControl:FilePathControl CurrentFilePath="{Binding FilePath, Mode=OneWay}"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="Duration">
+                                            <TreeViewItem Header="From"/>
+                                            <TreeViewItem Header="To"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="Transform">
+                                            <TreeViewItem Header="Position"/>
+                                            <TreeViewItem Header="Scale"/>
+                                            <TreeViewItem Header="Rotation"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="Bones">
+                                        </TreeViewItem>
                                     </TreeViewItem>
-                                    <TreeViewItem Header="Bones">
-                                    </TreeViewItem>
-                                </TreeViewItem>
-                            </TreeView>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                </TreeView>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
             <Button Grid.Row="1" Content="Add Frame" Command="{Binding AddFrameCommand}"/>
         </Grid>
         <!--Sprite timeline representation-->

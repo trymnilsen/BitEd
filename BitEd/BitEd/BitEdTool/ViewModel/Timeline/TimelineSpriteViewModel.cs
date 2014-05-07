@@ -10,7 +10,7 @@ namespace BitEdTool.ViewModel.Timeline
     public class TimelineSpriteViewModel
     {
         public SpriteFrame Model { get; set; }
-
+        public string FilePath { get; set; }
         public TimelineSpriteViewModel(SpriteFrame model)
         {
             this.Model = model;
