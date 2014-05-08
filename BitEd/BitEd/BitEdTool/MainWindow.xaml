@@ -229,7 +229,7 @@
 
             </avalonDock:DockingManager>
             <!-- ~DockArea-->
-            <StatusBar Grid.Row="3" Background="#DE6500">
+            <StatusBar Grid.Row="3" Background="{DynamicResource BitEd_MinorTextAndNumeric}">
 
             </StatusBar>
         </Grid>

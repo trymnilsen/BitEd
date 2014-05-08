@@ -21,9 +21,14 @@
         <!--GridSplitter-->
         <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="{DynamicResource AvalonDock_Expression_BaseColor1}"/>
         <!-- Timeline controls-->
-        <TextBlock Grid.Column="0" Text="TimelineControlls" Name="TimeLineControls" VerticalAlignment="Bottom"/>
+        <StackPanel Orientation="Horizontal">
+            <ToolCustomControl:SpinnerTextfield Height="16"/>
+            <TextBlock Grid.Column="0" Text="TimelineControlls" Name="TimeLineControls" VerticalAlignment="Bottom"/>
+        </StackPanel>
         <!--Timeline Slider-->
-        <Slider Grid.Column="2" Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
+        <Grid Grid.Column="2" Name="RightColumnTimelineSlider">
+            <Slider Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
+        </Grid>
         <!--Description-->
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0 2 0 2" BorderBrush="{DynamicResource AvalonDock_Expression_BaseColor1}">
             <StackPanel Orientation="Horizontal">
@@ -40,77 +45,98 @@
             </StackPanel>
         </Border>
         <!--Sliderbackround-->
+        <Label Grid.Column="0" Grid.Row="2" Background="{DynamicResource BitEd_Timeline_EntryBackground}"/>
+        <Label Grid.Column="2" Grid.Row="2" Background="{DynamicResource AvalonDock_Expression_BaseColor8}"/>
         <!--SpriteControls-->
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="20"/>
-            </Grid.RowDefinitions>
-            <ScrollViewer Template="{StaticResource ScrollViewerDarkControlTemplate}">
-                <ItemsControl Background="{DynamicResource BitEd_Timeline_EntryBackground}" ItemsSource="{Binding SpriteElements}" BorderThickness="0">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type ToolView:TimelineSpriteViewModel}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <!--Visiblity-->
-                                <ToggleButton Grid.Column="0" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
-                                    <ToggleButton.Resources>
-                                        <ImageSource x:Key="Img_inactive">
-                                            ../gfx/icons/timeline/visibility_inactive.png
-                                        </ImageSource>
-                                        <ImageSource x:Key="Img_selected">
-                                            ../gfx/icons/timeline/visibility_selected.png
-                                        </ImageSource>
-                                    </ToggleButton.Resources>
-                                </ToggleButton>
-                                <!--Single View-->
-                                <ToggleButton Grid.Column="1" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
-                                    <ToggleButton.Resources>
-                                        <ImageSource x:Key="Img_inactive">
-                                            ../gfx/icons/timeline/single_inactive.png
-                                        </ImageSource>
-                                        <ImageSource x:Key="Img_selected">
-                                            ../gfx/icons/timeline/single_selected.png
-                                        </ImageSource>
-                                    </ToggleButton.Resources>
-                                </ToggleButton>
-                                <!--Lock Element-->
-                                <ToggleButton Grid.Column="2" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
-                                    <ToggleButton.Resources>
-                                        <ImageSource x:Key="Img_inactive">
-                                            ../gfx/icons/timeline/padlock_inactive.png
-                                        </ImageSource>
-                                        <ImageSource x:Key="Img_selected">
-                                            ../gfx/icons/timeline/padlock_selected.png
-                                        </ImageSource>
-                                    </ToggleButton.Resources>
-                                </ToggleButton>
-                                <!--Expand Element-->
-                                <TreeView Grid.Column="3" BorderThickness="0" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                                    <TreeView.Style>
-                                        <Style TargetType="TreeView">
-                                        <Style.Resources>
-                                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Green"/>
-                                        </Style.Resources>
-                                        </Style>
-                                    </TreeView.Style>
-                                    <TreeView.Resources>
-                                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeviewNoHighlight}">
-                                        </Style>
-                                    </TreeView.Resources>
-                                    <TreeViewItem Header="{Binding Model.Name}" >
-                                        <TreeViewItem Header="Path">
-                                            <ToolCustomControl:FilePathControl CurrentFilePath="{Binding FilePath, Mode=OneWay}"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="Duration">
-                                            <TreeViewItem Header="From"/>
-                                            <TreeViewItem Header="To"/>
-                                        </TreeViewItem>
+        <ScrollViewer Template="{StaticResource ScrollViewerDarkControlTemplate}" Grid.Row="2" Grid.ColumnSpan="3">
+            <ItemsControl ItemsSource="{Binding SpriteElements}" BorderThickness="0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type ToolView:TimelineSpriteViewModel}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="{Binding Path=ActualWidth, ElementName=RightColumnTimelineSlider, Converter={StaticResource SubtractionConverter}, ConverterParameter=8}"/>
+                            </Grid.ColumnDefinitions>
+                            <!--Visiblity-->
+                            <ToggleButton Grid.Column="0" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
+                                <ToggleButton.Resources>
+                                    <ImageSource x:Key="Img_inactive">
+                                        ../gfx/icons/timeline/visibility_inactive.png
+                                    </ImageSource>
+                                    <ImageSource x:Key="Img_selected">
+                                        ../gfx/icons/timeline/visibility_selected.png
+                                    </ImageSource>
+                                </ToggleButton.Resources>
+                            </ToggleButton>
+                            <!--Single View-->
+                            <ToggleButton Grid.Column="1" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
+                                <ToggleButton.Resources>
+                                    <ImageSource x:Key="Img_inactive">
+                                        ../gfx/icons/timeline/single_inactive.png
+                                    </ImageSource>
+                                    <ImageSource x:Key="Img_selected">
+                                        ../gfx/icons/timeline/single_selected.png
+                                    </ImageSource>
+                                </ToggleButton.Resources>
+                            </ToggleButton>
+                            <!--Lock Element-->
+                            <ToggleButton Grid.Column="2" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
+                                <ToggleButton.Resources>
+                                    <ImageSource x:Key="Img_inactive">
+                                        ../gfx/icons/timeline/padlock_inactive.png
+                                    </ImageSource>
+                                    <ImageSource x:Key="Img_selected">
+                                        ../gfx/icons/timeline/padlock_selected.png
+                                    </ImageSource>
+                                </ToggleButton.Resources>
+                            </ToggleButton>
+                            <!--Expand Element-->
+                            <TreeView Grid.Column="3" BorderThickness="0" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <TreeView.Style>
+                                    <Style TargetType="TreeView">
+                                    <Style.Resources>
+                                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Green"/>
+                                    </Style.Resources>
+                                    </Style>
+                                </TreeView.Style>
+                                <TreeView.Resources>
+                                    <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeviewNoHighlight}">
+                                    </Style>
+                                </TreeView.Resources>
+                                <TreeViewItem Header="{Binding Model.Name}" >
+                                    <TreeViewItem Header="Path">
+                                        <ToolCustomControl:FilePathControl CurrentFilePath="{Binding FilePath, Mode=OneWay}"/>
+                                    </TreeViewItem>
+                                    <!--Duration-->
+                                    <TreeViewItem Header="Duration">
+                                        <!--From-->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40px"/>
+                                                <ColumnDefinition Width="80px"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="From"/>
+                                            <ToolCustomControl:SpinnerTextfield Margin="0 -1 0 0" Grid.Column="1" NumValue="{Binding Model.StartFrame}"/>
+                                        </Grid>
+                                        <!--~From-->
+                                        <!--To-->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40px"/>
+                                                <ColumnDefinition Width="80px"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="To"/>
+                                            <ToolCustomControl:SpinnerTextfield Margin="0 -1 0 0" Grid.Column="1" NumValue="{Binding Model.EndFrame}"/>
+                                        </Grid>
+                                        <!--~From-->
+                                    </TreeViewItem>
+                                    <!--~Duration-->
+                                    <!--Transform-->
                                         <TreeViewItem Header="Transform">
                                             <TreeViewItem Header="Position"/>
                                             <TreeViewItem Header="Scale"/>
@@ -118,15 +144,20 @@
                                         </TreeViewItem>
                                         <TreeViewItem Header="Bones">
                                         </TreeViewItem>
-                                    </TreeViewItem>
-                                </TreeView>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-            <Button Grid.Row="1" Content="Add Frame" Command="{Binding AddFrameCommand}"/>
-        </Grid>
+                                    <!--~Transform-->
+                                </TreeViewItem>
+                            </TreeView>
+                            <!--TimelineElements-->
+                            <Canvas Grid.Column="4">
+                                <Rectangle Canvas.Left="4" Canvas.Top="1" Width="40" Height="14" Fill="Bisque"/>
+                            </Canvas>
+                            <!--<Label Background="{DynamicResource AvalonDock_Expression_BaseColor8}" Grid.Column="4"/>-->
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Button Grid.Row="1" Grid.Column="2" Height="14" Content="Add Frame" Command="{Binding AddFrameCommand}"/>
         <!--Sprite timeline representation-->
     </Grid>
 </UserControl>

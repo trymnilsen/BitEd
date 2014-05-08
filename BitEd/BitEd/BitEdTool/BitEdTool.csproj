@@ -92,7 +92,11 @@
     <Compile Include="Controls\FilePathControl.xaml.cs">
       <DependentUpon>FilePathControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SpinnerTextfield.xaml.cs">
+      <DependentUpon>SpinnerTextfield.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ActiveDocumentConverter.cs" />
+    <Compile Include="Converters\SubtractConverter.cs" />
     <Compile Include="Messages\Assets\ActiveDocumentChangedMessage.cs" />
     <Compile Include="Messages\Assets\RequestOpenAssetMessage.cs" />
     <Compile Include="Util\BindingProxy.cs" />
@@ -135,6 +139,10 @@
       <DependentUpon>TempTestWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\FilePathControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SpinnerTextfield.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

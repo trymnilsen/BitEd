@@ -18,6 +18,7 @@
                      Color="#3D3D3D"/>
     <SolidColorBrush x:Key="BitEd_Timeline_EntryBackground"
                          Color="#1e1e1e"/>
+    <SolidColorBrush x:Key="BitEd_MinorTextAndNumeric" Color="#DE6500"/>
     <!--<LinearGradientBrush x:Key="AvalonDock_Expression_BaseColor6"
                          StartPoint="0,0"
                          EndPoint="0,1">
