@@ -17,20 +17,52 @@ namespace BitEdTool.ViewModel
 {
    public class TimelineViewModel:ToolViewModel
     {
-       public AssetSprite _sprite;
+       //////////////
+       //Backing values
+       private AssetSprite sprite;
+       private int timelineScale;
+       private int timelineOffset;
+       ///////////
+       //Properties
        public AssetSprite Sprite {
-           get { return _sprite; }
+           get { return sprite; }
            set
            {
-               if (_sprite != value)
+               if (sprite != value)
                {
-                   _sprite = value;
+                   sprite = value;
                    RaisePropertyChanged("Sprite");
                }
            }
         }
+       public int TimelineScale
+       {
+           get { return timelineScale; }
+           set
+           {
+               if(timelineScale!=value)
+               {
+                   timelineScale = value;
+                   RaisePropertyChanged("TimelineScale");
+               }
+           }
+       }
+       public int TimelineScroll
+       {
+           get { return timelineOffset; }
+           set
+           {
+               if (timelineOffset != value)
+               {
+                   timelineOffset = value;
+                   RaisePropertyChanged("TimelineScroll");
+               }
+           }
+       }
        public ObservableCollection<TimelineSpriteViewModel> SpriteElements { get; set; }
-       //Command
+
+       /////////////
+       //Commands
        public RelayCommand AddFrameCommand { get; set; }
 
        public TimelineViewModel(Application app, string name, string paneName)

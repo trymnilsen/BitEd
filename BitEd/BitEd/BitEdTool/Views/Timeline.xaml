@@ -27,7 +27,8 @@
         </StackPanel>
         <!--Timeline Slider-->
         <Grid Grid.Column="2" Name="RightColumnTimelineSlider">
-            <Slider Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>
+            <ToolCustomControl:RangeSlider TrackBackground="Red" SnapToSnaps="True" Snap="5" FullTrackBar="True"/>
+            <!--<Slider Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>-->
         </Grid>
         <!--Description-->
         <Border Grid.Column="0" Grid.Row="1" BorderThickness="0 2 0 2" BorderBrush="{DynamicResource AvalonDock_Expression_BaseColor1}">
@@ -148,12 +149,19 @@
                                 </TreeViewItem>
                             </TreeView>
                             <!--TimelineElements-->
-                            <Canvas Grid.Column="4">
+                            <Canvas Grid.Column="4" Name="TimeLineEntityCanvas">
                                 <Rectangle Canvas.Top="1" Width="40" Height="14" Fill="Bisque">
                                     <Canvas.Left>
+                                        <!-- Binding One - Frame -->
+                                        <!-- Binding Two - Timeline scale-->
+                                        <!-- Binding Three - Timeline scroll/offset-->
+                                        <!-- Binding Four - Timeline control width-->
                                         <MultiBinding Converter="{StaticResource ResourceKey=TimeLinePositionConverter}">
                                             <Binding Path="Model.StartFrame"/>
                                             <Binding Path="Model.EndFrame"/>
+                                            <Binding Path="DataContext.TimelineScale" RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=ItemsControl}"/>
+                                            <Binding Path="DataContext.TimelineScroll" RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=ItemsControl}"/>
+                                            <Binding Path="ActuallWidth" ElementName="TimeLineEntityCanvas"/>
                                         </MultiBinding>
                                     </Canvas.Left>
                                 </Rectangle>

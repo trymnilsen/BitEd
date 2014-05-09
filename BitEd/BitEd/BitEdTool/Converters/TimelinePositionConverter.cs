@@ -10,13 +10,19 @@ namespace BitEdTool.Converters
 {
     public class TimelinePositionConverter:IMultiValueConverter
     {
+        /*
+         * Value[0] - Frame (frame number to convert into cordinate)
+         * Value[1] - Timeline scale
+         * Value[2] - Timeline scroll/offset
+         * Value[3] - Timeline width
+         * */
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             foreach(object obj in values)
             {
                 Debug.WriteLine("###Obj" + obj.GetType());
             }
-            return (double)values[0];
+            return values[0];
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)

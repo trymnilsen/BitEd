@@ -92,6 +92,9 @@
     <Compile Include="Controls\FilePathControl.xaml.cs">
       <DependentUpon>FilePathControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RangeSlider.xaml.cs">
+      <DependentUpon>RangeSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SpinnerTextfield.xaml.cs">
       <DependentUpon>SpinnerTextfield.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <DependentUpon>TempTestWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\FilePathControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RangeSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

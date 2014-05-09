@@ -58,6 +58,7 @@
     <Compile Include="Model\Transformation\Vector2.cs" />
     <Compile Include="Network\OuyaNetClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\BitEdMath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Build\" />
