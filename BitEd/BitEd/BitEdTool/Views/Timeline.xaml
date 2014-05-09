@@ -149,7 +149,14 @@
                             </TreeView>
                             <!--TimelineElements-->
                             <Canvas Grid.Column="4">
-                                <Rectangle Canvas.Left="4" Canvas.Top="1" Width="40" Height="14" Fill="Bisque"/>
+                                <Rectangle Canvas.Top="1" Width="40" Height="14" Fill="Bisque">
+                                    <Canvas.Left>
+                                        <MultiBinding Converter="{StaticResource ResourceKey=TimeLinePositionConverter}">
+                                            <Binding Path="Model.StartFrame"/>
+                                            <Binding Path="Model.EndFrame"/>
+                                        </MultiBinding>
+                                    </Canvas.Left>
+                                </Rectangle>
                             </Canvas>
                             <!--<Label Background="{DynamicResource AvalonDock_Expression_BaseColor8}" Grid.Column="4"/>-->
                         </Grid>

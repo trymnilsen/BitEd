@@ -37,8 +37,8 @@ namespace BitEdLib.Application
             //Create a frame in the sprite as well
             SpriteFrame mainFrame = new SpriteFrame();
             mainFrame.Name = "Main";
-            mainFrame.StartFrame = 0;
-            mainFrame.EndFrame = 0;
+            mainFrame.StartFrame = 1;
+            mainFrame.EndFrame = 4;
             newSprite.Frames.Add(mainFrame);
             ApplicationContainer.ProjectSprites.Add(newSprite);
             return newSprite;

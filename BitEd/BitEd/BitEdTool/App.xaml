@@ -14,6 +14,7 @@
                     <converters:IsEqualToBoolConverter x:Key="IsEqualToConverter"/>
                     <converters:ActiveDocumentConverter x:Key="ActiveDocumentConverter"/>
                     <converters:SubtractConverter x:Key="SubtractionConverter"/>
+                    <converters:TimelinePositionConverter x:Key="TimeLinePositionConverter"/>
                     <!--Locator-->
                     <vm:ViewModelLocator x:Key="Locator"/>
                 </ResourceDictionary>
