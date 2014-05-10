@@ -7,17 +7,17 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Canvas Name="CanvasContainer" Loaded="CanvasContainer_Loaded">
         <Rectangle Name="ActiveTrack" Width="{Binding ActualWidth, ElementName=CanvasContainer}" Fill="{Binding TrackBackground, RelativeSource={RelativeSource AncestorType=UserControl}}" Canvas.Top="4" Height="6"/>
-        <Thumb Name="LeftThumb" Width="{Binding GripWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="14" DragDelta="Thumb_DragDelta">
+        <Thumb Name="LeftThumb" Width="{Binding GripWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="14" DragDelta="Thumb_DragDelta">
             <Thumb.Template>
                 <ControlTemplate>
-                    <Rectangle Width="{TemplateBinding Width}" Height="14" Fill="Blue"/>
+                    <Rectangle Width="{TemplateBinding Width}" Height="14" Fill="{TemplateBinding Foreground}"/>
                 </ControlTemplate>
             </Thumb.Template>
         </Thumb>
-        <Thumb Name="RightThumb" Width="{Binding GripWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="14" Canvas.Right="0" DragDelta="Thumb_DragDelta">
+        <Thumb Name="RightThumb" Width="{Binding GripWidth, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="14" Canvas.Right="0" DragDelta="Thumb_DragDelta">
             <Thumb.Template>
                 <ControlTemplate>
-                    <Rectangle Width="{TemplateBinding Width}" Height="14" Fill="Green"/>
+                    <Rectangle Width="{TemplateBinding Width}" Height="14" Fill="{TemplateBinding Foreground}"/>
                 </ControlTemplate>
             </Thumb.Template>
         </Thumb>

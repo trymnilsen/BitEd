@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BitEdLib.Util;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -23,7 +24,10 @@ namespace BitEdTool.Controls
     public partial class RangeSlider : UserControl
     {
         private static Point zeroPoint = new Point(0, 0);
-
+        private double ActualTrackWidth
+        {
+            get { return ActualWidth - GripWidth; }
+        }
         public RangeSlider()
         {
             InitializeComponent();
@@ -31,6 +35,7 @@ namespace BitEdTool.Controls
             //
             GripWidth = 15;
         }
+
 
         void RangeSlider_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -46,25 +51,27 @@ namespace BitEdTool.Controls
                 //Do some checks
                 //1 Do not let it go out of bounds
                 //2 Do not let it go past the other slider
-                currentPos = Clamp(currentPos, 0, CanvasContainer.ActualWidth - 15);
                 if(SnapToSnaps)
                 {
                     currentPos = Math.Round(currentPos / ActualSnap) * ActualSnap;
                 }
+                currentPos = Clamp(currentPos, 0, ActualTrackWidth);
                 if (dragged.Name == "LeftThumb")
                 {
-                    if (true || currentPos <= RightValue - GripWidth)
+                    if (currentPos < RightPixelValue - GripWidth)
                     {
-                        LeftValue = currentPos;
+                        LeftValue = BitEdMath.Remap(currentPos, 0, ActualTrackWidth, Minimum, Maximum);
+                        LeftPixelValue = currentPos;
                         Canvas.SetLeft(dragged, currentPos);
                     }
 
                 }
                 else if (dragged.Name == "RightThumb")
                 {
-                    if (true || currentPos >= LeftValue + GripWidth)
+                    if (currentPos > LeftPixelValue + GripWidth)
                     {
-                        RightValue = currentPos;
+                        RightValue = BitEdMath.Remap(currentPos, 0, ActualTrackWidth, Minimum, Maximum);
+                        RightPixelValue = currentPos;
                         Canvas.SetLeft(dragged, currentPos);
                     }
                 }
@@ -73,19 +80,21 @@ namespace BitEdTool.Controls
 
         private void CanvasContainer_Loaded(object sender, RoutedEventArgs e)
         {
-            LeftValue = 0;
-            RightValue = CanvasContainer.ActualWidth - 15;
+            LeftPixelValue = 0;
+            RightPixelValue = CanvasContainer.ActualWidth - 15;
             if(FullTrackBar)
             {
                 ActiveTrack.Height = 14;
                 Canvas.SetTop(ActiveTrack, 0);
             }
+            LeftValue = BitEdMath.Remap(0, 0, ActualTrackWidth, Minimum, Maximum);
+            RightValue = BitEdMath.Remap(ActualTrackWidth, 0, ActualTrackWidth, Minimum, Maximum);
             ActualSnap = CalculateSnapValue();
         }
         private double CalculateSnapValue()
         {
             double snapFactor = Snap / (Maximum - Minimum);
-            double calculatedSnap = ActualWidth * snapFactor;
+            double calculatedSnap = ActualTrackWidth * snapFactor;
             return calculatedSnap;
         }
         private double Clamp(double value, double min, double max)
@@ -129,6 +138,20 @@ namespace BitEdTool.Controls
         {
             get { return (double)GetValue(RightValueProperty); }
             set { SetValue(RightValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty LeftPixelValueProperty = DependencyProperty.Register("LeftPixelValue", typeof(double), typeof(RangeSlider));
+        public double LeftPixelValue
+        {
+            get { return (double)GetValue(LeftPixelValueProperty); }
+            set { SetValue(LeftPixelValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty RightPixelValueProperty = DependencyProperty.Register("RightPixelValue", typeof(double), typeof(RangeSlider));
+        public double RightPixelValue
+        {
+            get { return (double)GetValue(RightPixelValueProperty); }
+            set { SetValue(RightPixelValueProperty, value); }
         }
 
         public static readonly DependencyProperty SnapProperty = DependencyProperty.Register("Snap", typeof(double), typeof(RangeSlider), new UIPropertyMetadata(1d));

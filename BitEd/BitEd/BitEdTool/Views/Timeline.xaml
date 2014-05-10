@@ -23,11 +23,18 @@
         <!-- Timeline controls-->
         <StackPanel Orientation="Horizontal">
             <ToolCustomControl:SpinnerTextfield Height="16"/>
-            <TextBlock Grid.Column="0" Text="TimelineControlls" Name="TimeLineControls" VerticalAlignment="Bottom"/>
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="Range {0} / {1}">
+                        <Binding Path="LeftValue" ElementName="RangeScroll"/>
+                        <Binding Path="RightValue" ElementName="RangeScroll"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </StackPanel>
         <!--Timeline Slider-->
         <Grid Grid.Column="2" Name="RightColumnTimelineSlider">
-            <ToolCustomControl:RangeSlider TrackBackground="Red" SnapToSnaps="True" Snap="5" FullTrackBar="True"/>
+            <ToolCustomControl:RangeSlider x:Name="RangeScroll" Foreground="Aqua" TrackBackground="Red" SnapToSnaps="True" Snap="5" FullTrackBar="True"/>
             <!--<Slider Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>-->
         </Grid>
         <!--Description-->
