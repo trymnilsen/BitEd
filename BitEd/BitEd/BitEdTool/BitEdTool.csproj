@@ -99,6 +99,7 @@
       <DependentUpon>SpinnerTextfield.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ActiveDocumentConverter.cs" />
+    <Compile Include="Converters\NullToParameterConverter.cs" />
     <Compile Include="Converters\SubtractConverter.cs" />
     <Compile Include="Converters\TimelinePositionConverter.cs" />
     <Compile Include="Messages\Assets\ActiveDocumentChangedMessage.cs" />

@@ -63,6 +63,9 @@ namespace BitEdTool.Controls
                         LeftValue = BitEdMath.Remap(currentPos, 0, ActualTrackWidth, Minimum, Maximum);
                         LeftPixelValue = currentPos;
                         Canvas.SetLeft(dragged, currentPos);
+                        //Scale track if enabled
+                        if (TrackbarFollow)
+                            ScaleTrackbar();
                     }
 
                 }
@@ -73,6 +76,9 @@ namespace BitEdTool.Controls
                         RightValue = BitEdMath.Remap(currentPos, 0, ActualTrackWidth, Minimum, Maximum);
                         RightPixelValue = currentPos;
                         Canvas.SetLeft(dragged, currentPos);
+                        //Scale trackbar if enabled
+                        if (TrackbarFollow)
+                            ScaleTrackbar();
                     }
                 }
             }
@@ -90,6 +96,11 @@ namespace BitEdTool.Controls
             LeftValue = BitEdMath.Remap(0, 0, ActualTrackWidth, Minimum, Maximum);
             RightValue = BitEdMath.Remap(ActualTrackWidth, 0, ActualTrackWidth, Minimum, Maximum);
             ActualSnap = CalculateSnapValue();
+        }
+        private void ScaleTrackbar()
+        {
+            ActiveTrack.Width = RightPixelValue-LeftPixelValue;
+            Canvas.SetLeft(ActiveTrack,LeftPixelValue);
         }
         private double CalculateSnapValue()
         {
@@ -173,6 +184,14 @@ namespace BitEdTool.Controls
             get { return (bool)GetValue(SnapToSnapsProperty); }
             set { SetValue(SnapToSnapsProperty, value); }
         }
+
+        public static readonly DependencyProperty TrackbarFollowProperty = DependencyProperty.Register("TrackbarFollow", typeof(bool), typeof(RangeSlider), new UIPropertyMetadata(false));
+        public bool TrackbarFollow
+        {
+            get { return (bool)GetValue(TrackbarFollowProperty); }
+            set { SetValue(TrackbarFollowProperty, value); }
+        }
+
         public static readonly DependencyProperty FullTrackBarProperty = DependencyProperty.Register("FullTrackBar", typeof(bool), typeof(RangeSlider), new UIPropertyMetadata(false));
         public bool FullTrackBar
         {

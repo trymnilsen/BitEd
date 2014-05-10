@@ -11,6 +11,7 @@ namespace BitEdLib.Model.Assets
     public class AssetSprite:BaseAsset
     {
         public ObservableCollection<SpriteFrame> Frames { get; set; }
+        public int FramesDuration { get; set; }
         public AssetSprite()
         {
             Frames = new ObservableCollection<SpriteFrame>();

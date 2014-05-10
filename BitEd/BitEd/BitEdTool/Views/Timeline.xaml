@@ -19,22 +19,31 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!--GridSplitter-->
-        <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Stretch" Width="5" Background="{DynamicResource AvalonDock_Expression_BaseColor1}"/>
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" 
+                      HorizontalAlignment="Center"  
+                      VerticalAlignment="Stretch" 
+                      Width="5" 
+                      Background="{DynamicResource AvalonDock_Expression_BaseColor1}"/>
         <!-- Timeline controls-->
         <StackPanel Orientation="Horizontal">
             <ToolCustomControl:SpinnerTextfield Height="16"/>
             <TextBlock>
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="Range {0} / {1}">
+                    <MultiBinding StringFormat="Range {0} / {1} / {2}">
                         <Binding Path="LeftValue" ElementName="RangeScroll"/>
                         <Binding Path="RightValue" ElementName="RangeScroll"/>
+                        <Binding Path="Sprite.FramesDuration"/>
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
         </StackPanel>
         <!--Timeline Slider-->
         <Grid Grid.Column="2" Name="RightColumnTimelineSlider">
-            <ToolCustomControl:RangeSlider x:Name="RangeScroll" Foreground="Aqua" TrackBackground="Red" SnapToSnaps="True" Snap="5" FullTrackBar="True"/>
+            <ToolCustomControl:RangeSlider x:Name="RangeScroll" 
+                                           Maximum="5" 
+                                           Foreground="{DynamicResource BitEd_MinorTextAndNumeric}" 
+                                           TrackBackground="{DynamicResource BitEd_Timeline_EntryBackground}" 
+                                           SnapToSnaps="True" Snap="1"/>
             <!--<Slider Style="{DynamicResource TimelineSliderStyle}" IsSnapToTickEnabled="True" TickFrequency="1"/>-->
         </Grid>
         <!--Description-->
@@ -66,7 +75,10 @@
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="{Binding Path=ActualWidth, ElementName=RightColumnTimelineSlider, Converter={StaticResource SubtractionConverter}, ConverterParameter=8}"/>
+                                <ColumnDefinition Width="{Binding Path=ActualWidth, 
+                                                                    ElementName=RightColumnTimelineSlider, 
+                                                                    Converter={StaticResource SubtractionConverter}, 
+                                                                    ConverterParameter=8}"/>
                             </Grid.ColumnDefinitions>
                             <!--Visiblity-->
                             <ToggleButton Grid.Column="0" Template="{StaticResource ImageCheckbox}" Width="16" Height="16" VerticalAlignment="Top">
@@ -102,7 +114,10 @@
                                 </ToggleButton.Resources>
                             </ToggleButton>
                             <!--Expand Element-->
-                            <TreeView Grid.Column="3" BorderThickness="0" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <TreeView Grid.Column="3" BorderThickness="0" 
+                                      Background="Transparent" 
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                 <TreeView.Style>
                                     <Style TargetType="TreeView">
                                     <Style.Resources>
@@ -157,12 +172,17 @@
                             </TreeView>
                             <!--TimelineElements-->
                             <Canvas Grid.Column="4" Name="TimeLineEntityCanvas">
-                                <Rectangle Canvas.Top="1" Width="40" Height="14" Fill="Bisque">
-                                    <Canvas.Left>
-                                        <!-- Binding One - Frame -->
+                                <ToolCustomControl:RangeSlider Width="{Binding ActualWidth, ElementName=TimeLineEntityCanvas}" 
+                                                               Maximum="5"
+                                                               Foreground="{DynamicResource BitEd_MinorTextAndNumeric}" 
+                                                               TrackBackground="{DynamicResource BitEd_Timeline_EntryBackground}" 
+                                                               FullTrackBar="True"
+                                                               TrackbarFollow="True">
+                                    <!--<Canvas.Left>
+                                        --><!-- Binding One - Frame -->
                                         <!-- Binding Two - Timeline scale-->
                                         <!-- Binding Three - Timeline scroll/offset-->
-                                        <!-- Binding Four - Timeline control width-->
+                                        <!-- Binding Four - Timeline control width--><!--
                                         <MultiBinding Converter="{StaticResource ResourceKey=TimeLinePositionConverter}">
                                             <Binding Path="Model.StartFrame"/>
                                             <Binding Path="Model.EndFrame"/>
@@ -170,8 +190,8 @@
                                             <Binding Path="DataContext.TimelineScroll" RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=ItemsControl}"/>
                                             <Binding Path="ActuallWidth" ElementName="TimeLineEntityCanvas"/>
                                         </MultiBinding>
-                                    </Canvas.Left>
-                                </Rectangle>
+                                    </Canvas.Left>-->
+                                </ToolCustomControl:RangeSlider>
                             </Canvas>
                             <!--<Label Background="{DynamicResource AvalonDock_Expression_BaseColor8}" Grid.Column="4"/>-->
                         </Grid>
