@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Application\Application.cs" />
     <Compile Include="Deploy\IDeployableDevice.cs" />
+    <Compile Include="IO\EAssetError.cs" />
     <Compile Include="Log\FileOutput.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\LogOutput.cs" />
