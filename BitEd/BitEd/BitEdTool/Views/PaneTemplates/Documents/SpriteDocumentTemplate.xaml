@@ -6,7 +6,7 @@
                     xmlns:ToolVM="clr-namespace:BitEdTool.ViewModel.Asset">
     <DataTemplate x:Key="SpriteDocumentTemplate" DataType="{x:Type ToolVM:SpriteViewModel}">
         <Grid>
-            <ToolControl:ScreenAreaScroll/>
+            
             <ItemsControl ItemsSource="{Binding Frames}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -29,6 +29,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            <ToolControl:ScreenAreaScroll/>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

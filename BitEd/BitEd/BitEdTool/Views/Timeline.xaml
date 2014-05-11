@@ -130,9 +130,36 @@
                                     </Style>
                                 </TreeView.Resources>
                                 <TreeViewItem Header="{Binding Model.Name}" >
+                                    <!--Path-->
                                     <TreeViewItem Header="Path">
                                         <ToolCustomControl:FilePathControl Name="FileControl" CurrentFilePath="{Binding FilePath, Mode=OneWayToSource}"/>
-                                        <TextBlock Text="{Binding FilePath}" ToolTip="{Binding CurrentFilePath, ElementName=FileControl}"/>
+                                        <!--SIze-->
+                                        <TextBlock Text="Size" 
+                                                       Grid.Column="0" 
+                                                       Grid.Row="0"/>
+                                        <TextBlock Text="{Binding AssetFileInfo.Size, Converter={StaticResource NullToParameterConverter}, ConverterParameter='No File Selected'}"
+                                                       Margin="10,0,0,0"
+                                                       Grid.Column="1"
+                                                       Grid.Row="0"
+                                                       Foreground="{DynamicResource BitEd_MinorTextAndNumeric}"/>
+                                        <!--Created Time-->
+                                        <TextBlock Text="Created" 
+                                                       Grid.Column="0" 
+                                                       Grid.Row="1" />
+                                        <TextBlock Text="{Binding AssetFileInfo.CreationTime, Converter={StaticResource NullToParameterConverter}, ConverterParameter='No File Selected'}"
+                                                       Margin="10,0,0,0"
+                                                       Grid.Column="1"
+                                                       Grid.Row="1"
+                                                       Foreground="{DynamicResource BitEd_MinorTextAndNumeric}"/>
+                                         <!--Extension-->
+                                        <TextBlock Text="Extension" 
+                                                       Grid.Column="0" 
+                                                       Grid.Row="2"/>
+                                        <TextBlock Text="{Binding AssetFileInfo.Extension, Converter={StaticResource NullToParameterConverter}, ConverterParameter='No File Selected'}"
+                                                       Margin="10,0,0,0"
+                                                       Grid.Column="1"
+                                                       Grid.Row="2"
+                                                       Foreground="{DynamicResource BitEd_MinorTextAndNumeric}"/>
                                     </TreeViewItem>
                                     <!--Duration-->
                                     <TreeViewItem Header="Duration">

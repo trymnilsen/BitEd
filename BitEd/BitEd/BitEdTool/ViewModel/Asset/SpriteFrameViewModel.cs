@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
+using sysIO = System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +18,7 @@ namespace BitEdTool.ViewModel.Asset
     {
         private BitmapImage assetSource;
         private string filePath;
+        private FileInfo assetFileInfo;
         //properties
         public SpriteFrame Model { get; set; }
         public string FilePath
@@ -46,14 +47,26 @@ namespace BitEdTool.ViewModel.Asset
                 }
             }
         }
+        public FileInfo AssetFileInfo {
+            get { return assetFileInfo; }
+            set
+            {
+                if(assetFileInfo != value)
+                {
+                    assetFileInfo = value;
+                    RaisePropertyChanged("AssetFileInfo");
+                }
+            }
+        }
         public EAssetError ErrorType { get; set; }
         public SpriteFrameViewModel(SpriteFrame model)
         {
             this.Model = model;
+            this.assetFileInfo = new FileInfo();
         }
         private void LoadAsset()
         {
-            if(!File.Exists(filePath))
+            if(!sysIO.File.Exists(filePath))
             {
                 ErrorType = EAssetError.IOFileNotFound;
             }
@@ -61,8 +74,11 @@ namespace BitEdTool.ViewModel.Asset
             {
                 try
                 {
-                    byte[] imageBytes = File.ReadAllBytes(filePath);
+                    byte[] imageBytes = sysIO.File.ReadAllBytes(filePath);
                     AssetSource = BytesConverter.GetBitmapFromBytes(imageBytes);
+                    sysIO.FileInfo fileInfo = new sysIO.FileInfo(filePath);
+                    FileInfo assetInfo = new FileInfo(fileInfo.CreationTime, fileInfo.Extension, fileInfo.Length);
+                    AssetFileInfo = assetFileInfo;
                     ErrorType = EAssetError.None;
                 }
                 catch(UnauthorizedAccessException uae)
