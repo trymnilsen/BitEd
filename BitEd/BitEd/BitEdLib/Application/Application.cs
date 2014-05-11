@@ -29,6 +29,12 @@ namespace BitEdLib.Application
             ApplicationContainer.ProjectScreens.Add(newScreen);
             return newScreen;
         }
+        public SpriteFrame AddFrame(AssetSprite sprite)
+        {
+            SpriteFrame frame = new SpriteFrame();
+            sprite.Frames.Add(frame);
+            return frame;
+        }
         public AssetSprite AddSprite()
         {
             AssetSprite newSprite = new AssetSprite();

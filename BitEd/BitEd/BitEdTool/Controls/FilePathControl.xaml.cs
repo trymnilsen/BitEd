@@ -21,7 +21,7 @@ namespace BitEdTool.Controls
     /// </summary>
     public partial class FilePathControl : UserControl
     {
-        public static readonly DependencyProperty CurrentFilePathProperty = DependencyProperty.Register("CurrentFilePath", typeof(string), typeof(FilePathControl));
+        public static readonly DependencyProperty CurrentFilePathProperty = DependencyProperty.Register("CurrentFilePath", typeof(string), typeof(FilePathControl), new UIPropertyMetadata("No File Selected"));
 
         public string CurrentFilePath
         {
@@ -40,9 +40,8 @@ namespace BitEdTool.Controls
             bool? dialogResult = fileDialog.ShowDialog();
             if (dialogResult == true)
             {
-                CurrentFilePath = fileDialog.FileName;
-                FilepathTextBox.Text = fileDialog.FileName;
                 FilepathTextBox.ToolTip = fileDialog.FileName;
+                CurrentFilePath = fileDialog.FileName;
             }
         }
     }

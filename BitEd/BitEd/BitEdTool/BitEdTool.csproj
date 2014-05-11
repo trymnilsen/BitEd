@@ -95,6 +95,9 @@
     <Compile Include="Controls\RangeSlider.xaml.cs">
       <DependentUpon>RangeSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ScreenAreaScroll.xaml.cs">
+      <DependentUpon>ScreenAreaScroll.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SpinnerTextfield.xaml.cs">
       <DependentUpon>SpinnerTextfield.xaml</DependentUpon>
     </Compile>
@@ -107,12 +110,14 @@
     <Compile Include="Messages\Assets\RequestOpenAssetMessage.cs" />
     <Compile Include="Messages\Assets\SpritePathSetMessage.cs" />
     <Compile Include="Util\BindingProxy.cs" />
+    <Compile Include="Util\BytesConverter.cs" />
     <Compile Include="ViewModel\AssetListViewModel.cs" />
     <Compile Include="ViewModel\Asset\AssetListEntryViewModel.cs" />
+    <Compile Include="ViewModel\Asset\SpriteViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />
-    <Compile Include="ViewModel\Timeline\TimelineSpriteViewModel.cs" />
+    <Compile Include="ViewModel\Asset\SpriteFrameViewModel.cs" />
     <Compile Include="ViewModel\ToolViewModel.cs" />
     <Compile Include="ViewStyle\DarkTheme.cs" />
     <Compile Include="ViewStyle\LayoutInitializer.cs" />
@@ -150,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\RangeSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ScreenAreaScroll.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -327,6 +336,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="gfx\icons\generic\file_light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\Timeline\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

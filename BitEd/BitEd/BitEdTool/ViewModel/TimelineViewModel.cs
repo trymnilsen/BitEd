@@ -2,7 +2,7 @@
 using BitEdLib.Model.Assets;
 using BitEdLib.Model.Assets.Sprite;
 using BitEdTool.Messages.Assets;
-using BitEdTool.ViewModel.Timeline;
+using BitEdTool.ViewModel.Asset;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -19,12 +19,12 @@ namespace BitEdTool.ViewModel
     {
        //////////////
        //Backing values
-       private AssetSprite sprite;
+       private SpriteViewModel sprite;
        private int timelineScale;
        private int timelineOffset;
        ///////////
        //Properties
-       public AssetSprite Sprite {
+       public SpriteViewModel Sprite {
            get { return sprite; }
            set
            {
@@ -59,7 +59,7 @@ namespace BitEdTool.ViewModel
                }
            }
        }
-       public ObservableCollection<TimelineSpriteViewModel> SpriteElements { get; set; }
+       public ObservableCollection<SpriteFrameViewModel> SpriteElements { get; set; }
 
        /////////////
        //Commands
@@ -72,17 +72,16 @@ namespace BitEdTool.ViewModel
            Messenger.Default.Register<ActiveDocumentChangedMessage>(this,OnSelectedDocumentChanged);
            //Instanciate
            AddFrameCommand = new RelayCommand(AddFrame);
-           SpriteElements = new ObservableCollection<TimelineSpriteViewModel>();
+           SpriteElements = new ObservableCollection<SpriteFrameViewModel>();
        }
        //Messages
        private void OnSelectedDocumentChanged(ActiveDocumentChangedMessage message)
        {
            if (message.Item.Model is AssetSprite)
            {
-               AssetSprite activeSprite = message.Item.Model as AssetSprite; 
+               SpriteViewModel activeSprite = message.Item as SpriteViewModel; 
                Debug.WriteLine("Timeline changing to" + message.Item);
                Sprite = activeSprite;
-               RefillTimelineFromSprite(activeSprite);
            }
        }
        //Commands
@@ -90,21 +89,7 @@ namespace BitEdTool.ViewModel
        {
            if (Sprite != null)
            {
-               SpriteFrame newFrame = new SpriteFrame();
-               //Add to model
-               Sprite.Frames.Add(newFrame);
-               TimelineSpriteViewModel frameViewModel = new TimelineSpriteViewModel(newFrame);
-               SpriteElements.Add(frameViewModel);
-           }
-       }
-       //Helper Methods
-       private void RefillTimelineFromSprite(AssetSprite sprite)
-       {
-           SpriteElements.Clear();
-           foreach(SpriteFrame frame in sprite.Frames)
-           {
-               TimelineSpriteViewModel frameEntry = new TimelineSpriteViewModel(frame);
-               SpriteElements.Add(frameEntry);
+               App.AddFrame(sprite.Model as AssetSprite);
            }
        }
     }

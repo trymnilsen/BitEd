@@ -9,6 +9,7 @@ using BitEdLib.Model.Assets;
 using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows;
+using System.Collections;
 
 namespace BitEdTool.ViewModel.Asset
 {

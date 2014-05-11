@@ -1,17 +1,20 @@
 ﻿using BitEdLib.IO;
 using BitEdLib.Model.Assets.Sprite;
+using BitEdTool.Util;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace BitEdTool.ViewModel.Timeline
+namespace BitEdTool.ViewModel.Asset
 {
-    public class TimelineSpriteViewModel:ViewModelBase
+    public class SpriteFrameViewModel:ViewModelBase
     {
         private BitmapImage assetSource;
         private string filePath;
@@ -22,10 +25,12 @@ namespace BitEdTool.ViewModel.Timeline
             get { return filePath; }
             set
             {
-                if(filePath != value)
+                Debug.WriteLine("SETTING PATH");
+                if(filePath != value && value!="No File Selected")
                 {
                     filePath = value;
                     RaisePropertyChanged("FilePath");
+                    LoadAsset();
                 }
             }
         }
@@ -42,15 +47,34 @@ namespace BitEdTool.ViewModel.Timeline
             }
         }
         public EAssetError ErrorType { get; set; }
-        public TimelineSpriteViewModel(SpriteFrame model)
+        public SpriteFrameViewModel(SpriteFrame model)
         {
             this.Model = model;
         }
         private void LoadAsset()
         {
-            using(FileStream fs = new FileStream(FilePath,FileMode.Open))
+            if(!File.Exists(filePath))
             {
-
+                ErrorType = EAssetError.IOFileNotFound;
+            }
+            else
+            {
+                try
+                {
+                    byte[] imageBytes = File.ReadAllBytes(filePath);
+                    AssetSource = BytesConverter.GetBitmapFromBytes(imageBytes);
+                    ErrorType = EAssetError.None;
+                }
+                catch(UnauthorizedAccessException uae)
+                {
+                    Debug.WriteLine(uae.ToString());
+                    ErrorType = EAssetError.IOAccessError;
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine(e.ToString());
+                    ErrorType = EAssetError.IOError;
+                }
             }
         }
     }

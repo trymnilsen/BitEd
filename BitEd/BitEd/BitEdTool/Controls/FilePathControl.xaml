@@ -15,7 +15,7 @@
                     </ImageSource>
                 </Button.Resources>
             </Button>
-            <TextBlock Margin="8 0 0 0" Name="FilepathTextBox" Text="No file selected" Foreground="{StaticResource AvalonDock_Expression_BaseColor2}"/>
+            <TextBlock Margin="8 0 0 0" Name="FilepathTextBox" Text="{Binding CurrentFilePath, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="{StaticResource AvalonDock_Expression_BaseColor2}"/>
         </StackPanel>
     </Grid>
 </UserControl>

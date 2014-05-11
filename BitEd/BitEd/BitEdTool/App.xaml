@@ -15,6 +15,7 @@
                     <converters:ActiveDocumentConverter x:Key="ActiveDocumentConverter"/>
                     <converters:SubtractConverter x:Key="SubtractionConverter"/>
                     <converters:TimelinePositionConverter x:Key="TimeLinePositionConverter"/>
+                    <converters:NullToDoNothingConverter x:Key="NullToDoNothingConverter"/>
                     <!--Locator-->
                     <vm:ViewModelLocator x:Key="Locator"/>
                 </ResourceDictionary>

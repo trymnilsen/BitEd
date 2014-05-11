@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ToolView="clr-namespace:BitEdTool.ViewModel.Timeline"
+             xmlns:ToolAssetVM="clr-namespace:BitEdTool.ViewModel.Asset"
              xmlns:ToolCustomControl="clr-namespace:BitEdTool.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500">
@@ -32,7 +32,7 @@
                     <MultiBinding StringFormat="Range {0} / {1} / {2}">
                         <Binding Path="LeftValue" ElementName="RangeScroll"/>
                         <Binding Path="RightValue" ElementName="RangeScroll"/>
-                        <Binding Path="Sprite.FramesDuration"/>
+                        <Binding Path="Sprite.Model.FramesDuration"/>
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
@@ -66,9 +66,9 @@
         <Label Grid.Column="2" Grid.Row="2" Background="{DynamicResource AvalonDock_Expression_BaseColor8}"/>
         <!--SpriteControls-->
         <ScrollViewer Template="{StaticResource ScrollViewerDarkControlTemplate}" Grid.Row="2" Grid.ColumnSpan="3">
-            <ItemsControl ItemsSource="{Binding SpriteElements}" BorderThickness="0">
+            <ItemsControl ItemsSource="{Binding Sprite.Frames}" BorderThickness="0">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type ToolView:TimelineSpriteViewModel}">
+                    <DataTemplate DataType="{x:Type ToolAssetVM:SpriteFrameViewModel}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
@@ -131,7 +131,8 @@
                                 </TreeView.Resources>
                                 <TreeViewItem Header="{Binding Model.Name}" >
                                     <TreeViewItem Header="Path">
-                                        <ToolCustomControl:FilePathControl CurrentFilePath="{Binding FilePath, Mode=OneWay}"/>
+                                        <ToolCustomControl:FilePathControl Name="FileControl" CurrentFilePath="{Binding FilePath, Mode=OneWayToSource}"/>
+                                        <TextBlock Text="{Binding FilePath}" ToolTip="{Binding CurrentFilePath, ElementName=FileControl}"/>
                                     </TreeViewItem>
                                     <!--Duration-->
                                     <TreeViewItem Header="Duration">

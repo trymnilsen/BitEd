@@ -10,7 +10,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BitEdLib.Model.Assets;
 using BitEdTool.ViewModel.Asset;
 using System.Diagnostics;
 using System.Collections;
@@ -68,7 +67,6 @@ namespace BitEdTool.ViewModel
         //event handlers for model collections
         private void AssetCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Type assetType = e.NewItems[0].GetType();
             BaseAsset addedAsset = e.NewItems[0] as BaseAsset;
             if(addedAsset == null)
             {
@@ -76,7 +74,7 @@ namespace BitEdTool.ViewModel
                 throw new ArgumentNullException("Added Asset was null");
             }
             Debug.WriteLine("Adding " + addedAsset.Name);
-            if(assetType == typeof(AssetScreen))
+            if (addedAsset is AssetScreen)
             {
                 //Does the model exists in our viewmodels?
                if(!ModelExistInViewModels(screenViewModels,addedAsset))
@@ -85,16 +83,16 @@ namespace BitEdTool.ViewModel
                    screenViewModels.Add(assetVM);
                }
             }
-            else if(assetType == typeof(AssetSprite))
+            else if (addedAsset is AssetSprite)
             {
                 //Does the model exists in our viewmodels?
                 if (!ModelExistInViewModels(spriteViewModels, addedAsset))
                 {
-                    AssetListEntryViewModel assetVM = new AssetListEntryViewModel(addedAsset);
+                    SpriteViewModel assetVM = new SpriteViewModel(addedAsset as AssetSprite);
                     spriteViewModels.Add(assetVM);
                 }
             }
-            else if(assetType == typeof(AssetObject))
+            else if(addedAsset is AssetObject)
             {
 
             }
