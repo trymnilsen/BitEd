@@ -11,6 +11,7 @@ namespace BitEdLib.IO
         None,
         IOError,
         IOAccessError,
-        IOFileNotFound
+        IOFileNotFound,
+        NoFileSet
     }
 }

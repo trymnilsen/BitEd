@@ -95,13 +95,17 @@
     <Compile Include="Controls\RangeSlider.xaml.cs">
       <DependentUpon>RangeSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ScreenAreaScroll.xaml.cs">
-      <DependentUpon>ScreenAreaScroll.xaml</DependentUpon>
+    <Compile Include="Controls\ScreenGridArea.xaml.cs">
+      <DependentUpon>ScreenGridArea.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SpinnerTextfield.xaml.cs">
       <DependentUpon>SpinnerTextfield.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ActiveDocumentConverter.cs" />
+    <Compile Include="Converters\AssetErrorToColorConverter.cs" />
     <Compile Include="Converters\NullToDoNothingConverter.cs" />
     <Compile Include="Converters\NullToParameterConverter.cs" />
     <Compile Include="Converters\SubtractConverter.cs" />
@@ -158,11 +162,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ScreenAreaScroll.xaml">
+    <Page Include="Controls\ScreenGridArea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SpinnerTextfield.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

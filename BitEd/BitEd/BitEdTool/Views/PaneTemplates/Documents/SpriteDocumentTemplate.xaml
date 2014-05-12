@@ -6,30 +6,33 @@
                     xmlns:ToolVM="clr-namespace:BitEdTool.ViewModel.Asset">
     <DataTemplate x:Key="SpriteDocumentTemplate" DataType="{x:Type ToolVM:SpriteViewModel}">
         <Grid>
-            
-            <ItemsControl ItemsSource="{Binding Frames}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Canvas/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemContainerStyle>
-                    <Style TargetType="ContentPresenter">
-                        <Setter Property="Canvas.Left" Value="0"/>
-                        <Setter Property="Canvas.Top" Value="0"/>
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type ToolVM:SpriteFrameViewModel}">
-                        <Image Source="{Binding AssetSource, Converter={StaticResource NullToDoNothingConverter}}" RenderOptions.BitmapScalingMode="NearestNeighbor">
-                            <Image.LayoutTransform>
-                                <TranslateTransform X="0" Y="0"/>
-                            </Image.LayoutTransform>
-                        </Image>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ToolControl:ScreenAreaScroll/>
+            <!--<ToolControl:Test></ToolControl:Test>-->
+            <ToolControl:ScreenGridArea>
+                <ToolControl:ScreenGridArea.ScreenContent>
+                    <ItemsControl ItemsSource="{Binding Frames}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Canvas.Left" Value="0"/>
+                                <Setter Property="Canvas.Top" Value="0"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type ToolVM:SpriteFrameViewModel}">
+                                <Image Source="{Binding AssetSource, Converter={StaticResource NullToDoNothingConverter}}" RenderOptions.BitmapScalingMode="NearestNeighbor">
+                                    <Image.LayoutTransform>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </Image.LayoutTransform>
+                                </Image>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ToolControl:ScreenGridArea.ScreenContent>
+            </ToolControl:ScreenGridArea>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

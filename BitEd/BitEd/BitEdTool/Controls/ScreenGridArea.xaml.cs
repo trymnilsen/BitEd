@@ -19,12 +19,12 @@ namespace BitEdTool.Controls
     /// <summary>
     /// Interaction logic for ScreenAreaScroll.xaml
     /// </summary>
-    public partial class ScreenAreaScroll : UserControl
+    public partial class ScreenGridArea : UserControl
     {
         private Point position;
         private Point lastPoint;
 
-        public ScreenAreaScroll()
+        public ScreenGridArea()
         {
             InitializeComponent();
         }
@@ -50,22 +50,31 @@ namespace BitEdTool.Controls
                 ScreenScroll = position;
                 ViewportRect = new Rect(position.X % 32, position.Y % 32, 32, 32);
                 //RaisePropertyChanged("BackgroundScrollViewPort");
+                e.Handled = true;
             }
         }
 
-        public static readonly DependencyProperty ScreenScrollProperty = DependencyProperty.Register("ScreenScroll", typeof(Point), typeof(ScreenAreaScroll), new UIPropertyMetadata(new Point(0,0)));
+        public static readonly DependencyProperty ScreenScrollProperty = DependencyProperty.Register("ScreenScroll", typeof(Point), typeof(ScreenGridArea), new UIPropertyMetadata(new Point(0,0)));
         public Point ScreenScroll
         {
             get { return (Point)GetValue(ScreenScrollProperty); }
             set { SetValue(ScreenScrollProperty, value); }
         }
 
-        public static readonly DependencyProperty ViewportRectProperty = DependencyProperty.Register("ViewportRect", typeof(Rect), typeof(ScreenAreaScroll), new UIPropertyMetadata(new Rect(0, 0, 32, 32)));
+        public static readonly DependencyProperty ViewportRectProperty = DependencyProperty.Register("ViewportRect", typeof(Rect), typeof(ScreenGridArea), new UIPropertyMetadata(new Rect(0, 0, 32, 32)));
         public Rect ViewportRect
         {
             get { return (Rect)GetValue(ViewportRectProperty); }
             set { SetValue(ViewportRectProperty, value); }
         }
+        public object ScreenContent
+        {
+            get { return (object)GetValue(ScreenContentProperty); }
+            set { SetValue(ScreenContentProperty, value); }
+        }
+        public static readonly DependencyProperty ScreenContentProperty =
+            DependencyProperty.Register("ScreenContent", typeof(object), typeof(ScreenGridArea),
+              new PropertyMetadata(null));
 
     }
 }
