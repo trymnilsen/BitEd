@@ -144,6 +144,7 @@ namespace BitEdTool.ViewModel
                 if(!ModelExistInViewModels(objectViewModels,addedAsset))
                 {
                     ObjectViewModel objectVM = new ObjectViewModel(addedAsset as AssetObject);
+                    objectViewModels.Add(objectVM);
                 }
             }
         }

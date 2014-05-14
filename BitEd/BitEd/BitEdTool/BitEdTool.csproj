@@ -110,7 +110,7 @@
     <Compile Include="Converters\NullToParameterConverter.cs" />
     <Compile Include="Converters\SubtractConverter.cs" />
     <Compile Include="Converters\TimelinePositionConverter.cs" />
-    <Compile Include="Messages\AssetNameChangedMessage.cs" />
+    <Compile Include="Messages\Assets\AssetNameChangedMessage.cs" />
     <Compile Include="Messages\Assets\ActiveDocumentChangedMessage.cs" />
     <Compile Include="Messages\Assets\RequestOpenAssetMessage.cs" />
     <Compile Include="Messages\Assets\SelectedAssetChangedMessage.cs" />

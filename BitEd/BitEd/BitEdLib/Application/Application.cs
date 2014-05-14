@@ -52,8 +52,8 @@ namespace BitEdLib.Application
         public AssetObject AddObject()
         {
             AssetObject newObject = new AssetObject();
-            newObject.Name = "Object " + SpriteCreatedCount;
-            SpriteCreatedCount++;
+            newObject.Name = "Object " + ObjectCreatedCount;
+            ObjectCreatedCount++;
 
             ApplicationContainer.ProjectObjects.Add(newObject);
             return newObject;
