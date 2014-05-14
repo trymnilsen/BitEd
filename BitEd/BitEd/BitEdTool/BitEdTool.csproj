@@ -112,6 +112,7 @@
     <Compile Include="Converters\TimelinePositionConverter.cs" />
     <Compile Include="Messages\Assets\ActiveDocumentChangedMessage.cs" />
     <Compile Include="Messages\Assets\RequestOpenAssetMessage.cs" />
+    <Compile Include="Messages\Assets\SelectedAssetChangedMessage.cs" />
     <Compile Include="Messages\Assets\SpritePathSetMessage.cs" />
     <Compile Include="Util\BindingProxy.cs" />
     <Compile Include="Util\BytesConverter.cs" />
@@ -119,6 +120,8 @@
     <Compile Include="ViewModel\Asset\AssetListEntryViewModel.cs" />
     <Compile Include="ViewModel\Asset\SpriteViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel.cs" />
+    <Compile Include="ViewModel\InspectorViewModel.cs" />
+    <Compile Include="ViewModel\ObjectViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />
     <Compile Include="ViewModel\Asset\SpriteFrameViewModel.cs" />
@@ -130,6 +133,9 @@
     <Compile Include="ViewStyle\PaneTemplateSelector.cs" />
     <Compile Include="Views\AssetList.xaml.cs">
       <DependentUpon>AssetList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inspector.xaml.cs">
+      <DependentUpon>Inspector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Timeline.xaml.cs">
       <DependentUpon>Timeline.xaml</DependentUpon>
@@ -229,6 +235,10 @@
     <Page Include="Views\AssetList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inspector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PaneTemplates\Documents\SpriteDocumentTemplate.xaml">
       <SubType>Designer</SubType>

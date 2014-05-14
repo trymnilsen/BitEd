@@ -147,36 +147,7 @@ namespace BitEdTool.ViewModel
                 }
             }
         }
-        private void AssetEntityChanged(object model, string[] changeSet)
-        {
-            BaseAsset changedAsset = model as BaseAsset;
-            if(changedAsset == null)
-                return;
-
-            foreach(string change in changeSet)
-            {
-                //As we have not changed into a single collection for assets yet.. we need to check ugh
-                if(changedAsset is AssetSprite)
-                {
-                    if(ModelExistInViewModels(spriteViewModels,changedAsset))
-                    {
-                        spriteViewModels.First(x => x.Model == changedAsset).ModelChanged(change);
-                    }
-                    else
-                    {
-                        throw new Exception("We somehow got changes for a model we do not have a viewmodel for");
-                    }
-                }
-                else if(changedAsset is AssetScreen)
-                {
-
-                }
-                else if(changedAsset is AssetObject)
-                {
-                    
-                }
-            }
-        }
+        
         private bool ModelExistInViewModels(IEnumerable collection, BaseAsset model)
         {
             if (model == null)
