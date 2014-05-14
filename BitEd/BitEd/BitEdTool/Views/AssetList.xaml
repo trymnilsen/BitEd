@@ -14,7 +14,7 @@
                 <Grid.InputBindings>
                     <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenCommand}"/>
                 </Grid.InputBindings>
-                <TextBlock Text="{Binding Model.Name}"/>
+                <TextBlock Text="{Binding Name}"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
@@ -26,7 +26,7 @@
                     <MenuItem Header="Add Sprite" Command="{Binding AddSpriteCommand}"/>
                 </ContextMenu>
             </Expander.ContextMenu>
-            <ListBox ItemsSource="{Binding Sprites}" Background="Transparent" BorderThickness="0" ItemTemplate="{StaticResource AssetEntryTemplate}"/>
+            <ListBox ItemsSource="{Binding Sprites}" SelectedItem="{Binding SelectedSprite}" Background="Transparent" BorderThickness="0" ItemTemplate="{StaticResource AssetEntryTemplate}"/>
         </Expander>
         <Expander Header="Screen" Template="{StaticResource AssetExpanderTemplate}">
             <Expander.ContextMenu>
@@ -34,10 +34,15 @@
                     <MenuItem Header="Add Screen" Command="{Binding AddScreenCommand}"/>
                 </ContextMenu>
             </Expander.ContextMenu>
-            <ListBox ItemsSource="{Binding Screens}" Background="Transparent" BorderThickness="0" ItemTemplate="{StaticResource AssetEntryTemplate}"/>
+            <ListBox ItemsSource="{Binding Screens}" SelectedItem="{Binding SelectedScreen}" Background="Transparent" BorderThickness="0" ItemTemplate="{StaticResource AssetEntryTemplate}"/>
         </Expander>
         <Expander Header="Objects" Template="{StaticResource AssetExpanderTemplate}">
-            <ListBox ItemsSource="{Binding Objects}" Background="Transparent" BorderThickness="0" ItemTemplate="{StaticResource AssetEntryTemplate}"/>
+            <Expander.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add Object" Command="{Binding AddObjectCommand}"/>
+                </ContextMenu>
+            </Expander.ContextMenu>
+            <ListBox ItemsSource="{Binding Objects}" SelectedItem="{Binding SelectedObject}" Background="Transparent" BorderThickness="0" ItemTemplate="{StaticResource AssetEntryTemplate}"/>
         </Expander>
     </StackPanel>
 </UserControl>

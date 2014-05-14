@@ -18,6 +18,10 @@ namespace BitEdTool.ViewModel
 {
     public class AssetListViewModel:ToolViewModel
     {
+        private AssetListEntryViewModel selectedSprite;
+        private AssetListEntryViewModel selectedScreen;
+        private AssetListEntryViewModel selectedObject;
+
         private ObservableCollection<AssetListEntryViewModel> screenViewModels;
         private ObservableCollection<AssetListEntryViewModel> spriteViewModels;
         private ObservableCollection<AssetListEntryViewModel> objectViewModels;
@@ -25,6 +29,45 @@ namespace BitEdTool.ViewModel
         public RelayCommand AddScreenCommand { get; set; }
         public RelayCommand AddSpriteCommand { get; set; }
         public RelayCommand AddObjectCommand { get; set; }
+        //Selected Entities
+        public AssetListEntryViewModel SelectedSprite {
+            get { return selectedSprite; }
+            set
+            {
+                if(selectedSprite != value)
+                {
+                    selectedSprite = value;
+                    RaisePropertyChanged("SelectedSprite");
+                    SelectedAssetChangedMessage.Send(value);
+                }
+            }
+        }
+        public AssetListEntryViewModel SelectedScreen
+        {
+            get { return selectedScreen; }
+            set
+            {
+                if (selectedScreen != value)
+                {
+                    selectedScreen = value;
+                    RaisePropertyChanged("SelectedScreen");
+                    SelectedAssetChangedMessage.Send(value);
+                }
+            }
+        }
+        public AssetListEntryViewModel SelectedObject
+        {
+            get { return selectedObject; }
+            set
+            {
+                if (selectedObject != value)
+                {
+                    selectedObject = value;
+                    RaisePropertyChanged("SelectedObject");
+                    SelectedAssetChangedMessage.Send(value);
+                }
+            }
+        }
         //Collection
         public ObservableCollection<AssetListEntryViewModel> Screens
         {
@@ -44,6 +87,7 @@ namespace BitEdTool.ViewModel
             //Commands
             AddScreenCommand = new RelayCommand(AddScreen);
             AddSpriteCommand = new RelayCommand(AddSprite);
+            AddObjectCommand = new RelayCommand(AddObject);
             //assetViewModels
             screenViewModels = new ObservableCollection<AssetListEntryViewModel>();
             spriteViewModels = new ObservableCollection<AssetListEntryViewModel>();
@@ -58,11 +102,14 @@ namespace BitEdTool.ViewModel
         {
             BaseAsset screen = App.AddScreen();
             AssetListEntryViewModel screenVM = new AssetListEntryViewModel(screen);
-
         }
         void AddSprite()
         {
             App.AddSprite();
+        }
+        void AddObject()
+        {
+            App.AddObject();
         }
         //event handlers for model collections
         private void AssetCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -94,7 +141,40 @@ namespace BitEdTool.ViewModel
             }
             else if(addedAsset is AssetObject)
             {
+                if(!ModelExistInViewModels(objectViewModels,addedAsset))
+                {
+                    ObjectViewModel objectVM = new ObjectViewModel(addedAsset as AssetObject);
+                }
+            }
+        }
+        private void AssetEntityChanged(object model, string[] changeSet)
+        {
+            BaseAsset changedAsset = model as BaseAsset;
+            if(changedAsset == null)
+                return;
 
+            foreach(string change in changeSet)
+            {
+                //As we have not changed into a single collection for assets yet.. we need to check ugh
+                if(changedAsset is AssetSprite)
+                {
+                    if(ModelExistInViewModels(spriteViewModels,changedAsset))
+                    {
+                        spriteViewModels.First(x => x.Model == changedAsset).ModelChanged(change);
+                    }
+                    else
+                    {
+                        throw new Exception("We somehow got changes for a model we do not have a viewmodel for");
+                    }
+                }
+                else if(changedAsset is AssetScreen)
+                {
+
+                }
+                else if(changedAsset is AssetObject)
+                {
+                    
+                }
             }
         }
         private bool ModelExistInViewModels(IEnumerable collection, BaseAsset model)

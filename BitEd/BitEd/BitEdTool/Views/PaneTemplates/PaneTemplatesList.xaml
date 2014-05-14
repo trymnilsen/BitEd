@@ -18,6 +18,7 @@
                 <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:ToolViewModel}" Template="{StaticResource DefaultToolTemplate}"/>
                 <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:TimelineViewModel}" Template="{StaticResource TimelineToolTemplate}"/>
                 <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:AssetListViewModel}" Template="{StaticResource AssetListTemplate}"/>
+                <ToolStyle:PaneTemplate Type="{x:Type ToolViewModel:InspectorViewModel}" Template="{StaticResource InspectorTemplate}"/>
             </ToolStyle:PaneTemplateCollection>
         </ResourceDictionary>
         

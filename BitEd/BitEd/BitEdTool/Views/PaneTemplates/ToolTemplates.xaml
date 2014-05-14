@@ -14,4 +14,8 @@
     <DataTemplate x:Key="AssetListTemplate" DataType="{x:Type ToolViewModel:AssetListViewModel}">
         <ToolView:AssetList/>
     </DataTemplate>
+    <!--Inspector-->
+    <DataTemplate x:Key="InspectorTemplate" DataType="{x:Type ToolViewModel:InspectorViewModel}">
+        <ToolView:Inspector/>
+    </DataTemplate>
 </ResourceDictionary>

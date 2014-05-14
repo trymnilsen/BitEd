@@ -66,7 +66,7 @@ namespace BitEdTool.ViewModel
             OpenTools.Add(new ToolViewModel(app,"Footer", "FooterLeft"));
             OpenTools.Add(new TimelineViewModel(app,"Timeline", "FooterRight"));
             OpenTools.Add(new ToolViewModel(app,"Output", "FooterLeft"));
-            OpenTools.Add(new ToolViewModel(app,"Inspector","Inspector"));
+            OpenTools.Add(new InspectorViewModel(app));
             //Listen for open messages
             Messenger.Default.Register<RequestOpenAssetMessage>(this, OpenAsset);
         }
@@ -97,8 +97,14 @@ namespace BitEdTool.ViewModel
         //Messages callback
         void OpenAsset(RequestOpenAssetMessage message)
         {
-            if(!ActiveScreens.Contains(message.Item))
+            if (!ActiveScreens.Contains(message.Item))
+            {
                 ActiveScreens.Add(message.Item);
+            }
+            else
+            {
+                message.Item.IsActive = true;
+            }
         }
 
     }
