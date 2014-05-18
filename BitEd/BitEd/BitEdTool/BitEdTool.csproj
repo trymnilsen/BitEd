@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="Converters\ActiveDocumentConverter.cs" />
     <Compile Include="Converters\AssetErrorToColorConverter.cs" />
+    <Compile Include="Converters\NodePropertyAlignmentConverter.cs" />
     <Compile Include="Converters\NullToDoNothingConverter.cs" />
     <Compile Include="Converters\NullToParameterConverter.cs" />
     <Compile Include="Converters\SubtractConverter.cs" />

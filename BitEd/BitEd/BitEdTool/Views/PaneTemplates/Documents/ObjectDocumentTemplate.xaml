@@ -26,7 +26,7 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type ToolNodeVM:NodeViewModel}">
-                        <Border BorderThickness="1" BorderBrush="Red">
+                        <Border Width="160" BorderThickness="1" BorderBrush="DarkGray" Margin="0,0,10,0" Background="{DynamicResource BitEd_Timeline_EntryBackground}" ClipToBounds="False">
                             <Border.LayoutTransform>
                                 <TranslateTransform X="{Binding NodePositionX}" Y="{Binding NodePositionY}"/>
                             </Border.LayoutTransform>
@@ -35,17 +35,22 @@
                                     <RowDefinition Height="20px"/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding Model.NodeName}"/>
-                                <!--<ItemsControl ItemsSource="{Binding Model.Properties}">
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding NodeName}" Foreground="{DynamicResource AvalonDock_Expression_BaseColor2}"/>
+                                <ItemsControl ItemsSource="{Binding NodeProperties}" Grid.Row="1" ClipToBounds="False">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding PropertyName}"/>
+                                            <Grid>
+                                                <TextBlock HorizontalAlignment="{Binding BindType,Converter={StaticResource NodePropertyAlignmentConverter}}" Margin="20 0 20 0" Text="{Binding PropertyName}" Foreground="{DynamicResource AvalonDock_Expression_BaseColor2}"/>
+                                                <Rectangle Width="6" Height="6" Margin="0 2 0 0" VerticalAlignment="Center" Fill="{DynamicResource BitEd_MinorTextAndNumeric}" HorizontalAlignment="Right"/>
+                                            </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl>-->
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
                             </Grid>
                         </Border>
                     </DataTemplate>

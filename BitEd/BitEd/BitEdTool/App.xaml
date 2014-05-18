@@ -17,6 +17,7 @@
                     <converters:TimelinePositionConverter x:Key="TimeLinePositionConverter"/>
                     <converters:NullToDoNothingConverter x:Key="NullToDoNothingConverter"/>
                     <converters:NullToParameterConverter x:Key="NullToParameterConverter"/>
+                    <converters:NodePropertyAlignmentConverter x:Key="NodePropertyAlignmentConverter"/>
                     <!--Locator-->
                     <vm:ViewModelLocator x:Key="Locator"/>
                 </ResourceDictionary>
