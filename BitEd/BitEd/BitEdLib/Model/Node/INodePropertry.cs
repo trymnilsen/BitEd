@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace BitEdLib.Model.Node
 {
-    interface INodePropertry
+    public interface INodePropertry
     {
-        ENodeBindType BindType { get; set; }
-        Type PropertyType { get; }
-        object Value { get; set; }
+        ENodeBindType BindType { get; }
+        //Enables ut to get type without having to call getType on value
+        string PropertyType { get; }
+        string PropertyName { get; }
     }
 }

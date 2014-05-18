@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitEdLib.Model.Node
 {
-    interface INode
+    public interface INode
     {
         IEnumerable<INodePropertry> Properties { get; set; }
         IEnumerable<INode> Parents { get; set; }

@@ -3,10 +3,55 @@
                     xmlns:LibModel="clr-namespace:BitEdLib.Model.Assets;assembly=BitEdLib"
                     xmlns:ToolView="clr-namespace:BitEdTool.Views"
                     xmlns:ToolControl="clr-namespace:BitEdTool.Controls"
-                    xmlns:ToolVM="clr-namespace:BitEdTool.ViewModel.Asset">
-    <DataTemplate x:Key="ObjectDocumentTemplate" DataType="{x:Type ToolVM:ObjectViewModel}">
+                    xmlns:ToolNodeVM="clr-namespace:BitEdTool.ViewModel.Node"
+                    xmlns:ToolAssetVM="clr-namespace:BitEdTool.ViewModel.Asset"
+                    xmlns:ToolNodeProperty="Node">
+    <DataTemplate x:Key="ObjectDocumentTemplate" DataType="{x:Type ToolAssetVM:ObjectViewModel}">
         <Grid>
-            <ToolView:ScreenEditArea/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="20px"/>
+            </Grid.RowDefinitions>
+            <ItemsControl ItemsSource="{Binding Nodes}" Grid.Row="0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding NodePostionX}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding NodePostionY}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type ToolNodeVM:NodeViewModel}">
+                        <Border BorderThickness="1" BorderBrush="Red">
+                            <Border.LayoutTransform>
+                                <TranslateTransform X="{Binding NodePositionX}" Y="{Binding NodePositionY}"/>
+                            </Border.LayoutTransform>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20px"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Model.NodeName}"/>
+                                <!--<ItemsControl ItemsSource="{Binding Model.Properties}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding PropertyName}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl>-->
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Label Background="{DynamicResource BitEd_Timeline_EntryBackground}" Grid.Row="1"/>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

@@ -122,7 +122,8 @@
     <Compile Include="ViewModel\Asset\SpriteViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel.cs" />
     <Compile Include="ViewModel\InspectorViewModel.cs" />
-    <Compile Include="ViewModel\ObjectViewModel.cs" />
+    <Compile Include="ViewModel\Asset\ObjectViewModel.cs" />
+    <Compile Include="ViewModel\Node\NodeViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />
     <Compile Include="ViewModel\Asset\SpriteFrameViewModel.cs" />
