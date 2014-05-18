@@ -57,6 +57,9 @@
     <Compile Include="Model\Assets\Sprite\SpriteFrame.cs" />
     <Compile Include="Model\Entity\Entity.cs" />
     <Compile Include="Model\Entity\EntityTransformation.cs" />
+    <Compile Include="Model\Node\ENodeBindType.cs" />
+    <Compile Include="Model\Node\INode.cs" />
+    <Compile Include="Model\Node\INodePropertry.cs" />
     <Compile Include="Model\Transformation\Vector2.cs" />
     <Compile Include="Network\OuyaNetClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

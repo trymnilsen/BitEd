@@ -12,7 +12,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBox Text="{Binding AssetName}">
+            <TextBox Text="{Binding AssetName}" Style="{DynamicResource TextBoxStyle1}">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Enter" Command="{Binding SetNameCommand}"/>
                 </TextBox.InputBindings>

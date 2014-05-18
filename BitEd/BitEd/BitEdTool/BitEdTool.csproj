@@ -138,6 +138,9 @@
     <Compile Include="Views\Inspector.xaml.cs">
       <DependentUpon>Inspector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NodeEditor.xaml.cs">
+      <DependentUpon>NodeEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Timeline.xaml.cs">
       <DependentUpon>Timeline.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,14 @@
     <Page Include="Views\Inspector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NodeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaneTemplates\Documents\ObjectDocumentTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PaneTemplates\Documents\SpriteDocumentTemplate.xaml">
       <SubType>Designer</SubType>

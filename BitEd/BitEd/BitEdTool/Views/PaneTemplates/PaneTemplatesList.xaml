@@ -6,9 +6,11 @@
     <ResourceDictionary.MergedDictionaries>
         <!--Documents-->
         <ResourceDictionary Source="Documents/SpriteDocumentTemplate.xaml"/>
+        <ResourceDictionary Source="Documents/ObjectDocumentTemplate.xaml"/>
         <ResourceDictionary>
             <ToolStyle:PaneTemplateCollection x:Key="PaneDocumentTemplates">
                 <ToolStyle:PaneTemplate Type="{x:Type LibModel:AssetSprite}" Template="{StaticResource SpriteDocumentTemplate}"/>
+                <ToolStyle:PaneTemplate Type="{x:Type LibModel:AssetObject}" Template="{StaticResource ObjectDocumentTemplate}"/>
             </ToolStyle:PaneTemplateCollection>
         </ResourceDictionary>
         <!--Tools-->
