@@ -26,10 +26,75 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type ToolNodeVM:NodeViewModel}">
-                        <Border Width="160" BorderThickness="1" BorderBrush="DarkGray" Margin="0,0,10,0" Background="{DynamicResource BitEd_Timeline_EntryBackground}" ClipToBounds="False">
+                        <Border Width="160" BorderThickness="1" BorderBrush="DarkGray" Margin="0,0,10,0" ClipToBounds="False">
                             <Border.LayoutTransform>
                                 <TranslateTransform X="{Binding NodePositionX}" Y="{Binding NodePositionY}"/>
                             </Border.LayoutTransform>
+                            <Border.Background>
+                                <VisualBrush TileMode="Tile" 
+                         Viewport="0,0,64,64" 
+                         ViewportUnits="Absolute">
+                                    <VisualBrush.Visual>
+                                        <Canvas Name="ScreenGridCanvas">
+                                            <!--<Rectangle Fill="#313131" Canvas.Left="0" Canvas.Top="0" Width="32" Height="32"/>
+                                <Rectangle Fill="#313131" Canvas.Left="32" Canvas.Top="32" Width="32" Height="32"/>-->
+                                            <!--Grid-->
+                                            <!--Horizontal lines-->
+                                            <Line X1="0" Y1="8"
+                                      X2="63" Y2="8" 
+                                      Stroke="#282828"/>
+                                            <Line X1="0" Y1="16"
+                                      X2="63" Y2="16" 
+                                      Stroke="#282828"/>
+                                            <Line X1="0" Y1="24"
+                                      X2="63" Y2="24" 
+                                      Stroke="#282828"/>
+
+                                            <Line X1="0" Y1="40"
+                                      X2="63" Y2="40" 
+                                      Stroke="#282828"/>
+                                            <Line X1="0" Y1="48"
+                                      X2="63" Y2="48" 
+                                      Stroke="#282828"/>
+                                            <Line X1="0" Y1="56"
+                                      X2="63" Y2="56" 
+                                      Stroke="#282828"/>
+                                            <Line X1="0" Y1="64"
+                                      X2="63" Y2="64" 
+                                      Stroke="#282828"/>
+                                            <!--Vertical Lines-->
+                                            <Line X1="8" Y1="0"
+                                      X2="8" Y2="64" 
+                                      Stroke="#282828"/>
+                                            <Line X1="16" Y1="0"
+                                      X2="16" Y2="64" 
+                                      Stroke="#282828"/>
+                                            <Line X1="24" Y1="0"
+                                      X2="24" Y2="64" 
+                                      Stroke="#282828"/>
+                                            <Line X1="40" Y1="0"
+                                      X2="40" Y2="64" 
+                                      Stroke="#282828"/>
+                                            <Line X1="48" Y1="0"
+                                      X2="48" Y2="64" 
+                                      Stroke="#282828"/>
+                                            <Line X1="56" Y1="0"
+                                      X2="56" Y2="64" 
+                                      Stroke="#282828"/>
+                                            <Line X1="64" Y1="0"
+                                      X2="64" Y2="64" 
+                                      Stroke="#282828"/>
+
+                                            <Line X1="32" Y1="0"
+                                      X2="32" Y2="64" 
+                                      Stroke="Gray"/>
+                                            <Line X1="0" Y1="32"
+                                      X2="64" Y2="32" 
+                                      Stroke="Gray"/>
+                                        </Canvas>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Border.Background>
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="20px"/>
