@@ -10,10 +10,11 @@ using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows;
 using System.Collections;
+using BitEdTool.ViewModel.Inspector;
 
 namespace BitEdTool.ViewModel.Asset
 {
-    public class AssetListEntryViewModel:DocumentViewModel
+    public class AssetListEntryViewModel:DocumentViewModel, IInspectable
     {
         private Point viewportPosition;
         private Point viewportLastPoint;
@@ -53,6 +54,55 @@ namespace BitEdTool.ViewModel.Asset
                 viewportPosition.Y += deltaY;
                 viewportLastPoint = point;
                 RaisePropertyChanged("BackgroundScrollViewport");
+            }
+        }
+
+        public string InspectableName
+        {
+            get
+            {
+                return Model.Name;
+            }
+            set
+            {
+                if(value!=Model.Name)
+                {
+                    Model.Name = value;
+                }
+            }
+        }
+
+        public string InspectableTag
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public bool InspectorCanSetName
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public bool InspectorCanSetTag
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public IEnumerable<IInspectableComponent> InspectableComponents
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
             }
         }
     }

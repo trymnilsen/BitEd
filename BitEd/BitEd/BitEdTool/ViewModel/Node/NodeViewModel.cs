@@ -1,12 +1,15 @@
 ﻿using BitEdLib.Model.Node;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace BitEdTool.ViewModel.Node
 {
@@ -65,14 +68,24 @@ namespace BitEdTool.ViewModel.Node
         {
             get { return Model.NodeName; }
         }
+        public RelayCommand<DragDeltaEventArgs> DragDeltaCommand { get; set; }
         public NodeViewModel(INode node)
         {
+            NodePositionX = 20;
+            NodePositionY = 20;
             this.Model = node;
             this.NodeProperties = new ObservableCollection<INodePropertry>();
             foreach(INodePropertry prop in node.Properties)
             {
                 NodeProperties.Add(prop);
             }
+            DragDeltaCommand = new RelayCommand<DragDeltaEventArgs>(NodeDragged);
+        }
+        public void NodeDragged(DragDeltaEventArgs e)
+        {
+            NodePositionX += e.HorizontalChange;
+            NodePositionY += e.VerticalChange;
+            Debug.WriteLine("Hmmmzz" + NodePositionX + "/" + NodePositionY);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace BitEdTool.ViewModel
                 {
                     selectedSprite = value;
                     RaisePropertyChanged("SelectedSprite");
-                    SelectedAssetChangedMessage.Send(value);
+                    InspectItemMessage.Send(value);
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace BitEdTool.ViewModel
                 {
                     selectedScreen = value;
                     RaisePropertyChanged("SelectedScreen");
-                    SelectedAssetChangedMessage.Send(value);
+                    InspectItemMessage.Send(value);
                 }
             }
         }
@@ -64,7 +64,7 @@ namespace BitEdTool.ViewModel
                 {
                     selectedObject = value;
                     RaisePropertyChanged("SelectedObject");
-                    SelectedAssetChangedMessage.Send(value);
+                    InspectItemMessage.Send(value);
                 }
             }
         }

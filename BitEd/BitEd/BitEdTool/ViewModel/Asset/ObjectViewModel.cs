@@ -13,7 +13,20 @@ namespace BitEdTool.ViewModel.Asset
 {
     public class ObjectViewModel:AssetListEntryViewModel
     {
+        private object _selectedNode;
         public ObservableCollection<NodeViewModel> Nodes { get; set; }
+        public Object SelectedNode
+        {
+            get { return _selectedNode; }
+            set
+            {
+                if(_selectedNode != value)
+                {
+                    _selectedNode = value;
+                    RaisePropertyChanged("SelectedNode");
+                }
+            }
+        }
         public ObjectViewModel(AssetObject model)
             :base(model)
         {

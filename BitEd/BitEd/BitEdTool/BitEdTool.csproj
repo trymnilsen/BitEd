@@ -114,7 +114,7 @@
     <Compile Include="Messages\Assets\AssetNameChangedMessage.cs" />
     <Compile Include="Messages\Assets\ActiveDocumentChangedMessage.cs" />
     <Compile Include="Messages\Assets\RequestOpenAssetMessage.cs" />
-    <Compile Include="Messages\Assets\SelectedAssetChangedMessage.cs" />
+    <Compile Include="Messages\Assets\InspectItemMessage.cs" />
     <Compile Include="Messages\Assets\SpritePathSetMessage.cs" />
     <Compile Include="Util\BindingProxy.cs" />
     <Compile Include="Util\BytesConverter.cs" />
@@ -122,8 +122,11 @@
     <Compile Include="ViewModel\Asset\AssetListEntryViewModel.cs" />
     <Compile Include="ViewModel\Asset\SpriteViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel.cs" />
+    <Compile Include="ViewModel\Inspector\IInspectable.cs" />
+    <Compile Include="ViewModel\Inspector\IInspectableComponent.cs" />
     <Compile Include="ViewModel\InspectorViewModel.cs" />
     <Compile Include="ViewModel\Asset\ObjectViewModel.cs" />
+    <Compile Include="ViewModel\Inspector\IInspectableComponentProperty.cs" />
     <Compile Include="ViewModel\Node\NodeViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />

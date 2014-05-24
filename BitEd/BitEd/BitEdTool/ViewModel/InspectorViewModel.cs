@@ -1,10 +1,12 @@
 ﻿using BitEdLib.Application;
 using BitEdTool.Messages.Assets;
 using BitEdTool.ViewModel.Asset;
+using BitEdTool.ViewModel.Inspector;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,15 +17,15 @@ namespace BitEdTool.ViewModel
     {
         private static readonly string NO_ASSET_STRING = "No Asset Selected";
 
-        private AssetListEntryViewModel ActiveAsset;
+        private IInspectable ActiveInspectedItem;
         private string assetName;
-        public string AssetName
+        public string InspectedName
         {
             get 
             {
-                if(ActiveAsset!=null)
+                if(ActiveInspectedItem!=null)
                 {
-                    return ActiveAsset.Model.Name;
+                    return ActiveInspectedItem.InspectableName;
                 }
                 return NO_ASSET_STRING;
             }
@@ -36,25 +38,32 @@ namespace BitEdTool.ViewModel
                 }
             }
         }
+        public bool CanSetName
+        {
+            get { return ActiveInspectedItem.InspectorCanSetName; }
+        }
 
         public RelayCommand SetNameCommand { get; set; }
+        public ObservableCollection<IInspectableComponent> Components { get; set; }
 
         public InspectorViewModel(Application app)
             : base(app, "Inspector", "Inspector")
         {
-            Messenger.Default.Register<SelectedAssetChangedMessage>(this,SelectedAsset);
-            SetNameCommand = new RelayCommand(SetAssetName);
+            Messenger.Default.Register<InspectItemMessage>(this,InspectItem);
+            SetNameCommand = new RelayCommand(SetInspectedName);
+            Components = new ObservableCollection<IInspectableComponent>();
         }
-        private void SelectedAsset(SelectedAssetChangedMessage message)
+        private void InspectItem(InspectItemMessage message)
         {
-            ActiveAsset = message.Item;
+            ActiveInspectedItem = message.Item;
             RaisePropertyChanged("AssetName");
         }
-        private void SetAssetName()
+        private void SetInspectedName()
         {
-            if(AssetName!=NO_ASSET_STRING && ActiveAsset!=null)
+            if(InspectedName!=NO_ASSET_STRING && ActiveInspectedItem!=null)
             {
-                ActiveAsset.Model.Name = AssetName;
+                if(ActiveInspectedItem.InspectorCanSetName)
+                    ActiveInspectedItem.InspectableName = InspectedName;
             }
         }
     }

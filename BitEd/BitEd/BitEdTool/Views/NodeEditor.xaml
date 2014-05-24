@@ -4,8 +4,146 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:LibModel="clr-namespace:BitEdLib.Model.Assets;assembly=BitEdLib"
+             xmlns:ToolControl="clr-namespace:BitEdTool.Controls"
+             xmlns:ToolNodeVM="clr-namespace:BitEdTool.ViewModel.Node"
+             xmlns:ToolAssetVM="clr-namespace:BitEdTool.ViewModel.Asset"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF45"
+             xmlns:ToolNodeProperty="Node"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase">
     <Grid>
-            
+        <Grid.Resources>
+            <ControlTemplate x:Key="NodeThumbTemplate">
+                <Border Width="160" BorderThickness="1" BorderBrush="DarkGray" Margin="0,0,10,0" ClipToBounds="False" Background="{DynamicResource BitEd_Timeline_EntryBackground}">
+                    <!--<Border.LayoutTransform>
+                        <TranslateTransform X="{Binding NodePositionX}" Y="{Binding NodePositionY}"/>
+                    </Border.LayoutTransform>-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20px"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding NodeName}" Foreground="{DynamicResource AvalonDock_Expression_BaseColor2}"/>
+                        <ItemsControl ItemsSource="{Binding NodeProperties}" Grid.Row="1" ClipToBounds="False">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <TextBlock HorizontalAlignment="{Binding BindType,Converter={StaticResource NodePropertyAlignmentConverter}}" Margin="20 0 20 0" Text="{Binding PropertyName}" Foreground="{DynamicResource AvalonDock_Expression_BaseColor2}"/>
+                                        <Rectangle Width="6" Height="6" Margin="0 2 0 0" VerticalAlignment="Center" Fill="{DynamicResource BitEd_MinorTextAndNumeric}" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="20px"/>
+        </Grid.RowDefinitions>
+        <Grid ClipToBounds="True">
+            <Label>
+                <Label.Background>
+                    <VisualBrush TileMode="Tile" 
+                         Viewport="0,0,64,64" 
+                         ViewportUnits="Absolute">
+                        <VisualBrush.Visual>
+                            <Canvas Name="ScreenGridCanvas">
+                                <!--<Rectangle Fill="#313131" Canvas.Left="0" Canvas.Top="0" Width="32" Height="32"/>
+                                <Rectangle Fill="#313131" Canvas.Left="32" Canvas.Top="32" Width="32" Height="32"/>-->
+                                <!--Grid-->
+                                <!--Horizontal lines-->
+                                <Line X1="0" Y1="8"
+                                      X2="63" Y2="8" 
+                                      Stroke="#282828"/>
+                                <Line X1="0" Y1="16"
+                                      X2="63" Y2="16" 
+                                      Stroke="#282828"/>
+                                <Line X1="0" Y1="24"
+                                      X2="63" Y2="24" 
+                                      Stroke="#282828"/>
+
+                                <Line X1="0" Y1="40"
+                                      X2="63" Y2="40" 
+                                      Stroke="#282828"/>
+                                <Line X1="0" Y1="48"
+                                      X2="63" Y2="48" 
+                                      Stroke="#282828"/>
+                                <Line X1="0" Y1="56"
+                                      X2="63" Y2="56" 
+                                      Stroke="#282828"/>
+                                <Line X1="0" Y1="64"
+                                      X2="63" Y2="64" 
+                                      Stroke="#282828"/>
+                                <!--Vertical Lines-->
+                                <Line X1="8" Y1="0"
+                                      X2="8" Y2="64" 
+                                      Stroke="#282828"/>
+                                <Line X1="16" Y1="0"
+                                      X2="16" Y2="64" 
+                                      Stroke="#282828"/>
+                                <Line X1="24" Y1="0"
+                                      X2="24" Y2="64" 
+                                      Stroke="#282828"/>
+                                <Line X1="40" Y1="0"
+                                      X2="40" Y2="64" 
+                                      Stroke="#282828"/>
+                                <Line X1="48" Y1="0"
+                                      X2="48" Y2="64" 
+                                      Stroke="#282828"/>
+                                <Line X1="56" Y1="0"
+                                      X2="56" Y2="64" 
+                                      Stroke="#282828"/>
+                                <Line X1="64" Y1="0"
+                                      X2="64" Y2="64" 
+                                      Stroke="#282828"/>
+
+                                <Line X1="32" Y1="0"
+                                      X2="32" Y2="64" 
+                                      Stroke="Gray"/>
+                                <Line X1="0" Y1="32"
+                                      X2="64" Y2="32" 
+                                      Stroke="Gray"/>
+                            </Canvas>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Label.Background>
+            </Label>
+            <ListBox ItemsSource="{Binding Nodes}" Grid.Row="0" Background="Transparent" SelectedItem="{Binding SelectedNode}" SelectionMode="Single">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Canvas.Left" Value="{Binding NodePositionX}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding NodePositionY}"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type ToolNodeVM:NodeViewModel}">
+                        <Thumb Template="{StaticResource NodeThumbTemplate}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="DragDelta">
+                                    <cmd:EventToCommand PassEventArgsToCommand="True"
+                                                Command="{Binding DragDeltaCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Thumb>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Label Background="{DynamicResource BitEd_Timeline_EntryBackground}" Grid.Row="1"/>
     </Grid>
 </UserControl>
