@@ -86,7 +86,7 @@ namespace BitEdTool.ViewModel.Asset
 
         public bool InspectorCanSetName
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         public bool InspectorCanSetTag

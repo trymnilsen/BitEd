@@ -127,6 +127,7 @@
     <Compile Include="ViewModel\InspectorViewModel.cs" />
     <Compile Include="ViewModel\Asset\ObjectViewModel.cs" />
     <Compile Include="ViewModel\Inspector\IInspectableComponentProperty.cs" />
+    <Compile Include="ViewModel\Inspector\InspectorComponentViewModel.cs" />
     <Compile Include="ViewModel\Node\NodeViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />
