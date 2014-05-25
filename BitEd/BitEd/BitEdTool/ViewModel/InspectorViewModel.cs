@@ -1,46 +1,38 @@
 ﻿using BitEdLib.Application;
 using BitEdTool.Messages.Assets;
-using BitEdTool.ViewModel.Asset;
 using BitEdTool.ViewModel.Inspector;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BitEdTool.ViewModel
 {
     public class InspectorViewModel:ToolViewModel
     {
-        private static readonly string NO_ASSET_STRING = "No Asset Selected";
+        private const string NO_ASSET_STRING = "No Asset Selected";
 
-        private IInspectable ActiveInspectedItem;
-        private string assetName;
+        private IInspectable activeInspectedItem;
+        private string inspectedName;
         public string InspectedName
         {
-            get 
+            get
             {
-                if(ActiveInspectedItem!=null)
-                {
-                    return ActiveInspectedItem.InspectableName;
-                }
-                return NO_ASSET_STRING;
+                return activeInspectedItem!=null ? activeInspectedItem.InspectableName : NO_ASSET_STRING;
             }
             set
             {
-                if(assetName!=value)
-                {
-                    assetName = value;
-                    RaisePropertyChanged("AssetName");
-                }
+                if (inspectedName == value) return;
+                inspectedName = value;
+                RaisePropertyChanged("InspectedName");
             }
         }
         public bool CanSetName
         {
-            get { return ActiveInspectedItem.InspectorCanSetName; }
+            get { return activeInspectedItem != null && activeInspectedItem.InspectorCanSetName; }
+        }
+        public bool CanSetTag
+        {
+            get { return activeInspectedItem != null && activeInspectedItem.InspectorCanSetTag; }
         }
 
         public RelayCommand SetNameCommand { get; set; }
@@ -55,16 +47,15 @@ namespace BitEdTool.ViewModel
         }
         private void InspectItem(InspectItemMessage message)
         {
-            ActiveInspectedItem = message.Item;
-            RaisePropertyChanged("AssetName");
+            activeInspectedItem = message.Item;
+            RaisePropertyChanged("CanSetName");
+            RaisePropertyChanged("InspectedName");
         }
         private void SetInspectedName()
         {
-            if(InspectedName!=NO_ASSET_STRING && ActiveInspectedItem!=null)
-            {
-                if(ActiveInspectedItem.InspectorCanSetName)
-                    ActiveInspectedItem.InspectableName = InspectedName;
-            }
+            if (InspectedName == NO_ASSET_STRING || activeInspectedItem == null) return;
+            if(activeInspectedItem.InspectorCanSetName)
+                activeInspectedItem.InspectableName = InspectedName;
         }
     }
 }

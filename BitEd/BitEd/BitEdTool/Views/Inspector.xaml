@@ -17,7 +17,7 @@
                     <KeyBinding Key="Enter" Command="{Binding SetNameCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
-            <ComboBox>
+            <ComboBox IsEnabled="{Binding CanSetTag}">
                 <ComboBoxItem Content="Foo"/>
                 <ComboBoxItem Content="Bar"/>
                 <ComboBoxItem Content="Baz"/>

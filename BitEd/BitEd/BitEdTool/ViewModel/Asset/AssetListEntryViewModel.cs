@@ -1,15 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BitEdTool.Messages.Assets;
 using BitEdLib.Model.Assets;
 using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows;
-using System.Collections;
 using BitEdTool.ViewModel.Inspector;
 
 namespace BitEdTool.ViewModel.Asset
@@ -41,22 +37,20 @@ namespace BitEdTool.ViewModel.Asset
         }
         void ScrollScreen(MouseEventArgs e)
         {
-            if (e.MiddleButton == MouseButtonState.Pressed)
-            {
-                UIElement element = e.OriginalSource as UIElement;
-                Point point = e.GetPosition(element);
+            if (e.MiddleButton != MouseButtonState.Pressed) return;
 
-                float deltaX = (float)point.X - (float)viewportLastPoint.X;
-                float deltaY = (float)point.Y - (float)viewportLastPoint.Y;
+            UIElement element = e.OriginalSource as UIElement;
+            Point point = e.GetPosition(element);
 
-                Debug.WriteLine("Moving" + deltaX + "/" + deltaY);
-                viewportPosition.X += deltaX;
-                viewportPosition.Y += deltaY;
-                viewportLastPoint = point;
-                RaisePropertyChanged("BackgroundScrollViewport");
-            }
+            float deltaX = (float)point.X - (float)viewportLastPoint.X;
+            float deltaY = (float)point.Y - (float)viewportLastPoint.Y;
+
+            Debug.WriteLine("Moving" + deltaX + "/" + deltaY);
+            viewportPosition.X += deltaX;
+            viewportPosition.Y += deltaY;
+            viewportLastPoint = point;
+            RaisePropertyChanged("BackgroundScrollViewport");
         }
-
         public string InspectableName
         {
             get
@@ -65,10 +59,7 @@ namespace BitEdTool.ViewModel.Asset
             }
             set
             {
-                if(value!=Model.Name)
-                {
-                    Model.Name = value;
-                }
+                Model.Name = value;
             }
         }
 
@@ -91,10 +82,10 @@ namespace BitEdTool.ViewModel.Asset
 
         public bool InspectorCanSetTag
         {
-            get { throw new NotImplementedException(); }
+            get { return false; }
         }
 
-        public IEnumerable<IInspectableComponent> InspectableComponents
+        public virtual IEnumerable<IInspectableComponent> InspectableComponents
         {
             get
             {
@@ -105,5 +96,6 @@ namespace BitEdTool.ViewModel.Asset
                 throw new NotImplementedException();
             }
         }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BitEdLib.Model.Assets;
 using BitEdLib.Model.Node;
 using BitEdTool.Messages.Assets;
+using BitEdTool.ViewModel.Inspector;
 using BitEdTool.ViewModel.Node;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BitEdTool.ViewModel.Asset
 {
-    public class ObjectViewModel:AssetListEntryViewModel
+    public class ObjectViewModel:AssetListEntryViewModel, IInspectable
     {
         private object _selectedNode;
         public ObservableCollection<NodeViewModel> Nodes { get; set; }
@@ -36,6 +37,7 @@ namespace BitEdTool.ViewModel.Asset
             NodeViewModel nodeVM = new NodeViewModel(model);
             Nodes.Add(nodeVM);
         }
+        
 
     }
 }
