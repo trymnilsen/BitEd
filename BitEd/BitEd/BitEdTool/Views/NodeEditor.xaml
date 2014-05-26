@@ -13,111 +13,43 @@
              xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF45"
              xmlns:ToolNodeProperty="Node"
              xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase">
+    <UserControl.Resources>
+        <Style x:Key="ListBoxStyle1" TargetType="{x:Type ListBox}">
+            <Setter Property="BorderBrush" Value="{StaticResource ListBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsGrouping" Value="true"/>
+                                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <Grid.Resources>
-            <ControlTemplate x:Key="NodeThumbTemplate">
-                <Border Width="160" BorderThickness="1" BorderBrush="DarkGray" Margin="0,0,10,0" ClipToBounds="False" Background="{DynamicResource BitEd_Timeline_EntryBackground}">
-                    <!--<Border.LayoutTransform>
-                        <TranslateTransform X="{Binding NodePositionX}" Y="{Binding NodePositionY}"/>
-                    </Border.LayoutTransform>-->
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20px"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding NodeName}" Foreground="{DynamicResource AvalonDock_Expression_BaseColor2}"/>
-                        <ItemsControl ItemsSource="{Binding NodeProperties}" Grid.Row="1" ClipToBounds="False">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <TextBlock HorizontalAlignment="{Binding BindType,Converter={StaticResource NodePropertyAlignmentConverter}}" Margin="20 0 20 0" Text="{Binding PropertyName}" Foreground="{DynamicResource AvalonDock_Expression_BaseColor2}"/>
-                                        <Rectangle Width="6" Height="6" Margin="0 2 0 0" VerticalAlignment="Center" Fill="{DynamicResource BitEd_MinorTextAndNumeric}" HorizontalAlignment="Right"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
-                    </Grid>
-                </Border>
-            </ControlTemplate>
-        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="20px"/>
         </Grid.RowDefinitions>
         <Grid ClipToBounds="True">
-            <Label>
-                <Label.Background>
-                    <VisualBrush TileMode="Tile" 
-                         Viewport="0,0,64,64" 
-                         ViewportUnits="Absolute">
-                        <VisualBrush.Visual>
-                            <Canvas Name="ScreenGridCanvas">
-                                <!--<Rectangle Fill="#313131" Canvas.Left="0" Canvas.Top="0" Width="32" Height="32"/>
-                                <Rectangle Fill="#313131" Canvas.Left="32" Canvas.Top="32" Width="32" Height="32"/>-->
-                                <!--Grid-->
-                                <!--Horizontal lines-->
-                                <Line X1="0" Y1="8"
-                                      X2="63" Y2="8" 
-                                      Stroke="#282828"/>
-                                <Line X1="0" Y1="16"
-                                      X2="63" Y2="16" 
-                                      Stroke="#282828"/>
-                                <Line X1="0" Y1="24"
-                                      X2="63" Y2="24" 
-                                      Stroke="#282828"/>
-
-                                <Line X1="0" Y1="40"
-                                      X2="63" Y2="40" 
-                                      Stroke="#282828"/>
-                                <Line X1="0" Y1="48"
-                                      X2="63" Y2="48" 
-                                      Stroke="#282828"/>
-                                <Line X1="0" Y1="56"
-                                      X2="63" Y2="56" 
-                                      Stroke="#282828"/>
-                                <Line X1="0" Y1="64"
-                                      X2="63" Y2="64" 
-                                      Stroke="#282828"/>
-                                <!--Vertical Lines-->
-                                <Line X1="8" Y1="0"
-                                      X2="8" Y2="64" 
-                                      Stroke="#282828"/>
-                                <Line X1="16" Y1="0"
-                                      X2="16" Y2="64" 
-                                      Stroke="#282828"/>
-                                <Line X1="24" Y1="0"
-                                      X2="24" Y2="64" 
-                                      Stroke="#282828"/>
-                                <Line X1="40" Y1="0"
-                                      X2="40" Y2="64" 
-                                      Stroke="#282828"/>
-                                <Line X1="48" Y1="0"
-                                      X2="48" Y2="64" 
-                                      Stroke="#282828"/>
-                                <Line X1="56" Y1="0"
-                                      X2="56" Y2="64" 
-                                      Stroke="#282828"/>
-                                <Line X1="64" Y1="0"
-                                      X2="64" Y2="64" 
-                                      Stroke="#282828"/>
-
-                                <Line X1="32" Y1="0"
-                                      X2="32" Y2="64" 
-                                      Stroke="Gray"/>
-                                <Line X1="0" Y1="32"
-                                      X2="64" Y2="32" 
-                                      Stroke="Gray"/>
-                            </Canvas>
-                        </VisualBrush.Visual>
-                    </VisualBrush>
-                </Label.Background>
-            </Label>
-            <ListBox ItemsSource="{Binding Nodes}" Grid.Row="0" Background="Transparent" SelectedItem="{Binding SelectedNode}" SelectionMode="Single">
+            <ToolControl:ScreenGridArea></ToolControl:ScreenGridArea>
+            <ListBox ItemsSource="{Binding Nodes}" Grid.Row="0" SelectedItem="{Binding SelectedNode}" SelectionMode="Single" BorderThickness="0" Style="{DynamicResource ListBoxStyle1}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas/>
@@ -132,7 +64,14 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type ToolNodeVM:NodeViewModel}">
-                        <Thumb Template="{StaticResource NodeThumbTemplate}">
+                        <Thumb>
+                            <Thumb.Template>
+                                <ControlTemplate>
+                                    <Border Width="160" Margin="0,0,10,0" ClipToBounds="False">
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding NodeName}" Foreground="White"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Thumb.Template>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="DragDelta">
                                     <cmd:EventToCommand PassEventArgsToCommand="True"

@@ -58,7 +58,10 @@
     <Compile Include="Model\Entity\Entity.cs" />
     <Compile Include="Model\Entity\EntityTransformation.cs" />
     <Compile Include="Model\Logic\Action.cs" />
+    <Compile Include="Model\Logic\Components\Physics.cs" />
+    <Compile Include="Model\Logic\Components\Properties.cs" />
     <Compile Include="Model\Logic\Event.cs" />
+    <Compile Include="Model\Logic\IComponent.cs" />
     <Compile Include="Model\Node\ENodeBindType.cs" />
     <Compile Include="Model\Node\INode.cs" />
     <Compile Include="Model\Node\INodePropertry.cs" />

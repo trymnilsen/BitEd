@@ -50,7 +50,7 @@ namespace BitEdTool.Controls
                 ScreenScroll = position;
                 ViewportRect = new Rect(position.X % 32, position.Y % 32, 32, 32);
                 //RaisePropertyChanged("BackgroundScrollViewPort");
-                e.Handled = true;
+                //e.Handled = true;
             }
         }
 

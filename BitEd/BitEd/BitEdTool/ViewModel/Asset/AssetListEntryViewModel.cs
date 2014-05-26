@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using BitEdTool.Messages.Assets;
@@ -17,6 +18,7 @@ namespace BitEdTool.ViewModel.Asset
         public RelayCommand RemoveCommand { get; private set; }
         public RelayCommand OpenCommand { get; private set; }
         public RelayCommand<MouseEventArgs> MouseMoveCommand { get; set; }
+        private ObservableCollection<IInspectableComponent> inspectableComponents;
         public Rect BackgroundScrollViewport
         {
             get { return new Rect(viewportPosition.X % 16, viewportPosition.Y % 16, 16, 16); }
@@ -28,6 +30,7 @@ namespace BitEdTool.ViewModel.Asset
             this.Model = model;
             OpenCommand = new RelayCommand(OpenAsset);
             MouseMoveCommand = new RelayCommand<MouseEventArgs>(ScrollScreen);
+            inspectableComponents = new ObservableCollection<IInspectableComponent>();
         }
         //Commands
         void OpenAsset()
@@ -87,13 +90,10 @@ namespace BitEdTool.ViewModel.Asset
 
         public virtual IEnumerable<IInspectableComponent> InspectableComponents
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return inspectableComponents; }
             set
             {
-                throw new NotImplementedException();
+                inspectableComponents = (ObservableCollection<IInspectableComponent>)value;
             }
         }
 
