@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BitEdLib.Model.Logic.Components
 {
-    public class Properties : IComponent
+    public class PropertiesComponent : ILogicComponent
     {
         public string Name
         {
             get
             {
-                throw new NotImplementedException();
+                return "Properties";
             }
             set
             {

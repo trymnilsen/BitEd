@@ -1,4 +1,5 @@
 ﻿using BitEdLib.Model.Node;
+using BitEdTool.ViewModel.Inspector;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -13,10 +14,11 @@ using System.Windows.Controls.Primitives;
 
 namespace BitEdTool.ViewModel.Node
 {
-    public class NodeViewModel:ViewModelBase
+    public class NodeViewModel:ViewModelBase, IInspectableComponent
     {
         private double positionX;
         private double positionY;
+        private bool nodeActive;
         private INode model;
         public INode Model
         {
@@ -63,7 +65,7 @@ namespace BitEdTool.ViewModel.Node
                 }
             }
         }
-        public ObservableCollection<INodePropertry> NodeProperties { get; set; }
+        public List<INodePropertry> NodeProperties { get; set; }
         public string NodeName
         {
             get { return Model.NodeName; }
@@ -74,7 +76,7 @@ namespace BitEdTool.ViewModel.Node
             NodePositionX = 20;
             NodePositionY = 20;
             this.Model = node;
-            this.NodeProperties = new ObservableCollection<INodePropertry>();
+            this.NodeProperties = new List<INodePropertry>();
             foreach(INodePropertry prop in node.Properties)
             {
                 NodeProperties.Add(prop);
@@ -86,6 +88,22 @@ namespace BitEdTool.ViewModel.Node
             NodePositionX += e.HorizontalChange;
             NodePositionY += e.VerticalChange;
             Debug.WriteLine("Hmmmzz" + NodePositionX + "/" + NodePositionY);
+        }
+
+        public string ComponentName
+        {
+            get { return NodeName; }
+        }
+
+        public bool ComponentActive
+        {
+            get { return nodeActive; }
+            set { nodeActive = value; }
+        }
+
+        public IEnumerable<INodePropertry> ComponentProperties
+        {
+            get { return NodeProperties; }
         }
     }
 }

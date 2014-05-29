@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BitEdLib.Model.Logic
 {
-    interface IComponent
+    public interface ILogicComponent
     {
         string Name { get; set; }
         Dictionary<string, object> GetProperties { get; set; }

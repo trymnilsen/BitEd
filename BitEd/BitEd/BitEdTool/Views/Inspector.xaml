@@ -31,5 +31,16 @@
             </StackPanel>
         </Border>
         <Label Grid.Row="2" Background="{DynamicResource BitEd_Timeline_EntryBackground}"/>
+        <ItemsControl ItemsSource="{Binding InspectableComponents}" Grid.Row="2">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Grid.Row="1" BorderThickness="0 2 0 2" BorderBrush="{DynamicResource AvalonDock_Expression_BaseColor1}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="10 0 0 0" Foreground="{DynamicResource AvalonDock_Expression_BaseColor2}"  Text="{Binding ComponentName}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

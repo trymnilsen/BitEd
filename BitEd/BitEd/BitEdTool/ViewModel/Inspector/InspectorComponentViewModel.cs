@@ -1,10 +1,12 @@
-﻿using GalaSoft.MvvmLight;
+﻿using BitEdLib.Model.Node;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BitEdLib.Model.Logic;
 
 namespace BitEdTool.ViewModel.Inspector
 {
@@ -12,21 +14,22 @@ namespace BitEdTool.ViewModel.Inspector
     {
         private string name;
         private bool active;
-        private ObservableCollection<IInspectableComponentProperty> properties;
+        private ILogicComponent model;
+        private List<INodePropertry> properties;
 
         public string ComponentName
         {
             get
             {
-                return name;
+                return model.Name;
             }
             set
             {
-                if(value!=name)
-                {
-                    name = value;
-                    RaisePropertyChanged("ComponentName");
-                }
+                if (value == model.Name) 
+                    return;
+
+                model.Name = value;
+                RaisePropertyChanged("ComponentName");
             }
         }
 
@@ -46,33 +49,20 @@ namespace BitEdTool.ViewModel.Inspector
             }
         }
 
-        public IEnumerable<IInspectableComponentProperty> ComponentProperties
+        public IEnumerable<INodePropertry> ComponentProperties
         {
-            get
-            {
-                return properties;
-            }
-            set
-            {
-                if(properties!=value)
-                {
-                    ObservableCollection<IInspectableComponentProperty> list = value as ObservableCollection<IInspectableComponentProperty>;
-                    if (list != null)
-                    {
-                        properties = (ObservableCollection<IInspectableComponentProperty>)value;
-                        RaisePropertyChanged("ComponentsProperties");
-                    }
-                    else
-                    {
-                        throw new ArgumentException("IEnumerable not of type ObservableCollection<IInspectorComponentProperty");
-                    }
-                }
-            }
+            get {return properties;}
         }
 
-        public InspectorComponentViewModel(IInspectable parent)
+        public ILogicComponent Model
         {
+            get { return model; }
+        }
 
+        public InspectorComponentViewModel(ILogicComponent model)
+        {
+            properties = new List<INodePropertry>();
+            this.model = model;
         }
     }
 }

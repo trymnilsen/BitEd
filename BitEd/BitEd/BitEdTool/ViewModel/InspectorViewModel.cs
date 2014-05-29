@@ -3,7 +3,9 @@ using BitEdTool.Messages.Assets;
 using BitEdTool.ViewModel.Inspector;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 namespace BitEdTool.ViewModel
 {
@@ -34,6 +36,17 @@ namespace BitEdTool.ViewModel
         {
             get { return activeInspectedItem != null && activeInspectedItem.InspectorCanSetTag; }
         }
+        public IEnumerable<IInspectableComponent> InspectableComponents
+        {
+            get 
+            { 
+                if(activeInspectedItem==null)
+                {
+                    return new IInspectableComponent[0];
+                }
+                return activeInspectedItem.InspectableComponents; 
+            }
+        }
 
         public RelayCommand SetNameCommand { get; set; }
         public ObservableCollection<IInspectableComponent> Components { get; set; }
@@ -50,6 +63,7 @@ namespace BitEdTool.ViewModel
             activeInspectedItem = message.Item;
             RaisePropertyChanged("CanSetName");
             RaisePropertyChanged("InspectedName");
+            RaisePropertyChanged("InspectableComponents");
         }
         private void SetInspectedName()
         {

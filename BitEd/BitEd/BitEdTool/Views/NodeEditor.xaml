@@ -7,6 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:LibModel="clr-namespace:BitEdLib.Model.Assets;assembly=BitEdLib"
              xmlns:ToolControl="clr-namespace:BitEdTool.Controls"
+             xmlns:ToolView="clr-na"
              xmlns:ToolNodeVM="clr-namespace:BitEdTool.ViewModel.Node"
              xmlns:ToolAssetVM="clr-namespace:BitEdTool.ViewModel.Asset"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -48,7 +49,14 @@
             <RowDefinition Height="20px"/>
         </Grid.RowDefinitions>
         <Grid ClipToBounds="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseMove">
+                    <cmd:EventToCommand PassEventArgsToCommand="True"
+                                            Command="{Binding MouseMoveCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ToolControl:ScreenGridArea></ToolControl:ScreenGridArea>
+            
             <ListBox ItemsSource="{Binding Nodes}" Grid.Row="0" SelectedItem="{Binding SelectedNode}" SelectionMode="Single" BorderThickness="0" Style="{DynamicResource ListBoxStyle1}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>

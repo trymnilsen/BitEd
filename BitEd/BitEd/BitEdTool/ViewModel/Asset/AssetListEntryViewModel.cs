@@ -31,6 +31,8 @@ namespace BitEdTool.ViewModel.Asset
             OpenCommand = new RelayCommand(OpenAsset);
             MouseMoveCommand = new RelayCommand<MouseEventArgs>(ScrollScreen);
             inspectableComponents = new ObservableCollection<IInspectableComponent>();
+            viewportPosition = new Point();
+            viewportLastPoint = new Point();
         }
         //Commands
         void OpenAsset()
@@ -48,11 +50,11 @@ namespace BitEdTool.ViewModel.Asset
             float deltaX = (float)point.X - (float)viewportLastPoint.X;
             float deltaY = (float)point.Y - (float)viewportLastPoint.Y;
 
-            Debug.WriteLine("Moving" + deltaX + "/" + deltaY);
+            Debug.WriteLine("Moving2" + deltaX + "/" + deltaY);
             viewportPosition.X += deltaX;
             viewportPosition.Y += deltaY;
             viewportLastPoint = point;
-            RaisePropertyChanged("BackgroundScrollViewport");
+            //RaisePropertyChanged("BackgroundScrollViewport");
         }
         public string InspectableName
         {
