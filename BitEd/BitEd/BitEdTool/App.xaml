@@ -18,6 +18,8 @@
                     <converters:NullToDoNothingConverter x:Key="NullToDoNothingConverter"/>
                     <converters:NullToParameterConverter x:Key="NullToParameterConverter"/>
                     <converters:NodePropertyAlignmentConverter x:Key="NodePropertyAlignmentConverter"/>
+                    <converters:BehaviourTypesNameConverter x:Key="BehaviourTypesNameConverter"/>
+                    <converters:BehaviourByTypeConverter x:Key="ItemInCollectionByTypeConverter"/>
                     <!--Locator-->
                     <vm:ViewModelLocator x:Key="Locator"/>
                 </ResourceDictionary>

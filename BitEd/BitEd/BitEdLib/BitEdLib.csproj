@@ -59,6 +59,7 @@
     <Compile Include="Model\Entity\EntityTransformation.cs" />
     <Compile Include="Model\Logic\Action.cs" />
     <Compile Include="Model\Logic\Behaviour.cs" />
+    <Compile Include="Model\Logic\Behaviours\BehaviourService.cs" />
     <Compile Include="Model\Logic\Behaviours\Triggers\InitializeTrigger.cs" />
     <Compile Include="Model\Logic\Behaviours\Triggers\TriggerBehaviour.cs" />
     <Compile Include="Model\Logic\Components\PhysicsComponent.cs" />

@@ -48,16 +48,41 @@
             <RowDefinition/>
             <RowDefinition Height="20px"/>
         </Grid.RowDefinitions>
-        <Grid ClipToBounds="True">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseMove">
                     <cmd:EventToCommand PassEventArgsToCommand="True"
                                             Command="{Binding MouseMoveCommand}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <ToolControl:ScreenGridArea></ToolControl:ScreenGridArea>
-            
-            <ListBox ItemsSource="{Binding Nodes}" Grid.Row="0" SelectedItem="{Binding SelectedNode}" SelectionMode="Single" BorderThickness="0" Style="{DynamicResource ListBoxStyle1}">
+            <ItemsControl ItemsSource="{Binding Behaviours, Converter={StaticResource BehaviourTypesNameConverter}}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Expander Header="{Binding}">
+                            <ItemsControl>
+                                <ItemsControl.ItemsSource>
+                                    <MultiBinding Converter="{StaticResource ItemInCollectionByTypeConverter}">
+                                        <Binding Path="DataContext.Behaviours"
+                                                 RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=ItemsControl}"/>
+                                        <Binding/>
+                                    </MultiBinding>
+                                </ItemsControl.ItemsSource>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding NodeName}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Expander>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ToolControl:ScreenGridArea Grid.Column="1"></ToolControl:ScreenGridArea>
+            <ListBox  ClipToBounds="True" ItemsSource="{Binding Nodes}" Grid.Row="0" Grid.Column="1" SelectedItem="{Binding SelectedNode}" SelectionMode="Single" BorderThickness="0" Style="{DynamicResource ListBoxStyle1}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas/>

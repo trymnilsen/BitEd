@@ -14,6 +14,7 @@ using BitEdLib.Model.Logic.Components;
 using System.ComponentModel;
 using BitEdLib.Model.Logic.Behaviours.Triggers;
 using System.Windows;
+using BitEdLib.Model.Logic;
 
 namespace BitEdTool.ViewModel.Asset
 {
@@ -23,6 +24,13 @@ namespace BitEdTool.ViewModel.Asset
         private InspectorComponentViewModel physicsComponentVM;
         private InspectorComponentViewModel propertiesComponentVM;
         public ObservableCollection<NodeViewModel> Nodes { get; set; }
+        public List<Behaviour> Behaviours
+        {
+            get
+            {
+                return new List<Behaviour>() { new InitializeTrigger() };
+            }
+        }
         public Object SelectedNode
         {
             get { return selectedNode; }

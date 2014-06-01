@@ -106,6 +106,8 @@
     </Compile>
     <Compile Include="Converters\ActiveDocumentConverter.cs" />
     <Compile Include="Converters\AssetErrorToColorConverter.cs" />
+    <Compile Include="Converters\BehaviorTypesNameConverter.cs" />
+    <Compile Include="Converters\BehaviourByTypeConverter.cs" />
     <Compile Include="Converters\NodePropertyAlignmentConverter.cs" />
     <Compile Include="Converters\NullToDoNothingConverter.cs" />
     <Compile Include="Converters\NullToParameterConverter.cs" />
@@ -128,6 +130,8 @@
     <Compile Include="ViewModel\Asset\ObjectViewModel.cs" />
     <Compile Include="ViewModel\Inspector\IInspectableComponentProperty.cs" />
     <Compile Include="ViewModel\Inspector\InspectorComponentViewModel.cs" />
+    <Compile Include="ViewModel\Node\BehaviourTypeViewModel.cs" />
+    <Compile Include="ViewModel\Node\BehaviourViewModel.cs" />
     <Compile Include="ViewModel\Node\NodeViewModel.cs" />
     <Compile Include="ViewModel\PaneViewModel.cs" />
     <Compile Include="ViewModel\TimelineViewModel.cs" />

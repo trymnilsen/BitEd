@@ -1,4 +1,5 @@
-﻿using BitEdLib.Model.Node;
+﻿using BitEdLib.Model.Logic.Behaviours.Triggers;
+using BitEdLib.Model.Node;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,9 @@ namespace BitEdLib.Model.Logic
 {
     public abstract class Behaviour : INode
     {
+        //public static const ReadOnlyCollection<Behaviour> AvailableBehavoirs = new ReadOnlyCollection<Behaviour>(new Behaviour[]{
+        //    new InitializeTrigger()
+        //});
         private List<INodePropertry> properties;
         private ObservableCollection<INode> connections;
         public IEnumerable<INodePropertry> Properties
